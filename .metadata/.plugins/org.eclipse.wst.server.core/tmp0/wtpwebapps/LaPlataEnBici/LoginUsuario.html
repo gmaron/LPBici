@@ -73,12 +73,17 @@ $(window).on("resize", function () {
                     var lng 	= all[i][6];
                     var latlngset;
                     latlngset = new google.maps.LatLng(lat, lng);
+                    var image = 'img/bikeflag.png';
                     var marker = new google.maps.Marker({  
-                      map: map,  title: city,  position: latlngset  
+                      map: map,  
+                      icon: image,
+                      title: city, 
+					  position: latlngset  
                     });
                     //Modificar el cartelito para ver el estado de las bicicletas
                     //
-                    var content = '<div class="map-content"><h3>' + name + '</h3>' + address + '<br />' + city + ', ' + state + ' ' + zip + '<br /><a href="Estacion'+nroEstacion+'.html"">Ir a estación</a></div>';					
+                    var content = '<div class="map-content"><h3>' + name + '</h3>' + address + '<br />' + city + ', ' + state + ' ' + zip + '<br /><a href="Estacion'+nroEstacion+'.html"">Ir a estación</a></div>';
+                   
                     var infowindow = new google.maps.InfoWindow();
                       infowindow.setContent(content);
                       google.maps.event.addListener(

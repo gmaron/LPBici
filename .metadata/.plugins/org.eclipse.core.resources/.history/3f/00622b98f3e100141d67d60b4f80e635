@@ -78,7 +78,7 @@ $(window).on("resize", function () {
                       map: map,  
                       icon: image,
                       title: city, 
-					  position: latlngset  
+						position: latlngset  
                     });
                     //Modificar el cartelito para ver el estado de las bicicletas
                     //
