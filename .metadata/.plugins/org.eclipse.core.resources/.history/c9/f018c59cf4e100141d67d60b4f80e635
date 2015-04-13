@@ -1,0 +1,244 @@
+<!DOCTYPE html>	
+<html>
+<head>
+
+<!-- Bootstrap -->
+<script src="bootstrap-3.3.4-dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="bootstrap-3.3.4-dist/css/bootstrap.min.css">
+<script src="bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+<link href="bootstrap-3.3.4-dist/css/bootstrap.css" rel="stylesheet" media="screen">
+<link href="bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+<!--Color box  -->
+<script src="bootstrap-3.3.4-dist/jquery.colorbox.js"></script>
+<script src="bootstrap-3.3.4-dist/jquery.colorbox-min.js"></script>
+<link href="bootstrap-3.3.4-dist/colorbox.css" rel="stylesheet" media="screen">
+
+<script>
+function centerModal() {
+    $(this).css('display', 'block');
+    var $dialog = $(this).find(".modal-dialog");
+    var offset = ($(window).height() - $dialog.height()) / 2;
+    // Center modal vertically in window
+    $dialog.css("margin-top", offset);
+}
+
+$('.modal').on('show.bs.modal', centerModal);
+$(window).on("resize", function () {
+    $('.modal:visible').each(centerModal);
+});
+</script>
+
+<!-- Script Colorbox -->
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".iframe").colorbox({iframe:true, innerWidth:640, innerHeight:390});	
+	});
+</script>	
+
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+    <script>
+ 	// Set the Map variable
+      	var map;
+      	function initialize() {	
+            var myOptions = {
+            zoom: 13,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var all = [
+       			["Plaza Islas Malvinas" , "19 e/ 50 y 54"	, "La Plata", "Buenos Aires", "1900", "-34.927526", "-57.960916"],
+                ["Plaza San Martin" 	, "Calle 7 y 50"	, "La Plata", "Buenos Aires", "1900", "-34.915030", "-57.949351"],
+                ["Meridiano V"			, "17 y 71"			, "La Plata", "Buenos Aires", "1900", "-34.939577", "-57.939270"],
+                   
+         ];
+        var infoWindow = new google.maps.InfoWindow;
+        map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
+        // Set the center of the map
+       	var pos = new google.maps.LatLng(-34.921439, -57.954848);
+        map.setCenter(pos);
+        function infoCallback(infowindow, marker) { 
+            return function() {
+            infowindow.open(map, marker);
+        };
+  		}			
+        function setMarkers(map, all) {
+        	var nroEstacion = 1;
+           	for (var i in all) {
+                    var name 	= all[i][0];
+                    var address = all[i][1];
+                    var city 	= all[i][2];
+                    var state 	= all[i][3];
+                    var zip 	= all[i][4];
+                    var lat 	= all[i][5];
+                    var lng 	= all[i][6];
+                    var latlngset;
+                    latlngset = new google.maps.LatLng(lat, lng);
+                    var image = 'img/bikeflag.png';
+                    var marker = new google.maps.Marker({  
+                      map: map,  
+                      icon: image,
+                      title: city, 
+					  position: latlngset  
+                    });
+                    //Modificar el cartelito para ver el estado de las bicicletas
+                    //
+                    var content = '<div class="map-content"><h3>' + name + '</h3>' + address + '<br />' + city + ', ' + state + ' ' + zip + '<br /><a href="Estacion'+nroEstacion+'.html"">Ir a estación</a></div>';
+                   
+                    var infowindow = new google.maps.InfoWindow();
+                      infowindow.setContent(content);
+                      google.maps.event.addListener(
+                        marker, 
+                        'click', 
+                        infoCallback(infowindow, marker)
+                      );
+                    nroEstacion=nroEstacion+1;
+                  }
+                }			
+                // Set all markers in the all variable
+                setMarkers(map, all);
+              };
+      
+      
+      // Initializes the Google Map
+      google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+	
+<style>
+body{
+	 background-image: url("laplatabici.jpg");
+	 no-repeat center center fixed;
+    -webkit-background-size: cover; 
+    -moz-background-size: cover;   
+    -o-background-size: cover;      
+    background-size: cover;         
+}
+
+
+.navbar-default {
+	background-color:#178501;
+    color:#ffffff;
+  	border-radius:0;
+  	border-color:#178501;    
+}
+
+  
+.navbar-default .navbar-nav > li > a {
+  	color:#fff;
+  	padding-left:20px;
+  	padding-right:20px;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+    color: #ffffff;
+	background-color:transparent;
+}
+      
+.navbar-default .navbar-nav > li > a:hover, .nav > li > a:focus {
+    text-decoration: none;
+    background-color: #33aa33;
+}
+      
+.navbar-default .navbar-brand {
+  	color:#eeeeee;
+}
+.navbar-default .navbar-toggle {
+  	background-color:#FFFFFF;
+}
+.navbar-default .icon-bar {
+  	background-color:#33aa33;
+}
+
+.navbar-default .navbar-nav .open  .dropdown-menu>li>a, .navbar-default .navbar-nav .open .dropdown-menu {
+    background-color: #178501;
+    color:#ffffff;    
+  }
+  
+.navbar-default .navbar-nav > .open > a:focus {
+    color: #178501;
+    background-color: #178501;  //  Changes color of main menu button once clicked.    
+}
+.navbar-default .navbar-nav > .open > a, 
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+    color:#178501;
+    background-color: #178501;// Changes color of main button that is currently active.
+}
+</style>
+
+<meta charset="ISO-8859-1">
+<title>¡La Plata en Bici!</title>
+</head>
+<body>
+
+<div>
+<nav class="navbar navbar-default"  role="navigation">
+  <!-- El logotipo y el icono que despliega el menú se agrupan
+       para mostrarlos mejor en los dispositivos móviles -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse"
+            data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Desplegar navegación</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="LoginUsuario.html"><font color="white">¡La Plata en Bici!</font></a>
+  </div>
+  <!-- Agrupar los enlaces de navegación, los formularios y cualquier
+       otro elemento que se pueda ocultar al minimizar la barra -->
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+  	<form class="navbar-form navbar-left" role="search">      
+      <!-- <button type="submit" class="btn btn-success">Listado de estaciones</button> -->
+      <input type="button" class="btn btn-success" value="Listado de estaciones" onClick=" window.location.href='ListadoEstacionesUsuario.html'"/>
+    </form>     
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><font color="white">Jose Perez</font><b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Ver perfil</a></li>
+           <li class="divider"></li>
+          <li><a href="Inicio.html">Cerrar sesión</a></li>                 
+        </ul>
+      </li>      
+    </ul>    
+  </div>
+</nav>
+</div>
+
+<div class="container">
+		<!-- Content Row -->
+		<div class="row">
+			<!-- Map Column -->			
+			<div class="col-md-7">
+				<div class="panel panel-default">
+			  		<div class="panel-body">
+			  			<!-- Embedded Google Map -->
+    					<div id="map_canvas" style="height: 450px; width: 620px;"></div>		
+  			  		</div>
+				</div>									 
+			</div>
+			<!-- Contact Details Column -->
+			<div class="col-md-5">
+				<div class="panel panel-default">
+			  		<div class="panel-body">
+			  			<h2>Estaciones</h2>
+			  			<h3>Plaza Islas Malvinas</h3>
+			  			<h4>Horarios de atención</h4>    					
+    					<p>Lunes a viernes 8:00 a 18:00 hs<br>
+    					Sábados, domingos y feriados de 9:00 a 16:00 hs</p>
+    					<h3>7 y 50</h3>
+			  			<h4>Horarios de atención</h4>    					
+    					<p>Lunes a viernes: de 7:00 a 20:00 hs<br>
+						   Sábados: de 9:00 a 20:00 hs<br>
+						   Domingo y feriados cerrados.</p>
+						<h3>Meridiano V</h3>
+			  			<h4>Horarios de atención</h4>    					
+    					<p>Lunes a viernes 8:00 a 18:00 hs<br>
+						   Sábados, domingos y feriados de 9:00 a 16:00 hs</p>
+  			  		</div>
+				</div>					
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -2,9 +2,9 @@ package paquete;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 
-import javax.servlet.ServletContext;
+
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,7 +32,7 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html"); //setea el tipo de respuesta 
-		PrintWriter out = response.getWriter(); //Habilita la salida para poder escribir
+		//PrintWriter out = response.getWriter(); //Habilita la salida para poder escribir
 		String usuario = request.getParameter("email");
 		String pass = request.getParameter("pass");
 		

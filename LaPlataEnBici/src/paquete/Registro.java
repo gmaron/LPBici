@@ -37,7 +37,7 @@ public class Registro extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html"); //setea el tipo de respuesta 
-		PrintWriter out = response.getWriter(); //Habilita la salida para poder escribir
+		//PrintWriter out = response.getWriter(); //Habilita la salida para poder escribir
 		
 		String usuario_nombre = request.getParameter("nombre");
 		String usuario_apellido = request.getParameter("apellido");
