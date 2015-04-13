@@ -1,0 +1,15 @@
+127.0.0.1 - - [13/Apr/2015:12:36:33 -0300] "GET / HTTP/1.1" 404 961
+0:0:0:0:0:0:0:1 - - [13/Apr/2015:12:36:34 -0300] "GET /LaPlataEnBici/Inicio.html HTTP/1.1" 200 7552
+0:0:0:0:0:0:0:1 - - [13/Apr/2015:12:36:34 -0300] "GET /LaPlataEnBici/bootstrap-3.3.4-dist/css/bootstrap.min.css HTTP/1.1" 200 117305
+0:0:0:0:0:0:0:1 - - [13/Apr/2015:12:36:34 -0300] "GET /LaPlataEnBici/bootstrap-3.3.4-dist/js/jquery.min.js HTTP/1.1" 200 93100
+0:0:0:0:0:0:0:1 - - [13/Apr/2015:12:36:34 -0300] "GET /LaPlataEnBici/bootstrap-3.3.4-dist/js/bootstrap.min.js HTTP/1.1" 200 35951
+0:0:0:0:0:0:0:1 - - [13/Apr/2015:12:36:34 -0300] "GET /LaPlataEnBici/bootstrap-3.3.4-dist/css/bootstrap.css HTTP/1.1" 200 141622
+0:0:0:0:0:0:0:1 - - [13/Apr/2015:12:36:34 -0300] "GET /LaPlataEnBici/bootstrap-3.3.4-dist/js/gen_validatorv4.js HTTP/1.1" 200 32085
+0:0:0:0:0:0:0:1 - - [13/Apr/2015:12:36:35 -0300] "GET /LaPlataEnBici/laplatabici.jpg HTTP/1.1" 200 83100
+0:0:0:0:0:0:0:1 - - [13/Apr/2015:12:37:00 -0300] "GET /LaPlataEnBici/Inicio.html HTTP/1.1" 200 7552
+0:0:0:0:0:0:0:1 - - [13/Apr/2015:12:37:00 -0300] "GET /LaPlataEnBici/bootstrap-3.3.4-dist/js/jquery.min.js HTTP/1.1" 200 93100
+0:0:0:0:0:0:0:1 - - [13/Apr/2015:12:37:00 -0300] "GET /LaPlataEnBici/bootstrap-3.3.4-dist/js/bootstrap.min.js HTTP/1.1" 200 35951
+0:0:0:0:0:0:0:1 - - [13/Apr/2015:12:37:00 -0300] "GET /LaPlataEnBici/bootstrap-3.3.4-dist/js/gen_validatorv4.js HTTP/1.1" 200 32085
+0:0:0:0:0:0:0:1 - - [13/Apr/2015:12:37:00 -0300] "GET /LaPlataEnBici/bootstrap-3.3.4-dist/css/bootstrap.min.css HTTP/1.1" 200 117305
+0:0:0:0:0:0:0:1 - - [13/Apr/2015:12:37:00 -0300] "GET /LaPlataEnBici/bootstrap-3.3.4-dist/css/bootstrap.css HTTP/1.1" 200 141622
+0:0:0:0:0:0:0:1 - - [13/Apr/2015:12:37:00 -0300] "GET /LaPlataEnBici/laplatabici.jpg HTTP/1.1" 200 83100

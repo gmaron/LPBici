@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<!-- Bootstrap -->
+<script src="bootstrap-3.3.4-dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="bootstrap-3.3.4-dist/css/bootstrap.min.css">
+<script src="bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+<link href="bootstrap-3.3.4-dist/css/bootstrap.css" rel="stylesheet" media="screen">
+<link href="bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+<!-- Sorted Table -->
+	<script type="text/javascript" src="bootstrap-3.3.4-dist/js/jquery.min.js"></script> 
+	<script type="text/javascript" src="bootstrap-3.3.4-dist/jstable/jquery.tablesorter.js"></script> 
+	
+	
+<!-- Css Table -->
+	<link href="bootstrap-3.3.4-dist/cssTable/style.css" rel="stylesheet" media="screen">
+
+<!-- Colorbox -->
+	<script type="text/javascript" src="bootstrap-3.3.4-dist/jquery.colorbox.js"></script>
+	<script type="text/javascript" src="bootstrap-3.3.4-dist/jquery.colorbox-min.js"></script>
+	<link href="bootstrap-3.3.4-dist/colorbox.css" rel="stylesheet" media="screen">
+
+<!-- Script Colorbox -->
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(".iframe").colorbox({iframe:true, width:"60%", height:"60%", closeButton:true, close:true});	
+		});
+	</script>
+
+
+<style type="text/css">
+
+
+/*a:link, a:visited{text-decoration:none; color:#416CE5; border-bottom:1px solid #416CE5;}*/	
+
+body{
+	 background-image: url("laplatabici.jpg");
+	 no-repeat center center fixed;
+    -webkit-background-size: cover; 
+    -moz-background-size: cover;   
+    -o-background-size: cover;      
+    background-size: cover;         
+}
+
+/*table tbody tr:hover td, .table tbody tr:hover th {
+    background-color: #70db20;
+    
+}
+
+table#tab thead th { 
+    cursor: pointer; 
+    font-weight: bold; 
+    background-repeat: no-repeat; 
+    background-position: center left; 
+    padding-left: 20px; 
+    border-right: 1px ; 
+    margin-left: -1px ; 
+} */
+
+
+h1#h1Titulo{
+	color:white;
+}
+
+.navbar-default {
+	background-color:#178501;
+    color:#ffffff;
+  	border-radius:0;
+  	border-color:#178501;    
+}
+
+  
+.navbar-default .navbar-nav > li > a {
+  	color:#fff;
+  	padding-left:20px;
+  	padding-right:20px;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+    color: #ffffff;
+	background-color:transparent;
+}
+      
+.navbar-default .navbar-nav > li > a:hover, .nav > li > a:focus {
+    text-decoration: none;
+    background-color: #33aa33;
+}
+      
+.navbar-default .navbar-brand {
+  	color:#eeeeee;
+}
+.navbar-default .navbar-toggle {
+  	background-color:#FFFFFF;
+}
+.navbar-default .icon-bar {
+  	background-color:#33aa33;
+}
+
+.navbar-default .navbar-nav .open  .dropdown-menu>li>a, .navbar-default .navbar-nav .open .dropdown-menu {
+    background-color: #178501;
+    color:#ffffff;    
+  }
+  
+.navbar-default .navbar-nav > .open > a:focus {
+    color: #178501;
+    background-color: #178501;  //  Changes color of main menu button once clicked.    
+}
+
+.navbar-default .navbar-nav > .open > a, 
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+    color:#178501;
+    background-color: #178501;// Changes color of main button that is currently active.
+}
+</style>
+
+
+<meta charset="ISO-8859-1">
+<title>¡La Plata en Bici!</title>
+</head>
+<body>
+<div>
+<nav class="navbar navbar-default" role="navigation">
+  <!-- El logotipo y el icono que despliega el menú se agrupan
+       para mostrarlos mejor en los dispositivos móviles -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse"
+            data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Desplegar navegación</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="LoginUsuario.html"><font color="white">¡La Plata en Bici!</font></a>
+  </div>
+  <!-- Agrupar los enlaces de navegación, los formularios y cualquier
+       otro elemento que se pueda ocultar al minimizar la barra -->
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <form class="navbar-form navbar-left" role="search">            
+      <input type="button" class="btn btn-success" value="Mapa de estaciones" onClick=" window.location.href='LoginUsuario.html' "/>
+    </form> 
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><font color="white">Jose Perez</font><b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Ver perfil</a></li>
+           <li class="divider"></li>
+          <li><a href="Inicio.html">Cerrar sesión</a></li>                 
+        </ul>
+      </li>      
+    </ul>    
+  </div>
+</nav>
+</div>
+
+<div class="row" align="center">
+	<div class="page-header">
+  		<h1 id="h1Titulo">Listado de estaciones</h1>
+	</div>
+	<table id="tab" class="table  table-hover tablesorter">             
+    <thead id="th"> 
+        <tr> 
+            <th>Nombre Estacion</th> 
+            <th>Ubicacion</th> 
+            <th>Bicicletas disponibles</th> 
+            <th>Estacionamientos disponibles</th> 
+            <th>Estado</th>  
+        </tr> 
+    </thead> 
+    <tbody> 
+      <tr> 
+            <td>Plaza Islas Malvinas</td> 
+            <td>
+            	<p><a class='iframe' href="https://www.google.com/maps/d/u/0/embed?mid=zOgNv48siyY8.kFxf3oAojkWI">Calle 19 e/ 50 y 54</a></p>
+			</td> 
+            <td>30</td> 
+            <td>10</td> 
+            <td>Operativa</td> 
+        </tr> 
+        <tr> 
+            <td>Plaza San Martin</td> 
+            <td>
+            	<p><a class='iframe' href="https://www.google.com/maps/d/u/0/embed?mid=zOgNv48siyY8.kmCwlJ2MFneA">Calle 7 y 50</a></p>
+			</td> 
+            <td>20</td> 
+            <td>4</td> 
+            <td>Operativa</td> 
+        </tr> 
+        <tr> 
+            <td>Meridiano V</td> 
+            <td>
+            	<p><a class='iframe' href="https://www.google.com/maps/d/u/0/embed?mid=zCiCiR0h7cg8.kud8PxDbjLQ0">Calle 17 y 71</a></p>
+			</td> 
+            <td>40</td> 
+            <td>10</td> 
+            <td>Operativa</td>  	
+        </tr>       
+    </tbody> 
+</table>
+
+<script type="text/javascript">
+$(document).ready(function() { 
+    // call the tablesorter plugin 
+    $("table").tablesorter(); 
+}); 
+</script>
+
+</div>
+
+
+
+</body>
+</html>
