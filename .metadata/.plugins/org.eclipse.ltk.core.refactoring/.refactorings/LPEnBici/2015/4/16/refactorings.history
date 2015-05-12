@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move &apos;bikeflag.png&apos; to &apos;img&apos;" description="Move &apos;bikeflag.png&apos; to &apos;img&apos;" destination="WebContent/img" element1="/LaPlataEnBici/WebContent/img/bikeflag.png" flags="7" id="org.eclipse.ltk.core.refactoring.move.resources" resources="1" stamp="1429116568089" updateReferences="true"/>
+</session>

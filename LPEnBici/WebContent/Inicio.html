@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<!-- Bootstrap -->
+<script src="bootstrap-3.3.4-dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="bootstrap-3.3.4-dist/css/bootstrap.min.css">
+<script src="bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+<link href="bootstrap-3.3.4-dist/css/bootstrap.css" rel="stylesheet" media="screen">
+<link href="bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<!-- <script src="bootstrap-3.3.4-dist/js/bootbox.min.js" type="text/javascript"></script> -->
+
+<!-- Validator -->
+<script src="bootstrap-3.3.4-dist/js/gen_validatorv4.js" type="text/javascript"></script>
+
+
+
+
+<style>
+
+body{
+	 background-image: url("laplatabici.jpg");
+	 no-repeat center center fixed;
+    -webkit-background-size: cover; 
+    -moz-background-size: cover;   
+    -o-background-size: cover;      
+    background-size: cover;         
+}
+
+
+.navbar-custom {
+	background-color:#178501;
+    color:#ffffff;
+  	border-radius:0;
+}
+
+  
+.navbar-custom .navbar-nav > li > a {
+  	color:#fff;
+  	padding-left:20px;
+  	padding-right:20px;
+}
+.navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+    color: #ffffff;
+	background-color:transparent;
+}
+      
+.navbar-custom .navbar-nav > li > a:hover, .nav > li > a:focus {
+    text-decoration: none;
+    background-color: #33aa33;
+}
+      
+.navbar-custom .navbar-brand {
+  	color:#eeeeee;
+}
+.navbar-custom .navbar-toggle {
+  	background-color:#FFFFFF;
+}
+.navbar-custom .icon-bar {
+  	background-color:#33aa33;
+}
+
+
+div#panelContenedor{
+	max-width: 416px;
+	margin: auto;
+
+	
+}
+
+div#panelHead {
+	background-color: #178501;
+}
+
+</style>
+
+<title>¡La Plata en Bici!</title>
+
+</head>
+<body>
+<div class="container">
+	<div class="page-header">
+		<div class="navbar navbar-custom navbar-fixed-top">
+		    <div class="container-fluid">
+		        <div class="navbar-header">
+		            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+		                <span class="icon-bar"></span>
+		                <span class="icon-bar"></span>
+		                <span class="icon-bar"></span>
+		            </button>
+		            <a class="navbar-brand"><font color="white">¡La Plata en Bici!</font></a>
+		        </div>		        
+		            <div class="navbar-collapse collapse" id="navbar-main">
+		                <form class="navbar-form navbar-right" action="Login" method="GET" role="search">
+		                    <div class="form-group">
+		                        <input type="text" class="form-control" name="email" placeholder="Email">
+		                    </div>
+		                    <div class="form-group">
+		                        <input type="password" class="form-control" name="pass" placeholder="Contraseña">
+		                    </div>
+		                    <button type="submit" class="btn btn-success">Entrar</button>
+		                </form>
+		            </div>
+		        
+		    </div>
+		</div>
+	</div>
+	<div class="row">
+	<div id="panelContenedor">
+			<div class="panel panel-success" id="panelRegistro">
+				<div id="panelHead" class="panel-heading">
+					<div id="textoRegistro" align="center">
+						<font color="white">Registrate</font>
+					</div>
+				</div>
+				<div class="panel-body">
+					<div class="card card-container">
+						<form class="form-horizontal" data-toggle="validator" role="form" id="formulario" action="Registro" method="get">
+												
+							 <ul class="list-group">
+																					
+								<li class="list-group-item">
+								
+								<input type="text" name="nombre" class="form-control" 
+								id="nombre" autocomplete="off" placeholder="Nombre"  autofocus="autofocus">
+								<div id='formulario_nombre_errorloc'></div>
+								</li>
+								
+								<li class="list-group-item">
+								
+								<input type="text" name="apellido" class="form-control" 
+								id="apellido" autocomplete="off" placeholder="Apellido">
+								<div id='formulario_apellido_errorloc'></div>
+								</li>
+								
+								<li class="list-group-item"><input type="text" maxlength="8" name="dni" class="form-control" 
+								id="dni" autocomplete="off" placeholder="DNI">
+								<div id='formulario_dni_errorloc'></div>							
+								</li>
+								
+								<li class="list-group-item">
+								<input type="text" name="domicilio" class="form-control" 
+								id="domi" autocomplete="off" placeholder="Domicilio">
+								<div id='formulario_domicilio_errorloc'></div>
+								</li>
+								
+								<li class="list-group-item">
+								<input type="email" name="email" class="form-control" 
+								id="email" autocomplete="off" placeholder="Introduce tu email">
+								<div id='formulario_email_errorloc'></div>
+								</li>
+								
+								<li class="list-group-item" align="center">
+								
+								<label class="checkbox-inline"> 
+									<input type="radio" name="sex"id="sex" value="sex" checked> Masculino
+								</label> <label class="checkbox-inline"> <input type="radio" name="sex" id="sex" value="sex"> Femenino</label>
+								</li>
+								<li class="list-group-item">
+									<p align="center">Fecha de nacimiento</p> <input type="date" class="form-control" name="fechanac" id="datepicker" placeholder="Fecha de Nacimiento">
+									<div id='formulario_fechanac_errorloc'></div>
+								</li>
+							</ul> 
+							<button class="btn btn-success btn-block btn-signin " id="botoninicio" type="submit">Terminado</button>
+						</form>
+	
+						 <script type="text/javascript">
+									var frmvalidator = new Validator("formulario");
+									frmvalidator.EnableOnPageErrorDisplay();
+									frmvalidator.EnableMsgsTogether();
+									//Nombre
+									frmvalidator.addValidation("nombre","req","Nombre Obligatorio");
+									frmvalidator.addValidation("nombre", "alphabetic_space", "Nombre: puede contener solo caracteres alfabeticos");
+									frmvalidator.addValidation("nombre","maxlen=20","Nombre: Longitud maxima 20 caracteres");
+									frmvalidator.addValidation("nombre","minlen=4","Nombre: Longitud minima 4 caracteres");
+									//Apellido
+									frmvalidator.addValidation("apellido","req","Apellido Obligatorio");
+									frmvalidator.addValidation("apellido", "alphabetic_space", "Apellido: puede contener solo caracteres alfabeticos");
+									frmvalidator.addValidation("apellido","maxlen=20","Apellido: Longitud maxima 20 caracteres");
+									frmvalidator.addValidation("apellido","minlen=4","Apellido: Longitud minima 4 caracteres");
+									//DNI
+									frmvalidator.addValidation("dni", "req", "DNI Obligatorio");
+									frmvalidator.addValidation("dni", "num", "DNI: Solo caracteres numericos");
+									frmvalidator.addValidation("dni", "minlen=8", "DNI: Longitud minima 8 caracteres");								
+									//Domicilio
+									frmvalidator.addValidation("domicilio", "req", "Domicilio obligatorio");
+									//Faltaria poner localidad, departamento,piso
+									//Email
+									frmvalidator.addValidation("email", "req", "Email Obligatorio");
+									frmvalidator.addValidation("email", "email", "Email Invalido");
+									//Fecha nacimiento
+									frmvalidator.addValidation("fechanac", "req", "Fecha de nacimiento Obligatorio");
+									
+						</script>
+					</div>
+				</div> 
+			</div>
+		</div>
+	</div> <!-- Row -->
+</div> <!-- Container -->
+</script>
+</body>
+</html>
+
