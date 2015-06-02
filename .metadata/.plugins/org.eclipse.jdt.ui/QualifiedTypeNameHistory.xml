@@ -6,4 +6,9 @@
 <fullyQualifiedTypeName name="paquete.EstadoBicicleta"/>
 <fullyQualifiedTypeName name="paquete.EstadoEstacion"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="javax.mail.AuthenticationFailedException"/>
+<fullyQualifiedTypeName name="javax.mail.Authenticator"/>
+<fullyQualifiedTypeName name="javax.mail.Session"/>
+<fullyQualifiedTypeName name="javax.mail.internet.MimeMessage"/>
+<fullyQualifiedTypeName name="javax.mail.internet.InternetAddress"/>
 </qualifiedTypeNameHistroy>

@@ -5,7 +5,11 @@
 	<list key="J2EE_IMPORT_null">
 		<item value="C:\Users\Turqitoo\Desktop\LaPlataEnBici.war"/>
 	</list>
+	<list key="J2EE_IMPORT_APP_CLIENT">
+		<item value="C:\Users\GastónAriel\Downloads\javax.mail.jar"/>
+	</list>
 	<list key="MRU_RUNTIME_STORE">
+		<item value="NULL_RUNTIME"/>
 		<item value="Apache Tomcat v7.0"/>
 	</list>
 	<list key="J2EE_EXPORT_JST_WEB">
