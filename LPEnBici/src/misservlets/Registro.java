@@ -1,4 +1,4 @@
-package paquete;
+package misservlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -53,7 +53,7 @@ public class Registro extends HttpServlet {
 		if (!usuario_registrado.containsKey(usuario_email)){
 			Usuario nuevo_usuario = new Usuario(usuario_nombre, 
 					usuario_apellido, usuario_email, usuario_dni, usuario_domicilio,
-					usuario_sexo, usuario_fechanac);
+					usuario_sexo, usuario_fechanac,usuario_pass);
 			// Ligo objeto (lista de usuarios) al alcance de aplicacion
 			usuario_registrado.put(usuario_email, usuario_pass);
 			

@@ -1,6 +1,11 @@
 package misclases;
 
-public abstract class Persona {
+import javax.persistence.*;
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Table(name="Persona")
+public class Persona {
 	private String nombre;
 	private String apellido;
 	private String dni; 
@@ -8,10 +13,14 @@ public abstract class Persona {
 	private String email;
 	private String sexo;
 	private String fechaNacimiento;
+	private String password;
 	
 	
+	@Id @GeneratedValue
+	private Long id;
+
 	public Persona(String nombre, String apellido, String email,
-			String dni, String domicilio, String sexo, String fechaNacimiento) {
+			String dni, String domicilio, String sexo, String fechaNacimiento, String password) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -20,9 +29,14 @@ public abstract class Persona {
 		this.email = email;
 		this.sexo = sexo;
 		this.fechaNacimiento = fechaNacimiento;
+		this.password = password;
 	}
-	
-	
+
+	public Persona() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -65,7 +79,16 @@ public abstract class Persona {
 	public void setFechaNacimiento(String fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
-	
-	
-	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 }

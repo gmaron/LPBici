@@ -1,4 +1,4 @@
-package paquete;
+package misservlets;
 
 import java.util.Properties;
 

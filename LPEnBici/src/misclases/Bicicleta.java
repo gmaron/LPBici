@@ -1,22 +1,34 @@
 package misclases;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 
 
 
-
+@Entity
 public class Bicicleta {
 	private String patente;
-	private String estado; //APTA, REPARACION, DESUSO, DENUNCIADA
-	private ArrayList<Estado> historialEstado;
+	private String estado; //APTA, REPARACION, DESUSO, DENUNCIADA	
 	private String fechaIngreso;
 	private String ubicacionActual;
-	private ArrayList<RegistroAlquiler> historial;
-	private RegistroAlquiler regActual;
-	private ArrayList<Denuncia> historialDenuncia;
+	private RegistroAlquiler regActual;	
+	
+	@OneToMany(mappedBy="Estado")
+	private List<Estado> historialEstado;
+	
+	private List<RegistroAlquiler> historial;
+	
+	private List<Denuncia> historialDenuncia;
 
 	
+	@Id @GeneratedValue
+	private Long id;
 	
 	public Bicicleta(String patente, String estado, String fechaIngreso,
 			String ubicacionActual) {
@@ -65,7 +77,7 @@ public class Bicicleta {
 	public void setUbicacionActual(String ubicacionActual) {
 		this.ubicacionActual = ubicacionActual;
 	}
-	public ArrayList<RegistroAlquiler> getHistorial() {
+	public List<RegistroAlquiler> getHistorial() {
 		return historial;
 	}
 	public void setHistorial(ArrayList<RegistroAlquiler> historial) {
@@ -77,25 +89,20 @@ public class Bicicleta {
 	public void setRegActual(RegistroAlquiler regActual) {
 		this.regActual = regActual;
 	}
-	public ArrayList<Denuncia> getHistorialDenuncia() {
+	public List<Denuncia> getHistorialDenuncia() {
 		return historialDenuncia;
 	}
 	public void setHistorialDenuncia(ArrayList<Denuncia> historialDenuncia) {
 		this.historialDenuncia = historialDenuncia;
 	}
 
-	public ArrayList<Estado> getHistorialEstado() {
+	public List<Estado> getHistorialEstado() {
 		return historialEstado;
 	}
 
 	public void setHistorialEstado(ArrayList<Estado> historialEstado) {
 		this.historialEstado = historialEstado;
 	}
-	
-	
-	
-	
-	
 	
 }
 

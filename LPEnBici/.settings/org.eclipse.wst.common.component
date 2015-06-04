@@ -2,6 +2,7 @@
     <wb-module deploy-name="LPEnBici">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/META-INF"/>
         <property name="java-output-path" value="/LPEnBici/build/classes"/>
         <property name="context-root" value="LPEnBici"/>
     </wb-module>
