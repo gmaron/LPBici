@@ -3,10 +3,8 @@ package misclases;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+
 
 
 
@@ -14,32 +12,40 @@ import javax.persistence.OneToMany;
 @Entity
 public class Bicicleta {
 	private String patente;
-	private String estado; //APTA, REPARACION, DESUSO, DENUNCIADA	
+//	private String estado; //APTA, REPARACION, DESUSO, DENUNCIADA	
 	private String fechaIngreso;
 	private String ubicacionActual;
 	private RegistroAlquiler regActual;	
 	
-	@OneToMany(mappedBy="Estado")
+	@Id @GeneratedValue
+	private Long id;
+	
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<Estado> historialEstado;
 	
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<RegistroAlquiler> historial;
-	
+
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<Denuncia> historialDenuncia;
 
 	
-	@Id @GeneratedValue
-	private Long id;
+
 	
 	public Bicicleta(String patente, String estado, String fechaIngreso,
 			String ubicacionActual) {
 		super();
 		this.patente = patente;
-		this.estado = estado;
 		this.fechaIngreso = fechaIngreso;
 		this.ubicacionActual = ubicacionActual;
 		this.historial = new ArrayList<RegistroAlquiler>();
 		this.historialDenuncia = new ArrayList<Denuncia>();
 		this.historialEstado = new ArrayList<Estado>();
+		this.historialEstado.add(new Estado(estado, this.fechaIngreso));
+	}
+	
+	public Bicicleta (){
+		
 	}
 	
 	public void retirarBicicleta(RegistroAlquiler reg){
@@ -59,12 +65,13 @@ public class Bicicleta {
 	public void setPatente(String patente) {
 		this.patente = patente;
 	}
+	/*
 	public String getEstado() {
 		return estado;
 	}
 	public void setEstado(String estado) {
 		this.estado = estado;
-	}
+	}*/
 	public String getFechaIngreso() {
 		return fechaIngreso;
 	}
@@ -80,7 +87,7 @@ public class Bicicleta {
 	public List<RegistroAlquiler> getHistorial() {
 		return historial;
 	}
-	public void setHistorial(ArrayList<RegistroAlquiler> historial) {
+	public void setHistorial(List<RegistroAlquiler> historial) {
 		this.historial = historial;
 	}
 	public RegistroAlquiler getRegActual() {
@@ -92,7 +99,7 @@ public class Bicicleta {
 	public List<Denuncia> getHistorialDenuncia() {
 		return historialDenuncia;
 	}
-	public void setHistorialDenuncia(ArrayList<Denuncia> historialDenuncia) {
+	public void setHistorialDenuncia(List<Denuncia> historialDenuncia) {
 		this.historialDenuncia = historialDenuncia;
 	}
 
@@ -100,9 +107,20 @@ public class Bicicleta {
 		return historialEstado;
 	}
 
-	public void setHistorialEstado(ArrayList<Estado> historialEstado) {
+	public void setHistorialEstado(List<Estado> historialEstado) {
 		this.historialEstado = historialEstado;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	
+	
 	
 }
 

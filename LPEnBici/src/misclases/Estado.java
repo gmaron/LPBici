@@ -13,6 +13,16 @@ public class Estado {
 	private Long id;
 
 	
+	public Estado(String estado, String fecha) {
+		super();
+		this.estado = estado;
+		this.fecha = fecha;
+	}
+	
+	public Estado(){
+		
+	}
+	
 	public String getEstado() {
 		return estado;
 	}
@@ -28,6 +38,15 @@ public class Estado {
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	
 	
 }

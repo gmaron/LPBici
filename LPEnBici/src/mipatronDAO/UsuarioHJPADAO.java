@@ -17,37 +17,63 @@ import misclases.Usuario;
 public class UsuarioHJPADAO implements IUsuarioDAO{
 
 	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("UnityPersistence");
+	private static EntityManager em;
+	
+	/* Singleton EntityManager */
+	public static EntityManager getEntityManager(){
+		if(em == null || !em.isOpen()){
+			em = emf.createEntityManager();
+		}
+		return em;
+	}
+	
 	
 	@Override
 	public void guardarUsuario(Usuario usuario) {
 		// TODO Auto-generated method stub
-		EntityManager em = emf.createEntityManager();
+		em =  getEntityManager();
 		EntityTransaction etx = em.getTransaction();
 		etx.begin();
 		em.persist(usuario);
-		
+	
 		etx.commit();
-		em.close();
 	}
 
 	@Override
 	public void modificarUsuario(Usuario usuario) {
 		// TODO Auto-generated method stub
+		em = getEntityManager();
+		EntityTransaction etx = em.getTransaction();
+		etx.begin();
+		//el codigo de modificacion va aca
+		em.merge(usuario);
+		etx.commit();
 		
 	}
 
 	@Override
-	public void eliminarUsuario(Long usuario) {
+	public void eliminarUsuario(Usuario usuario) {
 		// TODO Auto-generated method stub
-		EntityManager em = emf.createEntityManager();
+		EntityManager em = getEntityManager();
 		EntityTransaction etx = em.getTransaction();
 		etx.begin();
-		
-		Usuario usuarioBorrar = em.getReference(Usuario.class, usuario);//em.find(Administrador.class, administrador);
-		em.remove(usuarioBorrar);		
-		
+		em.remove(usuario);		
 		etx.commit();
+	}
+
+
+	@Override
+	public Usuario recuperarUsuario(Long id) {
+		// TODO Auto-generated method stub
+		EntityManager em = getEntityManager();
+		return em.find(Usuario.class, id);
+	}
+
+	@Override
+	public void closeEntityManager() {
+		// TODO Auto-generated method stub
 		em.close();
+		
 	}
 
 }

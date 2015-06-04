@@ -5,16 +5,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-import misclases.Administrador;
-import misclases.Estacion;
+import misclases.RegistroAlquiler;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
-import misclases.Estacion;
-
-
-public class EstacionHJPADAO implements IEstacionDAO {
+public class RegistroAlquilerHJPADAO implements IRegistroAlquilerDAO {
 
 	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("UnityPersistence");
 	private static EntityManager em;
@@ -28,51 +21,50 @@ public class EstacionHJPADAO implements IEstacionDAO {
 	}
 	
 	@Override
-	public void guardarEstacion(Estacion estacion) {
+	public void guardarRegistroAlquiler(RegistroAlquiler registroAlquiler) {
 		// TODO Auto-generated method stub
 		em =  getEntityManager();
 		EntityTransaction etx = em.getTransaction();
 		etx.begin();
-		em.persist(estacion);
+		em.persist(registroAlquiler);
 	
 		etx.commit();
 		
 	}
 
 	@Override
-	public void modificarEstacion(Estacion estacion) {
+	public void modificarRegistroAlquiler(RegistroAlquiler registroAlquiler) {
 		// TODO Auto-generated method stub
 		em = getEntityManager();
 		EntityTransaction etx = em.getTransaction();
 		etx.begin();
 		//el codigo de modificacion va aca
-		em.merge(estacion);
+		em.merge(registroAlquiler);
 		etx.commit();
+		
 		
 	}
 
 	@Override
-	public void eliminarEstacion(Estacion estacion) {
+	public void eliminarRegistroAlquiler(RegistroAlquiler registroAlquiler) {
 		// TODO Auto-generated method stub
 		EntityManager em = getEntityManager();
 		EntityTransaction etx = em.getTransaction();
 		etx.begin();
-		em.remove(estacion);		
+		em.remove(registroAlquiler);		
 		etx.commit();
 		
 	}
-
+	
 	@Override
-	public Estacion recuperarEstacion(Long id) {
+	public RegistroAlquiler recuperarRegistroAlquiler(Long id) {
 		// TODO Auto-generated method stub
 		EntityManager em = getEntityManager();
-		return em.find(Estacion.class, id);
+		return em.find(RegistroAlquiler.class, id);
+	}
+	
+	public void closeEntityManager(){
+		em.close();
 	}
 
-	@Override
-	public void closeEntityManager() {
-		// TODO Auto-generated method stub
-		em.close();
-		
-	}
 }

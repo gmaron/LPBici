@@ -1,22 +1,38 @@
 package misclases;
 
+import javax.persistence.*;
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE) // Ver Single table
 public class RegistroAlquiler {
+	
+	@Id @GeneratedValue
+	private Long id;
 	
 	private String fechaEntrada; //fecha de entrada = 0
 	private String fechaSalida; 
 	private String horaEntrada; //hora de entrada = 0
 	private String horaSalida; 
-	private Estacion estacionEntrada; // estacion de entrada = estacion de salida hasta que la devuelva
-	private Estacion estacionSalida;
 	private String estado;
+	
+
+	@ManyToOne(cascade = CascadeType.ALL) // puede haber mas de un registro asociado a un usuario
 	private Usuario usuarioUso;
+
 	
+	@ManyToOne(cascade = CascadeType.ALL) 
+	private Estacion estacionEntrada; // estacion de entrada = estacion de salida hasta que la devuelva
 	
+	@ManyToOne(cascade = CascadeType.ALL) 
+	private Estacion estacionSalida;
+		
+	//preguntar porque hay redundancia de datos
+	//private Denuncia denuncia;
 		
 	
 	public RegistroAlquiler(String fechaEntrada, String fechaSalida,
 			String horaEntrada, String horaSalida, Estacion estacionEntrada,
-			Estacion estacionSalida, String estado, Usuario usuarioUso) {
+			Estacion estacionSalida,/* String estado,*/ Usuario usuarioUso) {
 		super();
 		this.fechaEntrada = fechaEntrada;
 		this.fechaSalida = fechaSalida;
@@ -24,9 +40,14 @@ public class RegistroAlquiler {
 		this.horaSalida = horaSalida;
 		this.estacionEntrada = estacionEntrada;
 		this.estacionSalida = estacionSalida;
-		this.estado = estado;
+		//this.estado = estado;
 		this.usuarioUso = usuarioUso;
 	}
+	
+	public RegistroAlquiler(){
+		
+	}
+	
 	public String getFechaEntrada() {
 		return fechaEntrada;
 	}
@@ -74,6 +95,14 @@ public class RegistroAlquiler {
 	}
 	public void setUsuarioUso(Usuario usuarioUso) {
 		this.usuarioUso = usuarioUso;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	

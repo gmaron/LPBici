@@ -1,14 +1,25 @@
 package misclases;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.*;
+
+@Entity
 public class Estacion {
 	private String nombre;
 	private String ubicacion;
 	private int cantEstacionamientoLibre;
 	private String estado; //OPERATIVA, CERRADA, EN CONSTRUCCION
-	private ArrayList<Estado> historialEstado;
-	private ArrayList<Bicicleta> listaBici; //el length = cantidad de bicicletas
+	
+	@Id @GeneratedValue
+	private Long id;
+	
+	@OneToMany (cascade = CascadeType.ALL)
+	private List<Estado> historialEstado;
+	
+	@OneToMany (cascade = CascadeType.ALL)
+	private List<Bicicleta> listaBici; //el length = cantidad de bicicletas
 		
 	
 	
@@ -24,6 +35,10 @@ public class Estacion {
 		this.historialEstado = new ArrayList<Estado>();
 	}
 	
+	public Estacion(){
+		
+	}
+
 	
 	public String getNombre() {
 		return nombre;
@@ -49,21 +64,29 @@ public class Estacion {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	public ArrayList<Bicicleta> getListaBici() {
+	public List<Bicicleta> getListaBici() {
 		return listaBici;
 	}
-	public void setListaBici(ArrayList<Bicicleta> listaBici) {
+	public void setListaBici(List<Bicicleta> listaBici) {
 		this.listaBici = listaBici;
 	}
 
 
-	public ArrayList<Estado> getHistorialEstado() {
+	public List<Estado> getHistorialEstado() {
 		return historialEstado;
 	}
 
 
-	public void setHistorialEstado(ArrayList<Estado> historialEstado) {
+	public void setHistorialEstado(List<Estado> historialEstado) {
 		this.historialEstado = historialEstado;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	

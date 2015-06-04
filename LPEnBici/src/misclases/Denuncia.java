@@ -1,9 +1,15 @@
 package misclases;
 
+import javax.persistence.*;
+
+@Entity
 public class Denuncia {
+	
 	private Usuario usuarioDenuncia;
 	private String comentario; //el comentario puede venir vacio
 	
+	@Id @GeneratedValue
+	private Long id;
 		
 	public Denuncia(Usuario usuarioDenuncia, String comentario) {
 		super();
@@ -23,7 +29,15 @@ public class Denuncia {
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
 	}
-	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	
 
 }

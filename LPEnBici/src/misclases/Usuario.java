@@ -11,14 +11,13 @@ public class Usuario extends Persona{
 			String dni, String domicilio, String sexo, String fechaNacimiento,String password) {
 		super(nombre, apellido, email, dni, domicilio, sexo, fechaNacimiento, password);
 		// TODO Auto-generated constructor stub
-		//habilitado = true;
+		habilitado = true;
 	}
 
 	
 	
 	public Usuario() {
-		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 

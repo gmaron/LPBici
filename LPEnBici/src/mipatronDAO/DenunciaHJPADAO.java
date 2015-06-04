@@ -5,16 +5,10 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-import misclases.Administrador;
-import misclases.Estacion;
-
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
-import misclases.Estacion;
+import misclases.Denuncia;
 
 
-public class EstacionHJPADAO implements IEstacionDAO {
+public class DenunciaHJPADAO implements IDenunciaDAO{
 
 	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("UnityPersistence");
 	private static EntityManager em;
@@ -28,51 +22,50 @@ public class EstacionHJPADAO implements IEstacionDAO {
 	}
 	
 	@Override
-	public void guardarEstacion(Estacion estacion) {
+	public void guardarDenuncia(Denuncia denuncia) {
 		// TODO Auto-generated method stub
 		em =  getEntityManager();
 		EntityTransaction etx = em.getTransaction();
 		etx.begin();
-		em.persist(estacion);
+		em.persist(denuncia);
 	
 		etx.commit();
 		
 	}
 
 	@Override
-	public void modificarEstacion(Estacion estacion) {
+	public void modificarDenuncia(Denuncia denuncia) {
 		// TODO Auto-generated method stub
 		em = getEntityManager();
 		EntityTransaction etx = em.getTransaction();
 		etx.begin();
 		//el codigo de modificacion va aca
-		em.merge(estacion);
+		em.merge(denuncia);
 		etx.commit();
+		
 		
 	}
 
 	@Override
-	public void eliminarEstacion(Estacion estacion) {
+	public void eliminarDenuncia(Denuncia denuncia) {
 		// TODO Auto-generated method stub
 		EntityManager em = getEntityManager();
 		EntityTransaction etx = em.getTransaction();
 		etx.begin();
-		em.remove(estacion);		
+		em.remove(denuncia);		
 		etx.commit();
 		
 	}
-
+	
 	@Override
-	public Estacion recuperarEstacion(Long id) {
+	public Denuncia recuperarDenuncia(Long id) {
 		// TODO Auto-generated method stub
 		EntityManager em = getEntityManager();
-		return em.find(Estacion.class, id);
+		return em.find(Denuncia.class, id);
+	}
+	
+	public void closeEntityManager(){
+		em.close();
 	}
 
-	@Override
-	public void closeEntityManager() {
-		// TODO Auto-generated method stub
-		em.close();
-		
-	}
 }

@@ -33,8 +33,7 @@ public class Persona {
 	}
 
 	public Persona() {
-		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public String getNombre() {

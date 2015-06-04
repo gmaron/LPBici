@@ -6,6 +6,9 @@ public interface IUsuarioDAO {
 
 	public void guardarUsuario(Usuario usuario);
 	public void modificarUsuario(Usuario usuario);
-	public void eliminarUsuario(Long usuario);
+	public void eliminarUsuario(Usuario usuario);
+	public Usuario recuperarUsuario(Long id);
+	public void closeEntityManager();
+
 	
 }

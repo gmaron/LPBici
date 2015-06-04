@@ -18,4 +18,12 @@ public class MyFactoryDAO {
 		return new EstacionHJPADAO();
 	}
 	
+	public IRegistroAlquilerDAO getRegAlquilerDAO(){
+		return new RegistroAlquilerHJPADAO();
+	}
+	
+	public IDenunciaDAO getDenunciaDAO(){
+		return new DenunciaHJPADAO();
+	}
+	
 }
