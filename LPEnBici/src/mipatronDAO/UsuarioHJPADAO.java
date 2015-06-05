@@ -73,7 +73,6 @@ public class UsuarioHJPADAO implements IUsuarioDAO{
 	public void closeEntityManager() {
 		// TODO Auto-generated method stub
 		em.close();
-		
 	}
 
 }

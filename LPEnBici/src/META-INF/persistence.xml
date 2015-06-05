@@ -4,7 +4,7 @@
  xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
  http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd" version="1.0">
 
-<persistence-unit name="UnidadPersistencia">
+<persistence-unit name="UnityPersistence">
 	<provider>org.hibernate.ejb.HibernatePersistence</provider>
 	<class>misclases.Usuario</class>
 	<class>misclases.Persona</class>
@@ -13,13 +13,14 @@
 	<class>misclases.Estado</class>
 	<class>misclases.Estacion</class>	
 	<class>misclases.RegistroAlquiler</class>
-
+ 
 	<properties>
 		<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-		<property name="hibernate.connection.password" value="jyaa" />
-		<property name="hibernate.connection.url" value="jdbc:mysql://192.168.186.129:3306/LPenBici" />
+		<!-- <property name="hibernate.connection.password" value="jyaa" /> -->
+		<!-- <property name="hibernate.connection.url" value="jdbc:mysql://192.168.1.105:3306/LPenBici2" /> -->
+		<property name="hibernate.connection.url" value="jdbc:mysql://192.168.92.129:3306/LPbici" />
 		<property name="hibernate.connection.username" value="jyaa" />
-		<property name="hibernate.hbm2ddl.auto" value="create" />
+		<property name="hibernate.hbm2ddl.auto" value="create-drop" />
 		<property name="hibernate.dialect" value=" org.hibernate.dialect.MySQL5InnoDBDialect " />
 	</properties>
 </persistence-unit>

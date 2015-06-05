@@ -5,7 +5,9 @@ import javax.persistence.*;
 @Entity
 public class Denuncia {
 	
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Usuario usuarioDenuncia;
+	
 	private String comentario; //el comentario puede venir vacio
 	
 	@Id @GeneratedValue

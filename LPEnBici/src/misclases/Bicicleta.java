@@ -14,11 +14,13 @@ public class Bicicleta {
 	private String patente;
 //	private String estado; //APTA, REPARACION, DESUSO, DENUNCIADA	
 	private String fechaIngreso;
-	private String ubicacionActual;
-	private RegistroAlquiler regActual;	
+	private String ubicacionActual;	
 	
 	@Id @GeneratedValue
 	private Long id;
+	
+	@ManyToOne(cascade=CascadeType.ALL)
+	private RegistroAlquiler regActual;
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Estado> historialEstado;
@@ -28,9 +30,6 @@ public class Bicicleta {
 
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Denuncia> historialDenuncia;
-
-	
-
 	
 	public Bicicleta(String patente, String estado, String fechaIngreso,
 			String ubicacionActual) {

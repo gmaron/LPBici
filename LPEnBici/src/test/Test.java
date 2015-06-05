@@ -22,7 +22,7 @@ public class Test {
 		f.getUsuarioDAO().guardarUsuario(usr);		
 		
 		// Alta Administrador
-		/*Administrador admin = new Administrador("Gaston","Paul","36936105","gastonbezzi@gmail.com","13 Nro 354","19/06/92","Masculino","1234");
+		Administrador admin = new Administrador("Gaston","Paul","36936105","gastonbezzi@gmail.com","13 Nro 354","19/06/92","Masculino","1234");
 		f.getAdministradorDAO().guardarAdministrador(admin);
 		
 		// Alta de Bicicleta
@@ -32,9 +32,9 @@ public class Test {
 		// Alta de Estacion
 		Estacion est = new Estacion("Estacion 1", "pza San Martin", 30, "Habilitada");
 		est.getListaBici().add(bici);
-		f.getEstacionDAO().guardarEstacion(est);
+		f.getEstacionDAO().modificarEstacion(est);//Esta mal
 		
-		// Alta de alquiler
+		/*// Alta de alquiler
 		RegistroAlquiler reg = new RegistroAlquiler(null, "04/06/2015", null, "10:33", null, est, usr);
 		f.getRegAlquilerDAO().guardarRegistroAlquiler(reg);		
 		
@@ -45,7 +45,7 @@ public class Test {
 		
 		System.out.println("Termino el test de alta");
 		/*-------------------------------------Test para altas-------------------------------------*/
-		
+		System.out.println("Fin de test para altas");
 		/*--------------------------------Test para modificaciones---------------------------------*/
 		
 		// modifica el apellido del usuario a "Mongocho"
@@ -90,11 +90,11 @@ public class Test {
 	
 		f.getUsuarioDAO().closeEntityManager();
 		f.getAdministradorDAO().closeEntityManager();
-		f.getRegAlquilerDAO().closeEntityManager();
+		//f.getRegAlquilerDAO().closeEntityManager();
 		f.getBicicletaDAO().closeEntityManager();
-		f.getDenunciaDAO().closeEntityManager();
-		f.getEstacionDAO().closeEntityManager();
-		
+		//f.getDenunciaDAO().closeEntityManager();
+		//f.getEstacionDAO().closeEntityManager();
+	
 	}
 
 }

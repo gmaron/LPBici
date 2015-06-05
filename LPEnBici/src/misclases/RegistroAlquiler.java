@@ -27,7 +27,8 @@ public class RegistroAlquiler {
 	private Estacion estacionSalida;
 		
 	//preguntar porque hay redundancia de datos
-	//private Denuncia denuncia;
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Denuncia denuncia;
 		
 	
 	public RegistroAlquiler(String fechaEntrada, String fechaSalida,
@@ -42,6 +43,7 @@ public class RegistroAlquiler {
 		this.estacionSalida = estacionSalida;
 		//this.estado = estado;
 		this.usuarioUso = usuarioUso;
+		
 	}
 	
 	public RegistroAlquiler(){
@@ -104,7 +106,16 @@ public class RegistroAlquiler {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
+	public Denuncia getDenuncia() {
+		//si no hay nada en denuncia , retorna null
+		return denuncia;
+	}
+
+	public void setDenuncia(Denuncia denuncia) {
+		this.denuncia = new Denuncia( denuncia.getUsuarioDenuncia(), denuncia.getComentario());
+	}
+	 
 	
 	
 	
