@@ -10,62 +10,57 @@ import misclases.Denuncia;
 
 public class DenunciaHJPADAO implements IDenunciaDAO{
 
-	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("UnityPersistence");
+	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("PersistenceUnit");
 	private static EntityManager em;
 	
-	/* Singleton EntityManager */
-	public static EntityManager getEntityManager(){
-		if(em == null || !em.isOpen()){
-			em = emf.createEntityManager();
-		}
-		return em;
-	}
-	
+
 	@Override
 	public void guardarDenuncia(Denuncia denuncia) {
 		// TODO Auto-generated method stub
-		em =  getEntityManager();
-		EntityTransaction etx = em.getTransaction();
+		em =  emf.createEntityManager();
+		EntityTransaction etx = em.getTransaction();		
 		etx.begin();
-		em.persist(denuncia);
-	
-		etx.commit();
 		
+		em.persist(denuncia);
+		
+		etx.commit();		
+		em.close();
 	}
 
 	@Override
 	public void modificarDenuncia(Denuncia denuncia) {
 		// TODO Auto-generated method stub
-		em = getEntityManager();
+		em = emf.createEntityManager();
 		EntityTransaction etx = em.getTransaction();
 		etx.begin();
-		//el codigo de modificacion va aca
+	
 		em.merge(denuncia);
+	
 		etx.commit();
-		
-		
+		em.close();
 	}
 
 	@Override
 	public void eliminarDenuncia(Denuncia denuncia) {
 		// TODO Auto-generated method stub
-		EntityManager em = getEntityManager();
+		em = emf.createEntityManager();
 		EntityTransaction etx = em.getTransaction();
 		etx.begin();
-		em.remove(denuncia);		
-		etx.commit();
 		
+		em.remove(em.merge(denuncia));
+		
+		etx.commit();
+		em.close();
 	}
 	
 	@Override
 	public Denuncia recuperarDenuncia(Long id) {
 		// TODO Auto-generated method stub
-		EntityManager em = getEntityManager();
-		return em.find(Denuncia.class, id);
+		em = emf.createEntityManager();
+		Denuncia den = em.find(Denuncia.class, id); 
+		em.close();
+		return den;
 	}
 	
-	public void closeEntityManager(){
-		em.close();
-	}
 
 }

@@ -25,10 +25,10 @@ public class Bicicleta {
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Estado> historialEstado;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.MERGE)
 	private List<RegistroAlquiler> historial;
 
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade={CascadeType.MERGE,CascadeType.REMOVE})
 	private List<Denuncia> historialDenuncia;
 	
 	public Bicicleta(String patente, String estado, String fechaIngreso,

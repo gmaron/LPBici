@@ -16,18 +16,18 @@ public class RegistroAlquiler {
 	private String estado;
 	
 
-	@ManyToOne(cascade = CascadeType.ALL) // puede haber mas de un registro asociado a un usuario
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}) // puede haber mas de un registro asociado a un usuario
 	private Usuario usuarioUso;
 
 	
-	@ManyToOne(cascade = CascadeType.ALL) 
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}) 
 	private Estacion estacionEntrada; // estacion de entrada = estacion de salida hasta que la devuelva
 	
-	@ManyToOne(cascade = CascadeType.ALL) 
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}) 
 	private Estacion estacionSalida;
 		
 	//preguntar porque hay redundancia de datos
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE) 
 	private Denuncia denuncia;
 		
 	
@@ -113,7 +113,7 @@ public class RegistroAlquiler {
 	}
 
 	public void setDenuncia(Denuncia denuncia) {
-		this.denuncia = new Denuncia( denuncia.getUsuarioDenuncia(), denuncia.getComentario());
+		this.denuncia = denuncia;
 	}
 	 
 	

@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 public class Denuncia {
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.MERGE)
 	private Usuario usuarioDenuncia;
 	
 	private String comentario; //el comentario puede venir vacio
@@ -17,6 +17,10 @@ public class Denuncia {
 		super();
 		this.usuarioDenuncia = usuarioDenuncia;
 		this.comentario = comentario;
+	}
+	
+	public Denuncia(){
+		
 	}
 	
 	public Usuario getUsuarioDenuncia() {

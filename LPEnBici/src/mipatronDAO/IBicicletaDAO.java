@@ -8,7 +8,6 @@ public interface IBicicletaDAO {
 	public void modificarBicicleta(Bicicleta bicicleta);
 	public void eliminarBicicleta(Bicicleta bicicleta);
 	public Bicicleta recuperarBicicleta(Long id);
-	public void closeEntityManager();
 	
 	
 }

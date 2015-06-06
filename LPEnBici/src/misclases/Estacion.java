@@ -18,14 +18,11 @@ public class Estacion {
 	@OneToMany (cascade = CascadeType.ALL)
 	private List<Estado> historialEstado;
 	
-	@OneToMany (cascade = CascadeType.ALL)
-	private List<Bicicleta> listaBici; //el length = cantidad de bicicletas
-		
-	
-	
+	@OneToMany (cascade = {CascadeType.MERGE,CascadeType.REMOVE}) //, 
+ 	private List<Bicicleta> listaBici; //el length = cantidad de bicicletas
 	
 	public Estacion(String nombre, String ubicacion,
-			int cantEstacionamientoLibre, String estado) {
+			int cantEstacionamientoLibre, String estado,String fecha) {
 		super();
 		this.nombre = nombre;
 		this.ubicacion = ubicacion;
@@ -33,6 +30,7 @@ public class Estacion {
 		this.estado = estado;
 		this.listaBici = new ArrayList<Bicicleta>();
 		this.historialEstado = new ArrayList<Estado>();
+		this.historialEstado.add(new Estado(estado, fecha));
 	}
 	
 	public Estacion(){
