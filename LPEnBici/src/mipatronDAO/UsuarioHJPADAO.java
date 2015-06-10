@@ -1,8 +1,11 @@
 package mipatronDAO;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import misclases.Persona;
 import misclases.Usuario;
 
 import javax.persistence.EntityManagerFactory;
@@ -64,6 +67,13 @@ public class UsuarioHJPADAO implements IUsuarioDAO{
 		Usuario usr = em.find(Usuario.class, id); 
 		em.close();
 		return usr;
+	}
+	
+	public List<Usuario> recuperarTodosUsuarios(){
+		em = emf.createEntityManager();
+		List<Usuario> resultList = em.createQuery("Select u from Usuario u").getResultList();
+		
+		return resultList;
 	}
 
 	

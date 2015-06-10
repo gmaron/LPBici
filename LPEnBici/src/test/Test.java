@@ -25,7 +25,10 @@ public class Test {
 		/*-------------------------------------Test para altas-------------------------------------*/
 		// Alta Usuario
 		Usuario usr = new Usuario("Milton","Meroni","35798492","miltonmeroni@gmail.com","13 Nro 1478","22/11/92","Masculino","1234");
-		f.getUsuarioDAO().guardarUsuario(usr);		
+		f.getUsuarioDAO().guardarUsuario(usr);
+		
+		Usuario usr1 = new Usuario("Gaston","Maron","12345678","miltonmeroni@gmail.com","13 Nro 1478","22/11/92","Masculino","1234");
+		f.getUsuarioDAO().guardarUsuario(usr1);		
 		
 		// Alta Administrador
 		Administrador admin = new Administrador("Gaston","Paul","36936105","gastonbezzi@gmail.com","13 Nro 354","19/06/92","Masculino","1234");
@@ -64,11 +67,17 @@ public class Test {
 		
 		Usuario usuariorec = f.getUsuarioDAO().recuperarUsuario(1L);
 		System.out.println("---Recuperacion de usuario---\n");
-		System.out.println("Nombre: "+usuariorec.getNombre()+" - Apellido: "+usuariorec.getApellido());
+		//System.out.println("Nombre: "+usuariorec.getNombre()+" - Apellido: "+usuariorec.getApellido());
 		System.out.println("\n");
 		
+		System.out.println("---Recuperacion de la lista de todos los usuarios---\n");
+		List<Usuario> listaUsuarios = f.getUsuarioDAO().recuperarTodosUsuarios();
+		for (Usuario user : listaUsuarios){
+			System.out.println("Usuario: "+user.getApellido()+"\n");
+		}
+		
 		System.out.println("---Recuperacion de administrador---\n");
-		Administrador admrec = f.getAdministradorDAO().recuperarAdministrador(2L);
+		Administrador admrec = f.getAdministradorDAO().recuperarAdministrador(3L);
 		System.out.println("Nombre: "+admrec.getNombre()+" - Apellido: "+admrec.getApellido());		
 		System.out.println("\n");
 		
