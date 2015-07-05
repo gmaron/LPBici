@@ -86,20 +86,25 @@
 <h:body>  
  
  <h:form>  
-    <p:growl id="msgs" showDetail="true" />
-    <p:menubar id="menubar" >       	 
+    <p:growl id="messages"/> 
+    <p:menubar id="menubar" >
+       	 	
  	 	<p:menuitem value="label" >
- 	 		<h:outputLabel for="label" value="¡La Plata en Bici!" styleClass="labelLP"/>
+ 	 		<h:outputLabel for="label" value="La Plata en Bici" styleClass="labelLP"/>
  	 	</p:menuitem>
  	 	
+ 	 	<p:submenu label="#{PersonaBean.admin.nombre}" style="float:right" icon="ui-icon-document">           
+            <p:menuitem value="Ver perfil" url="PerfilAdministrador.xhtml" />
+            <p:separator />
+            <p:menuitem value="Cerrar sesión" action="#{PersonaBean.logout}" />
+        </p:submenu>
+        
         <f:facet name="options">
-            <p:inputText style="margin-right:10px;" placeholder="Email"/>
-            <p:inputText style="margin-right:10px;" placeholder="Contraseña"/>
-            <p:commandButton type="button" value="Entrar" icon="ui-icon-extlink" />
-        </f:facet>
-    </p:menubar>
+	            
+	    </f:facet>
+       
+    </p:menubar>   
 </h:form>
-
 <p:spacer height="40px"/>
 
 <h:form id="form">
