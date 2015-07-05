@@ -1,0 +1,39 @@
+@CHARSET "ISO-8859-1";
+
+ .ui-menubar,#ui-menu-child,.ui-menu {                	
+    				background:#178501 !important;
+    				border:0px;
+				}   
+				
+				.ui-menuitem-text{
+					color:white;					
+				}
+				
+				/*style del ¡La plata en bici!*/
+				.labelLP{
+				 	color:white;				   				    
+				    font: 21px sans-serif;	
+				}
+				
+				.ui-button-text{
+					color: white !important;
+					font: 16px sans-serif;	
+					background-color: #5CB85C !important;			    				   				    
+				 }
+												
+				.ui-button{
+					background-color: #5CB85C !important;										
+					border-color: #5CB85C !important;			
+				}							
+				
+				/*color del icono del boton entrar*/
+				.ui-icon-extlink{
+									   
+				}			
+				
+				/*el color que pone cuando lo tocas con el puntero*/
+				.ui-menuitem-link:VISITED{
+					color: #5CB85C !important;
+					background-color: #5CB85C !important;
+				}								
+				

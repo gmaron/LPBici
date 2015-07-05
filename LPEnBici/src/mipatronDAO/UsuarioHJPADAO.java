@@ -1,11 +1,16 @@
 package mipatronDAO;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
-import misclases.Persona;
+
+
+
+//import misclases.Persona;
 import misclases.Usuario;
 
 import javax.persistence.EntityManagerFactory;
@@ -48,12 +53,14 @@ public class UsuarioHJPADAO implements IUsuarioDAO{
 
 	@Override
 	public void eliminarUsuario(Usuario usuario) {
-		// TODO Auto-generated method stub
+		
 		em = emf.createEntityManager();
 		EntityTransaction etx = em.getTransaction();
 		etx.begin();
-	
-		em.remove(em.merge(usuario));		
+		
+		usuario.setEliminado(true);
+		em.merge(usuario);
+		//em.remove(em.merge(usuario));		
 		
 		etx.commit();
 		em.close();
@@ -61,19 +68,63 @@ public class UsuarioHJPADAO implements IUsuarioDAO{
 
 
 	@Override
-	public Usuario recuperarUsuario(Long id) {
-		// TODO Auto-generated method stub
+	public Usuario recuperarUsuario(String email) {
 		em = emf.createEntityManager();
-		Usuario usr = em.find(Usuario.class, id); 
+		//Usuario usr = em.find(Usuario.class, id);
+		
+		Usuario usr = null;
+		Query q ;
+		try {
+			q = em.createQuery("FROM Usuario u WHERE u.email ='"+email+"'");
+			usr = (Usuario) q.getSingleResult();
+			System.out.println("pass: "+usr.getPassword());
+		} catch (Exception e) {
+			usr = null;
+			//e.printStackTrace();
+		}
 		em.close();
 		return usr;
 	}
 	
-	public List<Usuario> recuperarTodosUsuarios(){
+	public List<Usuario> recuperarUsuariosNoEliminados(){
 		em = emf.createEntityManager();
-		List<Usuario> resultList = em.createQuery("Select u from Usuario u").getResultList();
-		
+		Query q = em.createQuery("from Usuario u where u.eliminado = '"+false+"'") ;
+		@SuppressWarnings("unchecked")
+		List<Usuario> resultList = Collections.checkedList(q.getResultList(), Usuario.class);
+//		for (Usuario user : resultList){
+//			System.out.println("Usuario: "+user.getApellido()+"\n");
+//		}
 		return resultList;
+	}
+
+	@Override
+	public List<Usuario> recuperarTodosUsuarios() {
+		em = emf.createEntityManager();
+		Query q = em.createQuery("from Usuario") ;
+		@SuppressWarnings("unchecked")
+		List<Usuario> resultList = Collections.checkedList(q.getResultList(), Usuario.class);
+//		for (Usuario user : resultList){
+//			System.out.println("Usuario: "+user.getApellido()+"\n");
+//		}
+		return resultList;
+	}
+
+	@Override
+	public Usuario recuperarUsuarioNoEliminado(String email) {
+		em = emf.createEntityManager();
+		//Usuario usr = em.find(Usuario.class, id);
+		
+		Usuario usr = null;
+		Query q ;
+		try {
+			q = em.createQuery("FROM Usuario u WHERE (u.email ='"+email+"' and u.eliminado='"+false+"')");
+			usr = (Usuario) q.getSingleResult();
+		} catch (Exception e) {
+			usr = null;
+			//e.printStackTrace();
+		}
+		em.close();
+		return usr;
 	}
 
 	

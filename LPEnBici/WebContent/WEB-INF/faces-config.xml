@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+    version="2.2">
+	<managed-bean>
+		<managed-bean-name>PersonaBean</managed-bean-name>
+		<managed-bean-class>lpBici.controller.PersonaBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<navigation-rule>
+		<display-name>index.xhtml</display-name>
+		<from-view-id>/index.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>ExitoLoginUsuario</from-outcome>
+			<to-view-id>/LoginUsuario.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>index.xhtml</display-name>
+		<from-view-id>/index.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>FracasoLogin</from-outcome>
+			<to-view-id>/errorlogin.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>index.xhtml</display-name>
+		<from-view-id>/index.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>ExitoRegistro</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>index.xhtml</display-name>
+		<from-view-id>/index.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>FracasoRegistro</from-outcome>
+			<to-view-id>/errorRegistro.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>LoginAdministrador.xhtml</display-name>
+		<from-view-id>/LoginAdministrador.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>Exito_AdminmodUsuario</from-outcome>
+			<to-view-id>/LoginAdministrador.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>index.xhtml</display-name>
+		<from-view-id>/index.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>ExitoLoginAdministrador</from-outcome>
+			<to-view-id>/LoginAdministrador.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>LoginAdministrador.xhtml</display-name>
+		<from-view-id>/LoginAdministrador.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>Exito_usuarioEliminado</from-outcome>
+			<to-view-id>/LoginAdministrador.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<!-- <navigation-rule>
+		<display-name>menubar.xhtml</display-name>
+		<from-view-id>/menubar.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>exito</from-outcome>
+			<to-view-id>/resultado.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>menubar.xhtml</display-name>
+		<from-view-id>/menubar.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>fracaso</from-outcome>
+			<to-view-id>/pepe.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule> -->
+	
+	
+	
+</faces-config>

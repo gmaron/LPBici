@@ -1,7 +1,7 @@
 package misservlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+//import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,10 +29,11 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.setContentType("text/html"); //setea el tipo de respuesta 
-		PrintWriter out = response.getWriter(); //Habilita la salida para poder escribir
+//		response.setContentType("text/html"); //setea el tipo de respuesta 
+//		PrintWriter out = response.getWriter(); //Habilita la salida para poder escribir
 		String usuario = request.getParameter("email");
 		String pass = request.getParameter("pass");
+		
 		
 		String usuario_admin = this.getServletContext().getInitParameter("emailAdmin");
 		String pass_admin = this.getServletContext().getInitParameter("passAdmin");

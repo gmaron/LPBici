@@ -4,9 +4,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import misclases.Administrador;
-import misclases.Persona;
+
 
 
 public class AdministradorHJPADAO implements IAdministradorDAO{
@@ -54,10 +55,20 @@ public class AdministradorHJPADAO implements IAdministradorDAO{
 	}
 	
 	@Override
-	public Administrador recuperarAdministrador(Long id) {
-		// TODO Auto-generated method stub
+	public Administrador recuperarAdministrador(String email) {
 		em = emf.createEntityManager();
-		Administrador admin = em.find(Administrador.class, id);
+		Administrador admin = null;
+		Query q ;
+		try {
+			q = em.createQuery("FROM Administrador a WHERE a.email ='"+email+"'");
+			admin = (Administrador) q.getSingleResult();
+			System.out.println("Encontre a Administrador: "+admin.getEmail());
+		} catch (Exception e) {
+			admin = null;
+			System.out.println("NO Encontre a Administrador");
+
+			//e.printStackTrace();
+		}
 		em.close();
 		return admin;
 	}

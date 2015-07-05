@@ -1,0 +1,10 @@
+Para la correcta ejecucion del proyecto se necesita:
+
+Entorno de java: jre1.8
+Servidor: tomcat 8
+Base de datos phpmyadmin -> Apache2
+			 -> mysqlServer
+			 -> LPbici // Nombre de la base de datos
+
+Meroni, Milton
+Marón, Gastón

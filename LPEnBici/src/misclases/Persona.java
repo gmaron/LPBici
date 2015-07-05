@@ -1,12 +1,14 @@
 package misclases;
 
 import javax.persistence.*;
-
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name="Persona")
 public class Persona {
+	
+	
 	private String nombre;
+	
 	private String apellido;
 	private String dni; 
 	private String domicilio;
