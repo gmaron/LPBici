@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" name="PersonaBean" id="pf14351778070160" configfile="/LPEnBici/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="122" y="946" id="pf14357850635780" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf14357850635781 pf14357850635782 pf14357850635783 pf14357850635784 pf14359475344860" inlinks="pf14357850635783" path="/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="122" y="946" id="pf14357850635780" referenceLink="//@navigationRule.5/@fromViewId|" outlinks="pf14357850635781 pf14357850635782 pf14357850635783 pf14357850635784 pf14359475344860" inlinks="pf14357850635783" path="/index.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="LoginUsuario.xhtml" x="338" y="178" id="pf14357850635785" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf14357850635781" path="/LoginUsuario.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="errorlogin" x="338" y="562" id="pf14357850635786" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf14357850635782" path="/errorlogin.jsp"/>
-  <nodes xsi:type="pageflow:PFPage" name="errorRegistro" x="330" y="771" id="pf14357850635787" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" inlinks="pf14357850635784" path="/errorRegistro.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="errorlogin" x="338" y="562" id="pf14357850635786" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf14357850635782" path="/errorlogin.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="errorRegistro" x="330" y="771" id="pf14357850635787" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf14357850635784" path="/errorRegistro.jsp"/>
   <nodes xsi:type="pageflow:PFPage" name="LoginAdministrador.xhtml" x="360" y="900" id="pf14359475344871" referenceLink="//@navigationRule.6/@navigationCase.0/@toViewId|" outlinks="pf14361316238800 pf14361316434681" inlinks="pf14361316434681 pf14359475344860 pf14361316238800" path="/LoginAdministrador.xhtml"/>
   <links id="pf14357850635781" target="pf14357850635785" source="pf14357850635780" outcome="ExitoLoginUsuario"/>
   <links id="pf14357850635782" target="pf14357850635786" source="pf14357850635780" outcome="FracasoLogin"/>
@@ -13,11 +13,11 @@
     <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
     <bendPoints d1Width="-64" d2Width="-64"/>
   </links>
-  <links id="pf14361316238800" target="pf14359475344871" source="pf14359475344871"/>
-  <links id="pf14361316434681" target="pf14359475344871" source="pf14359475344871" outcome="Exito_AdminmodUsuario">
+  <links id="pf14361316238800" target="pf14359475344871" source="pf14359475344871" outcome="Exito_AdminmodUsuario"/>
+  <links id="pf14361316434681" target="pf14359475344871" source="pf14359475344871" outcome="Exito_usuarioEliminado">
     <bendPoints d1Width="136" d1Height="-86" d2Width="136" d2Height="-86"/>
     <bendPoints d1Width="38" d1Height="-188" d2Width="38" d2Height="-188"/>
     <bendPoints d1Width="-72" d1Height="-90" d2Width="-72" d2Height="-90"/>
   </links>
-  <links id="pf14359475344860" target="pf14359475344871" source="pf14357850635780"/>
+  <links id="pf14359475344860" target="pf14359475344871" source="pf14357850635780" outcome="ExitoLoginAdministrador"/>
 </pageflow:Pageflow>

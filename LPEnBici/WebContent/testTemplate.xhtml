@@ -6,13 +6,15 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="WEB-INF/facelets/templates/defaultLayout.xhtml" >
 
+	<ui:define name="titulo">
+	</ui:define>
 
 	<ui:define name="encabezado">
-		<ui:include src="WEB-INF/facelets/header/headerAdmin.xhtml" />
+		<ui:include src="WEB-INF/facelets/header/headerIndex.xhtml" />
 	</ui:define>
 
 	<ui:define name="contenido">
-		<ui:include src="WEB-INF/facelets/body/bodyLoginAdmin.xhtml"/>
+		<ui:include src="WEB-INF/facelets/body/bodyIndex.xhtml"/>
 	</ui:define>
 
 

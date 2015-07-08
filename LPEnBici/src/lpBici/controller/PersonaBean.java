@@ -27,12 +27,14 @@ import misservlets.Emailer;
 
 public class PersonaBean {
 	
+
+
 	MyFactoryDAO f = new MyFactoryDAO();
 
 //	private Usuario usr = new Usuario();
 //	private Administrador admin = new Administrador();
-	private Usuario usr = null;
-	private Administrador admin = null;
+	private Usuario usr = new Usuario();
+	private Administrador admin = new Administrador();
 	private String fechaActual;
 
 	private String email;
@@ -130,8 +132,8 @@ public class PersonaBean {
 		usuarioSeleccionado.setEliminado(true);
 		f.getUsuarioDAO().eliminarUsuario(usuarioSeleccionado);
 		usuariosNoEliminados = f.getUsuarioDAO().recuperarUsuariosNoEliminados();
-		RequestContext.getCurrentInstance().execute("PF('delUsuarioEspera').hide();");
-		RequestContext.getCurrentInstance().execute("PF('delUsuarioExito').show();");
+//		RequestContext.getCurrentInstance().execute("PF('delUsuarioEspera').hide();");
+//		RequestContext.getCurrentInstance().execute("PF('delUsuarioExito').show();");
 		return null;
 //		return "Exito_usuarioEliminado";
 	}
@@ -161,11 +163,11 @@ public class PersonaBean {
 		String fe= convertirFecha(usuarioSeleccionado.getFechaNacimiento());
 		usuarioSeleccionado.setFechaNacimiento(fe);
 		f.getUsuarioDAO().modificarUsuario(usuarioSeleccionado);
-		RequestContext.getCurrentInstance().execute("PF('modUsuarioEspera').hide();");
-		RequestContext.getCurrentInstance().execute("PF('modUsuarioExito').show();");
+//		RequestContext.getCurrentInstance().execute("PF('modUsuarioEspera').hide();");
+//		RequestContext.getCurrentInstance().execute("PF('modUsuarioExito').show();");
 		usuarioSeleccionado = null;
-		return null;
-//		return "Exito_AdminmodUsuario";
+//		return null;
+		return "Exito_AdminmodUsuario";
 	}
 	
 	public String login(){
@@ -184,6 +186,7 @@ public class PersonaBean {
 			else{
 				if (admin.getPassword().equals(this.pass)){
 					this.admin = admin;
+					this.usr = null;
 					return "ExitoLoginAdministrador";
 				}
 				else{
@@ -196,6 +199,7 @@ public class PersonaBean {
 		else{
 			if (usuario.getPassword().equals(this.pass)){
 				this.usr = usuario;
+				this.admin = null;
 				return "ExitoLoginUsuario";
 			}
 			else{
