@@ -12,6 +12,8 @@ public class Estacion {
 	private int cantEstacionamientoLibre;
 	private String estado; //OPERATIVA, CERRADA, EN CONSTRUCCION
 	
+	boolean eliminado;
+	
 	@Id @GeneratedValue
 	private Long id;
 	
@@ -31,6 +33,7 @@ public class Estacion {
 		this.listaBici = new ArrayList<Bicicleta>();
 		this.historialEstado = new ArrayList<Estado>();
 		this.historialEstado.add(new Estado(estado, fecha));
+		this.eliminado = false;
 	}
 	
 	public Estacion(){
@@ -87,7 +90,18 @@ public class Estacion {
 		this.id = id;
 	}
 	
-	
+	public boolean isEliminado() {
+		return eliminado;
+	}
+
+	public void setEliminado(boolean eliminado) {
+		this.eliminado = eliminado;
+	}
+
+	@Override
+	public String toString() {
+		return "Estacion";
+	} 
 	
 	
 }

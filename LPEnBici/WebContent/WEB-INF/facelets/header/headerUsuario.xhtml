@@ -91,11 +91,12 @@
     <p:menubar id="menubar" >
        	 	
  	 	<p:menuitem value="label" >
- 	 		<h:outputLabel for="label" value="La Plata en Bici" styleClass="labelLP"/>
+<!--  	 		<h:outputLabel for="label" value="La Plata en Bici" styleClass="labelLP"/>-->
+ 	 		<p:link  value="La Plata en Bici" style="color:white;font: 21px sans-serif;" outcome="LoginUsuario.xhtml"></p:link>
  	 	</p:menuitem>
  	 	
  	 	<p:submenu label="#{PersonaBean.usr.nombre}" style="float:right" icon="ui-icon-document">           
-            <p:menuitem value="Ver perfil" url="perfilUsuario.xhtml" />
+            <p:menuitem value="Ver perfil" url="WEB-INF/paginas/perfilUsuario.xhtml" />
             <p:separator />
             <p:menuitem value="Cerrar sesión" action="#{PersonaBean.logout}" />
         </p:submenu>

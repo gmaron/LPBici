@@ -5,6 +5,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+
 import misclases.Denuncia;
 
 
@@ -52,6 +53,22 @@ public class DenunciaHJPADAO implements IDenunciaDAO{
 		etx.commit();
 		em.close();
 	}
+	
+	@Override
+	public void eliminarDenunciaLogica(Denuncia den) {
+		
+		em = emf.createEntityManager();
+		EntityTransaction etx = em.getTransaction();
+		etx.begin();
+		
+		den.setEliminado(true);
+		em.merge(den);
+		//em.remove(em.merge(usuario));		
+		
+		etx.commit();
+		em.close();
+	}
+	
 	
 	@Override
 	public Denuncia recuperarDenuncia(Long id) {

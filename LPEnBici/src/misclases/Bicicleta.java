@@ -16,6 +16,8 @@ public class Bicicleta {
 	private String fechaIngreso;
 	private String ubicacionActual;	
 	
+	boolean eliminado;
+	
 	@Id @GeneratedValue
 	private Long id;
 	
@@ -41,6 +43,7 @@ public class Bicicleta {
 		this.historialDenuncia = new ArrayList<Denuncia>();
 		this.historialEstado = new ArrayList<Estado>();
 		this.historialEstado.add(new Estado(estado, this.fechaIngreso));
+		this.eliminado = false;
 	}
 	
 	public Bicicleta (){
@@ -117,7 +120,19 @@ public class Bicicleta {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	public boolean isEliminado() {
+		return eliminado;
+	}
+
+	public void setEliminado(boolean eliminado) {
+		this.eliminado = eliminado;
+	}
 	
+	@Override
+	public String toString() {
+		return "Bicicleta";
+	} 
 	
 	
 	

@@ -7,5 +7,6 @@ public interface IAdministradorDAO {
 	public void modificarAdministrador(Administrador administrador);
 	public void eliminarAdministrador(Administrador administrador);
 	public Administrador recuperarAdministrador(String email);
+	public void eliminarAdministradorLogica(Administrador admin);
 	
 }

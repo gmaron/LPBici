@@ -49,7 +49,7 @@
 				 	color:white;				   				    
 				    font: 21px sans-serif;	
 				}
-				
+							
 				.ui-button-text{
 					color: white !important;
 					font: 16px sans-serif;	
@@ -88,12 +88,11 @@
 <h:body>
  <h:form>  
     <p:growl id="messages"/> 
-    <p:menubar id="menubar" >
-       	 	
+    <p:menubar id="menubar" >       	 	
  	 	<p:menuitem value="label" >
- 	 		<h:outputLabel for="label" value="La Plata en Bici" styleClass="labelLP"/>
- 	 	</p:menuitem>
- 	 	
+ 	 		<!-- <h:outputLabel for="label" value="La Plata en Bici" styleClass="labelLP"/> -->
+ 	 		<p:link  value="La Plata en Bici" style="color:white;font: 21px sans-serif;" outcome="LoginAdministrador.xhtml"></p:link>
+ 	 	</p:menuitem> 	 	 	 
  	 	<p:submenu label="#{PersonaBean.admin.nombre}" style="float:right" icon="ui-icon-document">           
             <p:menuitem value="Ver perfil" url="PerfilAdministrador.xhtml" />
             <p:separator />

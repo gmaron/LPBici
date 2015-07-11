@@ -8,6 +8,7 @@ public class Denuncia {
 	@ManyToOne(cascade=CascadeType.MERGE)
 	private Usuario usuarioDenuncia;
 	
+	boolean eliminado;
 	private String comentario; //el comentario puede venir vacio
 	
 	@Id @GeneratedValue
@@ -17,6 +18,7 @@ public class Denuncia {
 		super();
 		this.usuarioDenuncia = usuarioDenuncia;
 		this.comentario = comentario;
+		this.eliminado = false;
 	}
 	
 	public Denuncia(){
@@ -44,6 +46,18 @@ public class Denuncia {
 		this.id = id;
 	}
 
+	public boolean isEliminado() {
+		return eliminado;
+	}
+
+	public void setEliminado(boolean eliminado) {
+		this.eliminado = eliminado;
+	}
+
+	@Override
+	public String toString() {
+		return "Denuncia";
+	} 
 	
 
 }

@@ -96,11 +96,11 @@ body {
 <h:body>
 
 <p:menubar id="menubar">
-		<p:menuitem value="label">
-			<h:outputLabel for="label" value="La Plata en Bici"
-				styleClass="labelLP" />
-		</p:menuitem>
-		
+		<p:menuitem value="label" >
+			<!-- <h:outputLabel for="label" value="La Plata en Bici"
+				styleClass="labelLP" /> -->
+			<p:link  value="La Plata en Bici" style="color:white;font: 21px sans-serif;" outcome="index.xhtml"></p:link>			
+		</p:menuitem>		
 		<f:facet name="options">
 			<h:form>
 				<p:inputText style="margin-right:10px;" placeholder="Email"

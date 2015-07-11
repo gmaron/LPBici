@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui"> 
+    <h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Insert title here</title>
+</h:head>
+<h:body>
+
+
+<h:form id="form">
+	 <p:growl id="msgs" showDetail="true" />
+
+<!-- 		<p:dataTable var="usuario" value="#{PersonaBean.usuarios}" -->
+			<p:dataTable var="usuario" value="#{PersonaBean.usuariosNoEliminados}"
+			widgetVar="tablaUsuario"
+			emptyMessage="No se encontraron usuarios con ese criterio."
+			filteredValue="#{PersonaBean.usuariosFiltrados}">
+
+
+			<f:facet name="header">
+				<p:outputPanel>
+					<h:outputText value="Buscar en todos los campos:" />
+					<p:inputText id="globalFilter"
+						onkeyup="PF('tablaUsuario').filter()" style="width:150px"
+						placeholder="Ingrese texto..." />
+				</p:outputPanel>
+			</f:facet>
+
+			<p:column filterBy="#{usuario.nombre}" headerText="Nombre"
+				 filterMatchMode="contains"
+				 sortBy="#{usuario.nombre}">
+				<h:outputText value="#{usuario.nombre}" />
+			</p:column>
+
+			<p:column filterBy="#{usuario.apellido}" headerText="Apellido"
+				filterMatchMode="contains"
+				sortBy="#{usuario.apellido}">
+				<h:outputText value="#{usuario.apellido}" />
+			</p:column>
+
+
+			<p:column filterBy="#{usuario.dni}" headerText="DNI"
+				filterMatchMode="contains"
+				sortBy="#{usuario.dni}">
+				<h:outputText value="#{usuario.dni}" />
+			</p:column>
+
+			<p:column filterBy="#{usuario.email}" headerText="Email"
+				filterMatchMode="contains"
+				sortBy="#{usuario.email}">
+				<h:outputText value="#{usuario.email}" />
+			</p:column>
+
+			<p:column filterBy="#{usuario.sexo}" headerText="Sexo"
+				 filterMatchMode="contains">
+				<h:outputText value="#{usuario.sexo}" />
+			</p:column>
+
+			<p:column filterBy="#{usuario.domicilio}" headerText="Domicilio"
+				filterMatchMode="contains">
+				<h:outputText value="#{usuario.domicilio}" />
+			</p:column>
+
+
+			<p:column filterBy="#{usuario.fechaNacimiento}"
+				headerText="Fecha de Nacimiento" 
+				filterMatchMode="contains"
+				sortBy="#{usuario.fechaNacimiento}">
+				<h:outputText value="#{usuario.fechaNacimiento}" />
+			</p:column>
+
+
+			<!-- ACA IRIA LA PARTE DE HABILITADO/DESHABILITADO  -->
+			<p:column filterBy="#{usuario.habilitado}" headerText="Estado"
+				filterMatchMode="equals">
+				<f:facet name="filter">
+					<p:selectOneButton onchange="PF('tablaUsuario').filter()">
+						<f:converter converterId="javax.faces.Boolean" />
+						<f:selectItem itemLabel="Todos" itemValue="" />
+						<f:selectItem itemLabel="H" itemValue="true" />
+						<f:selectItem itemLabel="D" itemValue="false" />
+					</p:selectOneButton>
+				</f:facet>
+				<h:outputText value="#{usuario.habilitado ? 'Habilitado': 'Deshabilitado'}" />
+			</p:column>
+
+
+			<p:column style="width:32px;text-align: center">
+				<p:commandButton update=":form:detalleUsuario"
+					oncomplete="PF('usuarioDialog').show()" icon="ui-icon-search"
+					title="View">
+					<f:setPropertyActionListener value="#{usuario}"
+						target="#{PersonaBean.usuarioSeleccionado}" />
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+		
+		<p:dialog header="Información Usuario" widgetVar="usuarioDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+		
+        <p:outputPanel id="detalleUsuario" style="text-align:center;">
+        	
+            <p:panelGrid  columns="2" rendered="#{not empty PersonaBean.usuarioSeleccionado}" columnClasses="label,value">
+                <f:facet name="header">
+      				<!--<p:graphicImage name="demo/images/car/#{dtFilterView.selectedCar.brand}-big.gif"/>--> 
+                </f:facet>                
+						<h:outputText value="Nombre: " />
+						<h:inputText value="#{PersonaBean.usuarioSeleccionado.nombre}" />
+
+						<h:outputText value="Apellido: " />
+						<h:inputText value="#{PersonaBean.usuarioSeleccionado.apellido}" />
+
+						<h:outputText value="DNI: " />
+						<h:inputText value="#{PersonaBean.usuarioSeleccionado.dni}" />
+
+						<h:outputText value="Email: " />
+						<h:inputText value="#{PersonaBean.usuarioSeleccionado.email}" />
+
+						<h:outputText value="Sexo: " />
+						<h:inputText value="#{PersonaBean.usuarioSeleccionado.sexo}" />
+
+						<h:outputText value="Domicilio: " />
+						<h:inputText value="#{PersonaBean.usuarioSeleccionado.domicilio}" />
+
+					<h:outputText value="Fecha de Nacimiento: " />
+						<p:calendar id="fechaNac"
+							value="#{PersonaBean.usuarioSeleccionado.fechaNacimiento}" 
+							navigator="true"
+							maxdate="#{PersonaBean.fechaActual}"	
+							effect="fold"
+							required="true">
+							<f:convertDateTime pattern="dd/MM/yy" />
+						</p:calendar>
+					
+					<h:outputText value="Habilitacion" />
+					<p:selectOneRadio value="#{PersonaBean.usuarioSeleccionado.habilitado}"
+						required="true">
+						<f:selectItem itemLabel="Habilitado" itemValue="true" />
+						<f:selectItem itemLabel="Deshabilitado" itemValue="false" />
+					</p:selectOneRadio>
+					
+					
+
+					<!-- <p:commandButton value="Modificar" ajax="false"
+							id="modificar"
+							action="#{PersonaBean.AdminmodUsuario}" icon="ui-icon-check"
+							validateClient="true"
+							onclick="PF('modUsuarioEspera').show();"						
+							/>
+ -->
+ 					<p:commandButton value="Modificar" ajax="false"
+							id="modificar"
+							action="#{PersonaBean.AdminmodUsuario}" icon="ui-icon-check"
+							validateClient="true"
+					/>
+ 	
+					<!-- <p:commandButton value="Eliminar" ajax="false" id="eliminar"
+						action="#{PersonaBean.AdminEliminarUsuario}" icon="ui-icon-check"
+						validateClient="true" onclick="PF('delUsuarioEspera').show();" /> -->
+
+				<p:commandButton value="Eliminar" ajax="false" id="eliminar"
+						action="#{PersonaBean.AdminEliminarUsuario}" icon="ui-icon-check"
+						validateClient="true" />
+					
+						
+            </p:panelGrid>
+                      
+        </p:outputPanel>
+    </p:dialog>
+    
+    
+</h:form>
+		
+		<!-- <p:confirmDialog
+						message="El usuario ha sido borrado satisfactoriamente."
+						widgetVar="delUsuarioExito" global="true" showEffect="fade"
+						hideEffect="explode">
+						<p:commandButton value="Ok" type="button"
+						onclick="PF('delUsuarioExito').hide();"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					</p:confirmDialog> -->
+					
+					<p:confirmDialog
+						message="El usuario ha sido borrado satisfactoriamente."
+						widgetVar="delUsuarioExito" global="true" showEffect="fade"
+						hideEffect="explode">
+						<p:commandButton value="Ok" type="button"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+						</p:confirmDialog>
+					
+					
+					<p:confirmDialog
+						message="El usuario esta siendo borrado."
+						widgetVar="delUsuarioEspera" global="true" showEffect="fade"
+						closable="false"
+						hideEffect="explode">
+					</p:confirmDialog>
+					
+					
+					<p:confirmDialog
+						message="El usuario esta siendo modificado."
+						widgetVar="modUsuarioEspera" global="true" showEffect="fade"
+						closable="false"
+						hideEffect="explode">
+					</p:confirmDialog>
+
+					<!-- <p:confirmDialog
+						message="El usuario ha sido modificado satisfactoriamente."
+						widgetVar="modUsuarioExito" global="true" showEffect="fade"
+						closable="false" hideEffect="explode">
+						<p:commandButton value="Ok" type="button"
+							onclick="PF('modUsuarioExito').hide();"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					</p:confirmDialog> -->
+
+					<p:confirmDialog
+						message="El usuario ha sido modificado satisfactoriamente."
+						widgetVar="modUsuarioExito" global="true" showEffect="fade"
+						closable="false" hideEffect="explode">
+						<p:commandButton value="Ok" type="button"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					</p:confirmDialog>
+
+
+</h:body>
+</html>

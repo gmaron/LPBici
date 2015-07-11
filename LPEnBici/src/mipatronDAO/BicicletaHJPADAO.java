@@ -55,6 +55,22 @@ public class BicicletaHJPADAO implements IBicicletaDAO {
 	}
 
 	@Override
+	public void eliminarBicicletaLogica(Bicicleta bici) {
+		
+		em = emf.createEntityManager();
+		EntityTransaction etx = em.getTransaction();
+		etx.begin();
+		
+		bici.setEliminado(true);
+		em.merge(bici);
+		//em.remove(em.merge(usuario));		
+		
+		etx.commit();
+		em.close();
+	}
+	
+	
+	@Override
 	public Bicicleta recuperarBicicleta(Long id) {
 		// TODO Auto-generated method stub
 		em = emf.createEntityManager();

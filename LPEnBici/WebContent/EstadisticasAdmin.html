@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui">
+<h:head>
+<title>¡La Plata en Bici!</title>
+<style type="text/css">
+  body{
+                        font-family: Georgia,"Times New Roman",Times,serif;
+                        font-size: 90%;    
+                        background-image: url("img/laplatabici.jpg");                
+                
+                }
+                .ui-menubar,.ui-menu-child,.ui-menu {                	
+    				background:#178501 !important;
+    				border:0px;
+				}   
+				/*.ui-selectonemenu-item.ui-state-highlight {
+				    background-color: #178501;
+				} */    
+				
+				.ui-menuitem-text{
+					color:white;					
+				}
+					
+					
+				/*.ui-icon-close{
+					background-color:white;
+				}*/
+							
+				/*Style del header de REGISTRO*/		
+				.styleGreen{    
+				    /*background-color: #5CB85C!important;
+				    background: #5CB85C!important;
+				     border-width: 10px; */
+				    color:white;				   
+				    background-color:#178501;
+				    font: 16px sans-serif;		
+				    padding: 10px;
+				    border-radius: 8px;				    
+				    border-color: #178501; 
+				    /*-moz-border-radius: 8px; -webkit-border-radius: 8px;*/			    				    	  				 
+				} 
+				
+				/*style del ¡La plata en bici!*/
+				.labelLP{
+				 	color:white;				   				    
+				    font: 21px sans-serif;	
+				}
+				
+				.ui-button-text{
+					color: white !important;
+					font: 16px sans-serif;	
+					background-color: #5CB85C !important;			    				   				    
+				 }
+												
+				.ui-button{
+					background-color: #5CB85C !important;										
+					border-color: #5CB85C !important;			
+				}							
+				
+				/*color del icono del boton entrar*/
+				.ui-icon-extlink{
+									   
+				}							
+											
+				.ui-panelgrid tr, .ui-panelgrid td{
+				   border: 0px !important;	
+				   border-radius: 8px;				   
+				   /*-moz-border-radius: 8px; -webkit-border-radius: 8px;*/	
+				   border-color: #5CB85C !important;				   					
+				}
+				
+				/*el color que pone cuando lo tocas con el puntero*/
+				.ui-menuitem-link:VISITED{
+					color: #5CB85C !important;
+					background-color: #5CB85C !important;
+				}	
+				/*.ui-widget, .ui-menuitem, .ui-corner-all, .ui-menu-parent{
+					color: #5CB85C !important;
+					background-color: #178501 !important;
+				}*/
+										
+</style>
+
+
+
+	<script src="http://code.jquery.com/jquery-1.4.2.min.js" type="text/javascript"></script>
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+
+<script type="text/javascript">
+	google.load("visualization", "1", {
+		packages : [ "corechart" ]
+	});
+	google.setOnLoadCallback(drawChart);
+
+	function drawChart() {
+
+		var url = "rest/auditoria/datosUsuario"; // Completar con URL del servicio REST			
+		$.getJSON(url, function(data) {
+
+			var googleData = new google.visualization.DataTable();
+			googleData.addColumn('string', 'Operacion');
+			googleData.addColumn('number', 'Cantidad');
+			var total = data.length;
+
+			for (i = 0; i < total; i++) {
+				//googleData.addRow(["Moco",10]);				
+				googleData.addRow([ data[i].operacion, data[i].cant ]);
+			}
+
+			var chart = new google.visualization.PieChart(document
+					.getElementById('chart_usuario'));
+			chart.draw(googleData, {
+				width : 450,
+				height : 300,
+				title : 'Operaciones sobre Entidad Usuario',
+				is3D : true
+			});
+		});
+	}
+</script>
+
+<script type="text/javascript">
+	google.load("visualization", "1", {
+		packages : [ "corechart" ]
+	});
+	google.setOnLoadCallback(drawChart);
+
+	function drawChart() {
+
+		var url = "rest/auditoria/datosAdministrador"; // Completar con URL del servicio REST			
+		$.getJSON(url, function(data) {
+
+			var googleData = new google.visualization.DataTable();
+			googleData.addColumn('string', 'Operacion');
+			googleData.addColumn('number', 'Cantidad');
+			var total = data.length;
+
+			for (i = 0; i < total; i++) {
+				//googleData.addRow(["Moco",10]);				
+				googleData.addRow([ data[i].operacion, data[i].cant ]);
+			}
+
+			var chart = new google.visualization.PieChart(document
+					.getElementById('chart_admin'));
+			chart.draw(googleData, {
+				width : 450,
+				height : 300,
+				title : 'Operaciones sobre Entidad Administrador',
+				is3D : true
+			});
+		});
+	}
+</script>
+
+<script type="text/javascript">
+	google.load("visualization", "1", {
+		packages : [ "corechart" ]
+	});
+	google.setOnLoadCallback(drawChart);
+
+	function drawChart() {
+
+		var url = "rest/auditoria/datosEstacion"; // Completar con URL del servicio REST			
+		$.getJSON(url, function(data) {
+
+			var googleData = new google.visualization.DataTable();
+			googleData.addColumn('string', 'Operacion');
+			googleData.addColumn('number', 'Cantidad');
+			var total = data.length;
+
+			for (i = 0; i < total; i++) {
+				//googleData.addRow(["Moco",10]);				
+				googleData.addRow([ data[i].operacion, data[i].cant ]);
+			}
+
+			var chart = new google.visualization.PieChart(document
+					.getElementById('chart_estacion'));
+			chart.draw(googleData, {
+				width : 450,
+				height : 300,
+				title : 'Operaciones sobre Entidad Estacion',
+				is3D : true
+			});
+		});
+	}
+</script>
+
+<script type="text/javascript">
+	google.load("visualization", "1", {
+		packages : [ "corechart" ]
+	});
+	google.setOnLoadCallback(drawChart);
+
+	function drawChart() {
+
+		var url = "rest/auditoria/datosBicicleta"; // Completar con URL del servicio REST			
+		$.getJSON(url, function(data) {
+
+			var googleData = new google.visualization.DataTable();
+			googleData.addColumn('string', 'Operacion');
+			googleData.addColumn('number', 'Cantidad');
+			var total = data.length;
+
+			for (i = 0; i < total; i++) {
+				//googleData.addRow(["Moco",10]);				
+				googleData.addRow([ data[i].operacion, data[i].cant ]);
+			}
+
+			var chart = new google.visualization.PieChart(document
+					.getElementById('chart_bicicleta'));
+			chart.draw(googleData, {
+				width : 450,
+				height : 300,
+				title : 'Operaciones sobre Entidad Bicicleta',
+				is3D : true
+			});
+		});
+	}
+</script>
+
+<script type="text/javascript">
+	google.load("visualization", "1", {
+		packages : [ "corechart" ]
+	});
+	google.setOnLoadCallback(drawChart);
+
+	function drawChart() {
+
+		var url = "rest/auditoria/datosDenuncia"; // Completar con URL del servicio REST			
+		$.getJSON(url, function(data) {
+
+			var googleData = new google.visualization.DataTable();
+			googleData.addColumn('string', 'Operacion');
+			googleData.addColumn('number', 'Cantidad');
+			var total = data.length;
+
+			for (i = 0; i < total; i++) {
+				//googleData.addRow(["Moco",10]);				
+				googleData.addRow([ data[i].operacion, data[i].cant ]);
+			}
+
+			var chart = new google.visualization.PieChart(document
+					.getElementById('chart_denuncia'));
+			chart.draw(googleData, {
+				width : 450,
+				height : 300,
+				title : 'Operaciones sobre Entidad Denuncia',
+				is3D : true
+			});
+		});
+	}
+</script>
+
+<script type="text/javascript">
+	google.load("visualization", "1", {
+		packages : [ "corechart" ]
+	});
+	google.setOnLoadCallback(drawChart);
+
+	function drawChart() {
+
+		var url = "rest/auditoria/datosRegistroAlquiler"; // Completar con URL del servicio REST			
+		$.getJSON(url, function(data) {
+
+			var googleData = new google.visualization.DataTable();
+			googleData.addColumn('string', 'Operacion');
+			googleData.addColumn('number', 'Cantidad');
+			var total = data.length;
+
+			for (i = 0; i < total; i++) {
+				//googleData.addRow(["Moco",10]);				
+				googleData.addRow([ data[i].operacion, data[i].cant ]);
+			}
+
+			var chart = new google.visualization.PieChart(document
+					.getElementById('chart_registroAlquiler'));
+			chart.draw(googleData, {
+				width : 450,
+				height : 300,
+				title : 'Operaciones sobre Entidad Registro Alquiler',
+				is3D : true
+			});
+		});
+	}
+</script>
+
+</h:head>
+
+<h:body>
+
+<div>
+	<table style="width: 100%">
+		<tr>
+			<td  id ="chart_usuario"></td>
+			<td  id ="chart_admin"></td>
+			<td  id ="chart_estacion"></td>			
+		</tr>
+		<tr>
+			<td id="chart_bicicleta"></td>
+			<td id="chart_denuncia"></td>
+			<td id="chart_registroAlquiler"></td>
+		</tr>
+	</table>
+</div>
+</h:body>	  
+</html>

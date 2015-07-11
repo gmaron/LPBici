@@ -45,4 +45,41 @@ public class AuditoriaResource {
 		list = auditoriaService.getAuditoriaAsList("Administrador");
 		return list;
 	}
+	
+	@GET
+	@Path("datosEstacion")
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public  List<AuditoriaRest> getAuditoriasEstacion() {
+		List <AuditoriaRest> list = new ArrayList<AuditoriaRest>();
+		list = auditoriaService.getAuditoriaAsList("Estacion");
+		return list;
+	}
+	
+	@GET
+	@Path("datosBicicleta")
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public  List<AuditoriaRest> getAuditoriasBicicleta() {
+		List <AuditoriaRest> list = new ArrayList<AuditoriaRest>();
+		list = auditoriaService.getAuditoriaAsList("Bicicleta");
+		return list;
+	}
+	
+	@GET
+	@Path("datosDenuncia")
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public  List<AuditoriaRest> getAuditoriasDenuncia() {
+		List <AuditoriaRest> list = new ArrayList<AuditoriaRest>();
+		list = auditoriaService.getAuditoriaAsList("Denuncia");
+		return list;
+	}
+	
+	@GET
+	@Path("datosRegistroAlquiler")
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public  List<AuditoriaRest> getAuditoriasRegistroAlquiler() {
+		List <AuditoriaRest> list = new ArrayList<AuditoriaRest>();
+		list = auditoriaService.getAuditoriaAsList("RegistroAlquiler");
+		return list;
+	}
+	
 }

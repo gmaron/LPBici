@@ -7,10 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
-
-
-
-//import misclases.Persona;
 import misclases.Usuario;
 
 import javax.persistence.EntityManagerFactory;
@@ -21,9 +17,7 @@ public class UsuarioHJPADAO implements IUsuarioDAO{
 
 	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("PersistenceUnit");
 	private static EntityManager em;
-	
-	
-	
+			
 	@Override
 	public void guardarUsuario(Usuario usuario) {
 		em =  emf.createEntityManager();
@@ -56,15 +50,27 @@ public class UsuarioHJPADAO implements IUsuarioDAO{
 		em = emf.createEntityManager();
 		EntityTransaction etx = em.getTransaction();
 		etx.begin();
-		
-		usuario.setEliminado(true);
-		em.merge(usuario);
-		//em.remove(em.merge(usuario));		
+	
+		em.remove(em.merge(usuario));		
 		
 		etx.commit();
 		em.close();
 	}
 
+	@Override
+	public void eliminarUsuarioLogica(Usuario usr) {
+		
+		em = emf.createEntityManager();
+		EntityTransaction etx = em.getTransaction();
+		etx.begin();
+		
+		usr.setEliminado(true);
+		em.merge(usr);
+		//em.remove(em.merge(usuario));		
+		
+		etx.commit();
+		em.close();
+	}
 
 	@Override
 	public Usuario recuperarUsuario(String email) {

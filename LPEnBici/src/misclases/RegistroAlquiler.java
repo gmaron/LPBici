@@ -15,6 +15,7 @@ public class RegistroAlquiler {
 	private String horaSalida; 
 	private String estado;
 	
+	boolean eliminado;
 
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}) // puede haber mas de un registro asociado a un usuario
 	private Usuario usuarioUso;
@@ -43,6 +44,7 @@ public class RegistroAlquiler {
 		this.estacionSalida = estacionSalida;
 		//this.estado = estado;
 		this.usuarioUso = usuarioUso;
+		this.eliminado = false;
 		
 	}
 	
@@ -115,7 +117,19 @@ public class RegistroAlquiler {
 	public void setDenuncia(Denuncia denuncia) {
 		this.denuncia = denuncia;
 	}
+
+	public boolean isEliminado() {
+		return eliminado;
+	}
+
+	public void setEliminado(boolean eliminado) {
+		this.eliminado = eliminado;
+	}
 	 
+	@Override
+	public String toString() {
+		return "RegistroAlquiler";
+	} 
 	
 	
 	

@@ -52,11 +52,11 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>LoginAdministrador.xhtml</display-name>
-		<from-view-id>/LoginAdministrador.xhtml</from-view-id>
+		<display-name>AdministracionUsr.xhtml</display-name>
+		<from-view-id>/AdministracionUsr.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>Exito_AdminmodUsuario</from-outcome>
-			<to-view-id>/LoginAdministrador.xhtml</to-view-id>
+			<to-view-id>/AdministracionUsr.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
@@ -68,11 +68,11 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>LoginAdministrador.xhtml</display-name>
-		<from-view-id>/LoginAdministrador.xhtml</from-view-id>
+		<display-name>AdministracionUsr.xhtml</display-name>
+		<from-view-id>/AdministracionUsr.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>Exito_usuarioEliminado</from-outcome>
-			<to-view-id>/LoginAdministrador.xhtml</to-view-id>
+			<to-view-id>/AdministracionUsr.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	

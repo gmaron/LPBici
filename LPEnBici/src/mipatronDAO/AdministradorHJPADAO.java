@@ -10,6 +10,7 @@ import misclases.Administrador;
 
 
 
+
 public class AdministradorHJPADAO implements IAdministradorDAO{
 
 	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("PersistenceUnit");
@@ -53,6 +54,22 @@ public class AdministradorHJPADAO implements IAdministradorDAO{
 		etx.commit();
 		em.close();
 	}
+	
+	@Override
+	public void eliminarAdministradorLogica(Administrador admin) {
+		
+		em = emf.createEntityManager();
+		EntityTransaction etx = em.getTransaction();
+		etx.begin();
+		
+		admin.setEliminado(true);
+		em.merge(admin);
+		//em.remove(em.merge(usuario));		
+		
+		etx.commit();
+		em.close();
+	}
+	
 	
 	@Override
 	public Administrador recuperarAdministrador(String email) {

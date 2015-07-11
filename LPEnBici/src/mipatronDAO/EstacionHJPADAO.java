@@ -53,6 +53,21 @@ public class EstacionHJPADAO implements IEstacionDAO {
 		etx.commit();
 		em.close();
 	}
+	
+	@Override
+	public void eliminarEstacionLogica(Estacion estacion) {
+		
+		em = emf.createEntityManager();
+		EntityTransaction etx = em.getTransaction();
+		etx.begin();
+		
+		estacion.setEliminado(true);
+		em.merge(estacion);
+		//em.remove(em.merge(usuario));		
+		
+		etx.commit();
+		em.close();
+	}
 
 	@Override
 	public Estacion recuperarEstacion(Long id) {

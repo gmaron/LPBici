@@ -2,20 +2,18 @@ package test;
 
 
 import misclases.Administrador;
-//import misclases.Bicicleta;
-//import misclases.Denuncia;
-//import misclases.Estacion;
-//import misclases.Persona;
-//import misclases.RegistroAlquiler;
+import misclases.Bicicleta;
+import misclases.Denuncia;
+import misclases.Estacion;
+import misclases.RegistroAlquiler;
 import misclases.Usuario;
 import mipatronDAO.MyFactoryDAO;
 
-//import java.text.DateFormat;
-//import java.text.SimpleDateFormat;
-//import java.util.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
-//import org.hibernate.Query;
-//import org.hibernate.Session;
+
 public class Test {
 //	private Long id;
 	public static void main(String[] args) {
@@ -23,17 +21,17 @@ public class Test {
 		MyFactoryDAO f = new MyFactoryDAO();
 		
 		/*-------------------------------------Test para altas-------------------------------------*/
-//		// Alta Usuario
+		// Alta Usuario
 		Usuario usr = new Usuario("Milton","Meroni","miltonmeroni@gmail.com","35798492","13 Nro 1478","Masculino","22/11/92","1234");
 		f.getUsuarioDAO().guardarUsuario(usr);
-//		
+		
 		Usuario usr1 = new Usuario("Gaston","Maron","gastonmaron@gmail.com","36996998","15 y 59","Masculino","07/09/92","1234");
 		f.getUsuarioDAO().guardarUsuario(usr1);		
-//		
+		
 		// Alta Administrador
 		Administrador admin = new Administrador("John","Salchichon","juan@gmail.com","36996903","15 y 59","Masculino","01/01/12","1234");
 		f.getAdministradorDAO().guardarAdministrador(admin);
-		/*
+		
 		// Alta de Bicicleta
 		Bicicleta bici = new Bicicleta("MLP-002", "Apta para el uso", "10:29-04/06/2015","Estacion 1");
 		f.getBicicletaDAO().guardarBicicleta(bici);
@@ -51,18 +49,20 @@ public class Test {
 		est.getListaBici().add(bici);
 		f.getEstacionDAO().guardarEstacion(est);
 		
-		// Alta de alquiler
-		RegistroAlquiler reg = new RegistroAlquiler(null, "04/06/2015", null, "10:33", null, est, usr);
-		f.getRegAlquilerDAO().guardarRegistroAlquiler(reg);		
-				
 		// Alta de denuncia
 		Denuncia den = new Denuncia(usr, "La bici no tiene cadena");
 		f.getDenunciaDAO().guardarDenuncia(den);
 		
+		// Alta de alquiler
+		RegistroAlquiler reg = new RegistroAlquiler(null, "04/06/2015", null, "10:33", null, est, usr);
+		f.getRegAlquilerDAO().guardarRegistroAlquiler(reg);		
+				
+		
+		
 		
 		System.out.println("Termino el test de alta\n");
 		/*-------------------------------------Fin Test para altas-------------------------------------*/
-
+		/*
 		/*-------------------------------------Test para recuperacion-------------------------------------*/
 		
 //		//Usuario usuariorec = f.getUsuarioDAO().recuperarUsuario(1L);
@@ -108,48 +108,49 @@ public class Test {
 //		modifica el apellido del usuario a "Mongocho"
 		usr.setApellido("Mongocho");
 		f.getUsuarioDAO().modificarUsuario(usr);
-//		
+
 //		// modifica el nombre del administrador a "pepito"
 		admin.setNombre("pepito");
 		f.getAdministradorDAO().modificarAdministrador(admin);
 //		
-//		// modifica la patente y agrega un registro actual
-//		bici.setPatente("MLP-005");
-//		
-//		//asociar registro de alquiler con la bicicleta
+		// modifica la patente y agrega un registro actual
+		bici.setPatente("MLP-005");
+		f.getBicicletaDAO().modificarBicicleta(bici);
+	
+		//asociar registro de alquiler con la bicicleta
 //		bici.setRegActual(reg);
 //		f.getBicicletaDAO().modificarBicicleta(bici);
-//			
-//		// modifica la estacion
-//		est.setNombre("Estacion 4");
-//		f.getEstacionDAO().modificarEstacion(est);
-//		
-//		// modificar la denuncia
-//		den.setComentario("La bici esta pinchada");
-//		f.getDenunciaDAO().modificarDenuncia(den);		
-//				
-//		// modificar el alquiler convirtiendo en un alquiler historico
-//		reg.setEstacionEntrada(est);
-//		reg.setFechaEntrada("05/06/2015");
-//		reg.setHoraEntrada("18:00");
-//		reg.setDenuncia(den);
-//		f.getRegAlquilerDAO().modificarRegistroAlquiler(reg);			
-//		
-//		System.out.println("Termino el test de modificaciones\n");
+			
+		// modifica la estacion
+		est.setNombre("Estacion 4");
+		f.getEstacionDAO().modificarEstacion(est);
+		
+		// modificar la denuncia
+		den.setComentario("La bici esta pinchada");
+		f.getDenunciaDAO().modificarDenuncia(den);		
+				
+		// modificar el alquiler convirtiendo en un alquiler historico
+		reg.setEstacionEntrada(est);
+		reg.setFechaEntrada("05/06/2015");
+		reg.setHoraEntrada("18:00");
+		reg.setDenuncia(den);
+		f.getRegAlquilerDAO().modificarRegistroAlquiler(reg);			
+		
+		System.out.println("Termino el test de modificaciones\n");
 //		/*--------------------------------Fin Test para modificaciones---------------------------------*/
 //			
 //		
 //		/*-------------------------------------Test para bajas-------------------------------------*/
 //			
-		f.getAdministradorDAO().eliminarAdministrador(admin);
-//		f.getRegAlquilerDAO().eliminarRegistroAlquiler(reg);
-//		f.getEstacionDAO().eliminarEstacion(est);
+		f.getAdministradorDAO().eliminarAdministradorLogica(admin);
+		f.getRegAlquilerDAO().eliminarRegistroAlquilerLogica(reg);
+		f.getEstacionDAO().eliminarEstacionLogica(est);
 //		
-//		//f.getBicicletaDAO().eliminarBicicleta(bici); No se puede borrar una bicicleta asociada a una estacion
-//		f.getDenunciaDAO().eliminarDenuncia(den);		
-		f.getUsuarioDAO().eliminarUsuario(usr);
+		f.getBicicletaDAO().eliminarBicicletaLogica(bici); //No se puede borrar una bicicleta asociada a una estacion
+		f.getDenunciaDAO().eliminarDenunciaLogica(den);		
+		f.getUsuarioDAO().eliminarUsuarioLogica(usr);
 //			
-//		System.out.println("Termino el test de bajas\n");
+		System.out.println("Termino el test de bajas\n");
 		/*-------------------------------------Fin Test para bajas-------------------------------------*/
 	
 		System.out.println("Termino el test");

@@ -8,4 +8,5 @@ public interface IRegistroAlquilerDAO {
 	public void modificarRegistroAlquiler(RegistroAlquiler registroAlquiler);
 	public void eliminarRegistroAlquiler(RegistroAlquiler registroAlquiler);
 	public RegistroAlquiler recuperarRegistroAlquiler(Long id);
+	public void eliminarRegistroAlquilerLogica(RegistroAlquiler reg);
 }

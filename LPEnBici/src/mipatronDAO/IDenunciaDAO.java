@@ -8,4 +8,5 @@ public interface IDenunciaDAO {
 	public void modificarDenuncia(Denuncia denuncia);
 	public void eliminarDenuncia(Denuncia denuncia);
 	public Denuncia recuperarDenuncia(Long id);
+	public void eliminarDenunciaLogica(Denuncia den);
 }
