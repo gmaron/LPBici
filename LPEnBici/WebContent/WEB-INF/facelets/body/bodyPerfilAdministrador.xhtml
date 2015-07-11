@@ -169,12 +169,13 @@
 						<p:commandButton value="Modificar perfil" ajax="false"
 							action="#{PersonaBean.modificarPerfil}"
 							icon="ui-icon-check" style="width: 300px;margin:auto;"
-							validateClient="true" onclick="PF('modUsuarioEspera').show();" />
+							validateClient="true"  />
+							<!-- onclick="PF('modUsuarioEspera').show();" -->
 					</div>
 				</f:facet>
 			</h:panelGrid>
 
-			<p:confirmDialog
+			<!-- <p:confirmDialog
 						message="Sus datos estan siendo modificados."
 						widgetVar="modUsuarioEspera" global="true" showEffect="fade"
 						closable="false"
@@ -188,7 +189,7 @@
 						<p:commandButton value="Ok" type="button"
 							onclick="PF('modUsuarioExito').hide();"
 							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-					</p:confirmDialog>
+					</p:confirmDialog> -->
 		</h:form>
 	</p:panelGrid>
 

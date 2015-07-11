@@ -15,17 +15,17 @@
 	<class>misclases.RegistroAlquiler</class>
  
 	<properties>
-		<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-		
-<!-- 		<property name="hibernate.connection.url" value="jdbc:mysql://java2015.linti.unlp.edu.ar:3306/bd18" /> -->
-		<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/bd18" />
-		<property name="hibernate.connection.username" value="grupo18" />
-		<property name="hibernate.connection.password" value="jyaa!grupo18" />
+		<property name="javax.persistence.validation.mode" value="none"/>
+		<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />		
+		<property name="hibernate.connection.url" value="jdbc:mysql://192.168.56.128:3306/LPbici" />		
+ 		<property name="hibernate.connection.username" value="jyaa" />
+		<!-- <property name="hibernate.connection.password" value="jyaa" /> -->		
+		<!-- <property name="hibernate.connection.url" value="jdbc:mysql://mysql.java.linti.unlp.edu.ar:3306/jyaa2015_bd18" />
+		<property name="hibernate.connection.username" value="grupo18" />		
+		<property name="hibernate.connection.password" value="jyaa!grupo18" /> -->
 		<property name="hibernate.hbm2ddl.auto" value="update" />
 		<property name="hibernate.dialect" value=" org.hibernate.dialect.MySQL5InnoDBDialect " />
 	</properties>
 </persistence-unit>
-
-
 
 </persistence>

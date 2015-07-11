@@ -26,7 +26,6 @@ public class UsuarioHJPADAO implements IUsuarioDAO{
 	
 	@Override
 	public void guardarUsuario(Usuario usuario) {
-		// TODO Auto-generated method stub
 		em =  emf.createEntityManager();
 		EntityTransaction etx = em.getTransaction();
 		etx.begin();

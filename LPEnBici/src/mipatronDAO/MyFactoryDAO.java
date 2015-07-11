@@ -26,4 +26,8 @@ public class MyFactoryDAO {
 		return new DenunciaHJPADAO();
 	}
 	
+	public IAuditoriaDAO getAuditoriaDAO(){
+		return new AuditoriaHJPADAO();
+	}
+	
 }

@@ -2,17 +2,17 @@ package test;
 
 
 import misclases.Administrador;
-import misclases.Bicicleta;
-import misclases.Denuncia;
-import misclases.Estacion;
+//import misclases.Bicicleta;
+//import misclases.Denuncia;
+//import misclases.Estacion;
 //import misclases.Persona;
-import misclases.RegistroAlquiler;
+//import misclases.RegistroAlquiler;
 import misclases.Usuario;
 import mipatronDAO.MyFactoryDAO;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.*;
+//import java.text.DateFormat;
+//import java.text.SimpleDateFormat;
+//import java.util.*;
 
 //import org.hibernate.Query;
 //import org.hibernate.Session;

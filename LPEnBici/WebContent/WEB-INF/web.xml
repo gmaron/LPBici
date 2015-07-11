@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
-  <display-name>LaPlataEnBici</display-name>
+  <display-name>LPEnBiciGrupo18</display-name>
   <welcome-file-list>
     <welcome-file>inicio.jsp</welcome-file>
   </welcome-file-list>
-  <context-param>
-    <param-name>emailAdmin</param-name>
-    <param-value>admin@lpbici.com</param-value>
-  </context-param>
-  <context-param>
-    <param-name>passAdmin</param-name>
-    <param-value>adminlp</param-value>
-  </context-param>
   <context-param>
     <description>State saving method: 'client' or 'server' (=default). See JSF Specification 2.5.2</description>
     <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
@@ -33,17 +25,29 @@
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>/lpBici/*</url-pattern>
   </servlet-mapping>
-  
   <context-param>
-	   <param-name>facelets.SKIP_COMMENTS</param-name>
-	   <param-value>true</param-value>
-	</context-param>
-	
-<context-param>
+    <param-name>facelets.SKIP_COMMENTS</param-name>
+    <param-value>true</param-value>
+  </context-param>
+  <context-param>
     <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
     <param-value>true</param-value>
-</context-param>
-	
-	
-	
+  </context-param>
+  
+  <!-- REST -->
+   <servlet>
+    <servlet-name>RESTful Jersey CRUD Service</servlet-name>
+    <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+    <init-param>
+        <param-name>jersey.config.server.provider.packages</param-name>
+        <param-value>aspecto</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RESTful Jersey CRUD Service</servlet-name>
+    <url-pattern>/rest/*</url-pattern>
+  </servlet-mapping>
+  
+  
 </web-app>

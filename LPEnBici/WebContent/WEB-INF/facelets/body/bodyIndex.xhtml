@@ -11,8 +11,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>¡La Plata En Bici!</title>
 
-
-
 <style type="text/css">
 body {
 	font-family: Georgia, "Times New Roman", Times, serif;
@@ -171,14 +169,17 @@ body {
 							action="#{PersonaBean.altaUsuario}" icon="ui-icon-check"
 							style="width: 300px;margin:auto;" validateClient="true"
 							update="errorReg"
-							onclick="PF('esperaAlta').show();"
+							
 							/>
-					</div>
+<!-- 							onclick="PF('esperaAlta').show();"
+ -->					</div>
 				</f:facet>
-			</h:panelGrid>
-
-
-			<p:confirmDialog
+			</h:panelGrid>			
+		</h:form>
+	</p:panelGrid>
+	
+	
+			<!-- <p:confirmDialog
 				message="Aguarde un momento. Se estan registrando sus datos..."
 				widgetVar="esperaAlta" global="true" showEffect="fade"
 				closable="false"
@@ -199,9 +200,8 @@ body {
 				hideEffect="explode">
 				<p:commandButton value="Ok" type="button" onclick="PF('errorAlta').hide();"
 					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-			</p:confirmDialog>
-			
-		</h:form>
-	</p:panelGrid>
+			</p:confirmDialog> -->
+	
+	
 </h:body>
 </html>

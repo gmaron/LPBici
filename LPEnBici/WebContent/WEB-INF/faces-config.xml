@@ -17,7 +17,7 @@
 			<to-view-id>/LoginUsuario.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-	<!--  DE PRUEBA -->
+	<!--  DE PRUEBA 
 		<navigation-rule>
 		<display-name>bodyIndex.xhtml</display-name>
 		<from-view-id>/bodyIndex.xhtml</from-view-id>
@@ -25,11 +25,7 @@
 			<from-outcome>ExitoRegistro</from-outcome>
 			<to-view-id>/index.xhtml</to-view-id>
 		</navigation-case>
-	</navigation-rule>
-	
-	
-	
-	
+	</navigation-rule>-->
 	
 	<navigation-rule>
 		<display-name>index.xhtml</display-name>
@@ -52,7 +48,7 @@
 		<from-view-id>/index.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>FracasoRegistro</from-outcome>
-			<to-view-id>/errorRegistro.jsp</to-view-id>
+			<to-view-id>/ErrorRegistro.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
@@ -96,6 +92,25 @@
 			<to-view-id>/pepe.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule> -->
+	
+	<navigation-rule>
+		<display-name>perfilUsuario.xhtml</display-name>
+		<from-view-id>/perfilUsuario.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>ExitoModPerfilUsuario</from-outcome>
+			<to-view-id>/perfilUsuario.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>PerfilAdministrador.xhtml</display-name>
+		<from-view-id>/PerfilAdministrador.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>ExitoModPerfilAdministrador</from-outcome>
+			<to-view-id>PerfilAdministrador.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	
 	
 	
 	

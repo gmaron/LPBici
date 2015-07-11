@@ -42,6 +42,13 @@ public class Usuario extends Persona{
 
 	public void setHabilitado(boolean habilitado) {
 		this.habilitado = habilitado;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Usuario";
 	} 
 	
 	

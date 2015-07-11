@@ -9,7 +9,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<!-- <jsp:forward page="/lpBici/FormUsr.jsp"/>-->
-	<jsp:forward page="/lpBici/NewFile.xhtml"/>
+	<%        
+        response.sendRedirect("/LPEnBiciGrupo18/lpBici/index.xhtml");
+    %>
+	
 </body>
 </html>

@@ -70,17 +70,17 @@ public class PersonaBean {
 			f.getUsuarioDAO().guardarUsuario(usr);
 			this.enviarContrasena();
 			this.usr = new Usuario();
-			RequestContext.getCurrentInstance().execute("PF('esperaAlta').hide();");
-			RequestContext.getCurrentInstance().execute("PF('exitoAlta').show();");
-			return null;
-//			return "ExitoRegistro";
+//			RequestContext.getCurrentInstance().execute("PF('esperaAlta').hide();");			
+//			RequestContext.getCurrentInstance().execute("PF('exitoAlta').show();");			
+			//return null;
+			return "ExitoRegistro";
 		}
-		else{
-			RequestContext.getCurrentInstance().execute("PF('esperaAlta').hide();");
-			RequestContext.getCurrentInstance().execute("PF('errorAlta').show();");
+		else{			
+//			RequestContext.getCurrentInstance().execute("PF('esperaAlta').hide();");
+//			RequestContext.getCurrentInstance().execute("PF('errorAlta').show();");
 			this.usr = new Usuario();
-			return null;
-//			return "FracasoRegistro";
+			//return null;
+			return "FracasoRegistro";
 		}				
 	}
 		
@@ -111,19 +111,21 @@ public class PersonaBean {
 			String fe= convertirFecha(this.usr.getFechaNacimiento());
 			this.usr.setFechaNacimiento(fe);
 			f.getUsuarioDAO().modificarUsuario(this.usr);
-			RequestContext.getCurrentInstance().execute("PF('modUsuarioEspera').hide();");
-			RequestContext.getCurrentInstance().execute("PF('modUsuarioExito').show();");
+//			RequestContext.getCurrentInstance().execute("PF('modUsuarioEspera').hide();");
+//			RequestContext.getCurrentInstance().execute("PF('modUsuarioExito').show();");
+			return "ExitoModPerfilUsuario";
 		}
 		else{
 			if (this.usr == null){
 				String fe= convertirFecha(this.admin.getFechaNacimiento());
 				this.admin.setFechaNacimiento(fe);
 				f.getAdministradorDAO().modificarAdministrador(admin);
-				RequestContext.getCurrentInstance().execute("PF('modUsuarioEspera').hide();");
-				RequestContext.getCurrentInstance().execute("PF('modUsuarioExito').show();");
+//				RequestContext.getCurrentInstance().execute("PF('modUsuarioEspera').hide();");
+//				RequestContext.getCurrentInstance().execute("PF('modUsuarioExito').show();");
+				return "ExitoModPerfilAdministrador";
 			}
+			return  null;
 		}
-		return null;
 	}
 	
 
@@ -134,8 +136,8 @@ public class PersonaBean {
 		usuariosNoEliminados = f.getUsuarioDAO().recuperarUsuariosNoEliminados();
 //		RequestContext.getCurrentInstance().execute("PF('delUsuarioEspera').hide();");
 //		RequestContext.getCurrentInstance().execute("PF('delUsuarioExito').show();");
-		return null;
-//		return "Exito_usuarioEliminado";
+//		return null;
+		return "Exito_usuarioEliminado";
 	}
 	
 	public String convertirFecha (String fe){
