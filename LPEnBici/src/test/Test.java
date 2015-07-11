@@ -105,13 +105,13 @@ public class Test {
 //		
 //		/*--------------------------------Test para modificaciones---------------------------------*/
 //		
-//		// modifica el apellido del usuario a "Mongocho"
-//		usr.setApellido("Mongocho");
-//		f.getUsuarioDAO().modificarUsuario(usr);
+//		modifica el apellido del usuario a "Mongocho"
+		usr.setApellido("Mongocho");
+		f.getUsuarioDAO().modificarUsuario(usr);
 //		
 //		// modifica el nombre del administrador a "pepito"
-//		admin.setNombre("pepito");
-//		f.getAdministradorDAO().modificarAdministrador(admin);
+		admin.setNombre("pepito");
+		f.getAdministradorDAO().modificarAdministrador(admin);
 //		
 //		// modifica la patente y agrega un registro actual
 //		bici.setPatente("MLP-005");
@@ -141,13 +141,13 @@ public class Test {
 //		
 //		/*-------------------------------------Test para bajas-------------------------------------*/
 //			
-//		f.getAdministradorDAO().eliminarAdministrador(admin);
+		f.getAdministradorDAO().eliminarAdministrador(admin);
 //		f.getRegAlquilerDAO().eliminarRegistroAlquiler(reg);
 //		f.getEstacionDAO().eliminarEstacion(est);
 //		
 //		//f.getBicicletaDAO().eliminarBicicleta(bici); No se puede borrar una bicicleta asociada a una estacion
 //		f.getDenunciaDAO().eliminarDenuncia(den);		
-//		f.getUsuarioDAO().eliminarUsuario(usr);
+		f.getUsuarioDAO().eliminarUsuario(usr);
 //			
 //		System.out.println("Termino el test de bajas\n");
 		/*-------------------------------------Fin Test para bajas-------------------------------------*/

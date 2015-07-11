@@ -43,8 +43,6 @@ public class AuditoriaHJPADAO implements IAuditoriaDAO {
 		else{
 			cant_int = (int)cant;
 		}
-//		@SuppressWarnings("unchecked")
-		//List<Auditoria> resultList = Collections.checkedList(q.getResultList(), Auditoria.class);
 		AuditoriaRest aud = new AuditoriaRest(op, cant_int);
 		System.out.println("Cantidad: "+cant);
 		return aud;	

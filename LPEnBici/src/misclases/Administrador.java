@@ -14,5 +14,11 @@ public class Administrador extends Persona {
 	public Administrador() {
 		
 	}
+
+	@Override
+	public String toString() {
+		return "Administrador";
+	}
+	
 	
 }

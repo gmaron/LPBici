@@ -3,11 +3,7 @@ package aspecto;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-
-
-import java.util.Map;
 
 import mipatronDAO.MyFactoryDAO;
 
@@ -18,11 +14,13 @@ public class AuditoriaService {
 		
 	}
 		
-	public List<AuditoriaRest> getAuditoriaAsList() {
+	public List<AuditoriaRest> getAuditoriaAsList(String entidad) {
 		List<AuditoriaRest> auditoriaList = new ArrayList<AuditoriaRest>();
-		AuditoriaRest aud = f.getAuditoriaDAO().recuperarAuditoriaRest("GuardarUsuario");
+		AuditoriaRest aud = f.getAuditoriaDAO().recuperarAuditoriaRest("Guardar"+entidad);
 		auditoriaList.add(aud);
-		aud = f.getAuditoriaDAO().recuperarAuditoriaRest("ModificarUsuario");
+		aud = f.getAuditoriaDAO().recuperarAuditoriaRest("Modificar"+entidad);
+		auditoriaList.add(aud);
+		aud = f.getAuditoriaDAO().recuperarAuditoriaRest("Eliminar"+entidad);
 		auditoriaList.add(aud);
 		
 		return auditoriaList;		
