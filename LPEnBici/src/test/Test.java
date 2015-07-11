@@ -31,7 +31,7 @@ public class Test {
 		f.getUsuarioDAO().guardarUsuario(usr1);		
 //		
 		// Alta Administrador
-		Administrador admin = new Administrador("John","Raton","juan@gmail.com","36996903","15 y 59","Masculino","01/01/12","1234");
+		Administrador admin = new Administrador("John","Salchichon","juan@gmail.com","36996903","15 y 59","Masculino","01/01/12","1234");
 		f.getAdministradorDAO().guardarAdministrador(admin);
 		/*
 		// Alta de Bicicleta
