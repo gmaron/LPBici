@@ -8,7 +8,21 @@
 		<managed-bean-name>PersonaBean</managed-bean-name>
 		<managed-bean-class>lpBici.controller.PersonaBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>	
+	
+	<managed-bean>
+		<managed-bean-name>EstacionBean</managed-bean-name>
+		<managed-bean-class>lpBici.controller.EstacionBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>BicicletaBean</managed-bean-name>
+		<managed-bean-class>lpBici.controller.BicicletaBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	
+	
 	<navigation-rule>
 		<display-name>index.xhtml</display-name>
 		<from-view-id>/index.xhtml</from-view-id>
@@ -110,7 +124,41 @@
 		</navigation-case>
 	</navigation-rule>
 	
+	<!-- BICICLETA  -->
 	
+	<navigation-rule>
+		<display-name>AltaBicicleta.xhtml</display-name>
+		<from-view-id>/AltaBicicleta.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>BicicletaExitoAlta</from-outcome>
+			<to-view-id>AltaBicicleta.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>AltaBicicleta.xhtml</display-name>
+		<from-view-id>/AltaBicicleta.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>BicicletaFracasoAlta</from-outcome>
+			<to-view-id>AltaBicicleta.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>AdministracionBicicletas.xhtml</display-name>
+		<from-view-id>/AdministracionBicicletas.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>BicicletaExitoModificada</from-outcome>
+			<to-view-id>AdministracionBicicletas.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+	<display-name>AdministracionBicicletas.xhtml</display-name>
+		<from-view-id>/AdministracionBicicletas.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>BicicletaExitoEliminada</from-outcome>
+			<to-view-id>AdministracionBicicletas.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 	
 	
 	

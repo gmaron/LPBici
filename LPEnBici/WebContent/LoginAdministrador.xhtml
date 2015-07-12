@@ -3,17 +3,25 @@
 
 <ui:composition
  	xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	template="WEB-INF/facelets/templates/defaultLayout.xhtml" >
-
+	xmlns:ui="http://java.sun.com/jsf/facelets"	
+	template="WEB-INF/facelets/templates/LayoutAdmin.xhtml">
+	
+	<!-- template="WEB-INF/facelets/templates/defaultLayout.xhtml"  -->
 
 	<ui:define name="encabezado">
 		<ui:include src="WEB-INF/facelets/header/headerAdmin.xhtml" />
+	</ui:define>			
+
+	<!-- <ui:define name="contenido">
+		<ui:include src="WEB-INF/facelets/body/bodyLoginAdmin.xhtml"/>
+	</ui:define> 
+	 -->
+	<ui:define name="panelIzqAdmin">
+		<ui:include src="WEB-INF/facelets/body/bodyPanelAdmin.xhtml"/>
 	</ui:define>
 
-	<ui:define name="contenido">
+	<ui:define name="panelDerAdmin">
 		<ui:include src="WEB-INF/facelets/body/bodyLoginAdmin.xhtml"/>
 	</ui:define>
-
 
 </ui:composition>

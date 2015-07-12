@@ -132,7 +132,7 @@ public class PersonaBean {
 	
 	public String AdminEliminarUsuario(){
 		usuarioSeleccionado.setEliminado(true);
-		f.getUsuarioDAO().eliminarUsuario(usuarioSeleccionado);
+		f.getUsuarioDAO().eliminarUsuarioLogica(usuarioSeleccionado);
 		usuariosNoEliminados = f.getUsuarioDAO().recuperarUsuariosNoEliminados();
 //		RequestContext.getCurrentInstance().execute("PF('delUsuarioEspera').hide();");
 //		RequestContext.getCurrentInstance().execute("PF('delUsuarioExito').show();");
@@ -212,12 +212,11 @@ public class PersonaBean {
 		}
 	}
 	
-	public String logout() {
-	this.usr = new Usuario();
-	FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-	//		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove(this);
-	return "/index.xhtml?faces-redirect=true";
-		
+	public String logout(){
+		this.usr = new Usuario();
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove(this);
+		return "/index.xhtml?faces-redirect=true";	
 	}
 
 	public Usuario getUsr() {

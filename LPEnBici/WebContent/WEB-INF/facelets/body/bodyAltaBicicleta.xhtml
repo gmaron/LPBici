@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui"> 
+ <h:head>
+ 
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	
+	
+</h:head>
+<h:body>
+	<p:panelGrid columns="1"
+		style="position:relative; height: 300px;margin:auto;">
+		<f:facet name="header">
+			<div class="styleGreen">Alta Bicicleta</div>
+		</f:facet>
+
+		<h:form>
+			<p:messages id="errorReg" autoUpdate="true" />
+			<h:panelGrid columns="2" cellpadding="5">
+
+				<p:outputLabel for="patente" value="Patente:" />
+				<p:inputText id="patente" value="#{BicicletaBean.bicicleta.patente}"
+					required="true">
+				</p:inputText>
+
+				<h:outputText value="Estado actual: " />
+				<p:selectOneMenu required="true"
+					value="#{BicicletaBean.bicicleta.estado}" style="width:150px">
+					<f:selectItem itemLabel="Seleccionar" itemValue=""
+						noSelectionOption="true" />
+					<f:selectItem itemLabel="Apta para el uso"
+						itemValue="Apta para el uso" />
+					<f:selectItem itemLabel="En desuso" itemValue="En desuso" />
+					<f:selectItem itemLabel="En reparacion" itemValue="En reparacion" />
+					<f:selectItem itemLabel="Denunciada" itemValue="Denunciada" />
+				</p:selectOneMenu>
+
+				<p:outputLabel for="estacion" value="Estacion: " />
+				<p:selectOneMenu required="true" id="estacion"
+					value="#{BicicletaBean.bicicleta.ubicacionActual}"
+					style="width:150px">
+					<f:selectItem itemLabel="Seleccionar" itemValue=""
+						noSelectionOption="true" />
+					<f:selectItems value="#{EstacionBean.estacionesNoEliminadasMap}" />
+				</p:selectOneMenu>
+
+				<f:facet name="footer">
+					<div align="center">
+						<p:commandButton value="Terminado" ajax="false"
+							action="#{BicicletaBean.alta}" icon="ui-icon-check"
+							style="width: 300px;margin:auto;" validateClient="true"
+							update="errorReg" />
+					</div>
+				</f:facet>
+			</h:panelGrid>
+		</h:form>
+	</p:panelGrid>
+</h:body>
+</html>

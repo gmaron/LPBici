@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Entity
 public class Bicicleta {
 	private String patente;
-//	private String estado; //APTA, REPARACION, DESUSO, DENUNCIADA	
+	private String estado; //APTA, REPARACION, DESUSO, DENUNCIADA	
 	private String fechaIngreso;
 	private String ubicacionActual;	
 	
@@ -43,6 +43,9 @@ public class Bicicleta {
 		this.historialDenuncia = new ArrayList<Denuncia>();
 		this.historialEstado = new ArrayList<Estado>();
 		this.historialEstado.add(new Estado(estado, this.fechaIngreso));
+		
+		/* Agrego el estado */
+		this.estado = historialEstado.get(historialEstado.size() - 1).getEstado();		
 		this.eliminado = false;
 	}
 	
@@ -67,13 +70,14 @@ public class Bicicleta {
 	public void setPatente(String patente) {
 		this.patente = patente;
 	}
-	/*
+	
 	public String getEstado() {
 		return estado;
 	}
 	public void setEstado(String estado) {
 		this.estado = estado;
-	}*/
+	}
+	
 	public String getFechaIngreso() {
 		return fechaIngreso;
 	}

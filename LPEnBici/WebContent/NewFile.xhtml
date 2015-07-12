@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"  
     xmlns:h="http://java.sun.com/jsf/html"  
     xmlns:f="http://java.sun.com/jsf/core"  
-    xmlns:p="http://primefaces.org/ui">  
-  
+    xmlns:p="http://primefaces.org/ui">   
 <h:head>
 
-<style type="text/css">
-  body{
+<title>Â¡La Plata en Bici!</title>
+
+<!-- <style type="text/css">
+  				body{
                         font-family: Georgia,"Times New Roman",Times,serif;
                         font-size: 90%;    
                         background-image: url("img/laplatabici.jpg");                
@@ -45,7 +45,7 @@
 				    /*-moz-border-radius: 8px; -webkit-border-radius: 8px;*/			    				    	  				 
 				} 
 				
-				/*style del ¡La plata en bici!*/
+				/*style del Â¡La plata en bici!*/
 				.labelLP{
 				 	color:white;				   				    
 				    font: 21px sans-serif;	
@@ -84,23 +84,48 @@
 					background-color: #178501 !important;
 				}*/
 										
-</style>
+</style> -->
+
 </h:head>
+
 <h:body>
 
- <h:form>  
-    <p:growl id="messages"/> 
-    <p:menubar id="menubar" >       	 	
- 	 	<p:menuitem value="label" >
-<!--  	 		<h:outputLabel for="label" value="La Plata en Bici" styleClass="labelLP"/>-->
- 	 		<p:link  value="La Plata en Bici" style="color:white;font: 21px sans-serif;" outcome="LoginUsuario.xhtml"></p:link>
- 	 	</p:menuitem> 	 	
- 	 	<p:submenu label="#{PersonaBean.usr.nombre}" style="float:right" icon="ui-icon-document">           
-             <p:menuitem value="Ver perfil" url="perfilUsuario.xhtml" />             
-            <p:separator />
-            <p:menuitem value="Cerrar sesión" action="#{PersonaBean.logout}" />
-        </p:submenu>                       
-    </p:menubar>   
-</h:form>
-</h:body>
+<div>
+
+	 <script type="text/javascript">
+	google.load("visualization", "1", {
+		packages : [ "corechart" ]
+	});
+	google.setOnLoadCallback(drawChart);
+
+	function drawChart() {
+
+		var url = "rest/auditoria/datosRegistroAlquiler"; // Completar con URL del servicio REST			
+		$.getJSON(url, function(data) {
+
+			var googleData = new google.visualization.DataTable();
+			googleData.addColumn('string', 'Operacion');
+			googleData.addColumn('number', 'Cantidad');
+			var total = data.length;
+			
+			for (i = 0; i < total; i++) {
+				googleData.addRow([ data[i].operacion, data[i].cant ]);
+			}
+
+			var chart = new google.visualization.PieChart(document
+					.getElementById('chart_registroAlquiler'));
+			chart.draw(googleData, {
+				width : 450,
+				height : 300,
+				title : 'Operaciones sobre Entidad Registro Alquiler',
+				is3D : true
+			});
+		});
+	}	
+</script> 
+	
+	
+	<div id ="chart_registroAlquiler"></div>
+</div>
+</h:body>	  
 </html>

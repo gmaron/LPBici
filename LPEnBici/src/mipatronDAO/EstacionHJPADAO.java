@@ -1,13 +1,16 @@
 package mipatronDAO;
 
 
+import java.util.Collections;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import misclases.Estacion;
-
 
 
 public class EstacionHJPADAO implements IEstacionDAO {
@@ -77,5 +80,19 @@ public class EstacionHJPADAO implements IEstacionDAO {
 		em.close();
 		return est;
 	}
+	
+	@Override
+	public List<Estacion> recuperarEstacionesNoEliminadas(){
+		em = emf.createEntityManager();
+		Query q = em.createQuery("from Estacion e where e.eliminado = '"+false+"'") ;
+		@SuppressWarnings("unchecked")
+		List<Estacion> resultList = Collections.checkedList(q.getResultList(), Estacion.class);
+		System.out.println("Busque estaciones");
+		for (Estacion est : resultList){
+			System.out.println("Estacion: "+est.getNombre()+"\n");
+		}
+		return resultList;
+	}
+	
 
 }

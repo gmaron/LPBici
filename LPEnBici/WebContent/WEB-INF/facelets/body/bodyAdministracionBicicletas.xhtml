@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui"> 
+    <h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+
+</h:head>
+<h:body>
+	<h:form id="form">
+		<p:growl id="msgs" showDetail="true" />
+
+		<!-- 		<p:dataTable var="usuario" value="#{PersonaBean.usuarios}" -->
+		<p:dataTable var="bicicleta"
+			value="#{BicicletaBean.bicicletasNoEliminadas}"
+			widgetVar="tablaBicicleta"
+			emptyMessage="No se encontraron bicicletas con ese criterio."
+			filteredValue="#{BicicletaBean.bicicletasFiltradas}">
+
+
+			<f:facet name="header">
+				<p:outputPanel>
+					<h:outputText value="Buscar en todos los campos:" />
+					<p:inputText id="globalFilter"
+						onkeyup="PF('tablaBicicleta').filter()" style="width:150px"
+						placeholder="Ingrese texto..." />
+				</p:outputPanel>
+			</f:facet>
+
+			<p:column filterBy="#{bicicleta.patente}" headerText="Patente"
+				filterMatchMode="contains" sortBy="#{bicicleta.patente}">
+				<h:outputText value="#{bicicleta.patente}" />
+			</p:column>
+
+			<p:column filterBy="#{bicicleta.fechaIngreso}"
+				headerText="Fecha de ingreso" filterMatchMode="contains"
+				sortBy="#{bicicleta.fechaIngreso}">
+				<h:outputText value="#{bicicleta.fechaIngreso}" />
+			</p:column>
+
+
+			<p:column filterBy="#{bicicleta.ubicacionActual}"
+				headerText="Ubicacion actual" filterMatchMode="contains"
+				sortBy="#{bicicleta.ubicacionActual}">
+				<h:outputText value="#{bicicleta.ubicacionActual}" />
+			</p:column>
+
+			<p:column filterBy="#{bicicleta.estado}" headerText="Estado actual"
+				filterMatchMode="contains" sortBy="#{bicicleta.estado}">
+				<h:outputText value="#{bicicleta.estado}" />
+			</p:column>
+
+			<!--  FALTA ULTIMA MODIFICACION Y HISTORIAL DE DENUNCIAS -->
+
+
+			<p:column style="width:32px;text-align: center">
+				<p:commandButton update=":form:detalleBicicleta"
+					oncomplete="PF('bicicletaDialog').show()" icon="ui-icon-search"
+					title="View">
+					<f:setPropertyActionListener value="#{bicicleta}"
+						target="#{BicicletaBean.bicicletaSeleccionada}" />
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+
+		<p:dialog header="Información de Bicicleta"
+			widgetVar="bicicletaDialog" modal="true" showEffect="fade"
+			hideEffect="fade" resizable="false">
+
+			<p:outputPanel id="detalleBicicleta" style="text-align:center;">
+
+				<p:panelGrid columns="2"
+					rendered="#{not empty BicicletaBean.bicicletaSeleccionada}"
+					columnClasses="label,value">
+					<f:facet name="header">
+						<!--<p:graphicImage name="demo/images/car/#{dtFilterView.selectedCar.brand}-big.gif"/>-->
+					</f:facet>
+					<h:outputText value="Patente: " />
+					<h:inputText value="#{BicicletaBean.bicicletaSeleccionada.patente}" />
+
+					<h:outputText value="Fecha de ingreso: " />
+					<h:inputText
+						value="#{BicicletaBean.bicicletaSeleccionada.fechaIngreso}" />
+
+					<h:outputText value="Ubicacion actual: " />
+					<!-- 						<h:inputText value="#{BicicletaBean.bicicletaSeleccionada.ubicacionActual}"/> -->
+					<p:selectOneMenu required="true" id="estacion"
+						value="#{BicicletaBean.bicicleta.ubicacionActual}"
+						style="width:150px">
+						<!-- <f:selectItem itemLabel="Seleccionar" itemValue="" noSelectionOption="true" /> -->
+						<f:selectItems value="#{EstacionBean.estacionesNoEliminadasMap}" />
+					</p:selectOneMenu>
+
+					<h:outputText value="Estado actual: " />
+					<p:selectOneMenu required="true"
+						value="#{BicicletaBean.bicicletaSeleccionada.estado}"
+						style="width:150px">
+						<f:selectItem itemLabel="Seleccionar" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItem itemLabel="Apta para el uso"
+							itemValue="Apta para el uso" />
+						<f:selectItem itemLabel="En desuso" itemValue="En desuso" />
+						<f:selectItem itemLabel="En reparacion" itemValue="En reparacion" />
+						<f:selectItem itemLabel="Denunciada" itemValue="Denunciada" />
+					</p:selectOneMenu>
+
+					<!-- <p:commandButton value="Modificar" ajax="false"
+							id="modificar"
+							action="#{PersonaBean.AdminmodUsuario}" icon="ui-icon-check"
+							validateClient="true"
+							onclick="PF('modUsuarioEspera').show();"						
+							/>
+ -->
+					<p:commandButton value="Modificar" ajax="false" id="modificar"
+						action="#{BicicletaBean.ModBicicleta}" icon="ui-icon-check"
+						validateClient="true" />
+
+					<!-- <p:commandButton value="Eliminar" ajax="false" id="eliminar"
+						action="#{PersonaBean.AdminEliminarUsuario}" icon="ui-icon-check"
+						validateClient="true" onclick="PF('delUsuarioEspera').show();" /> -->
+
+					<p:commandButton value="Eliminar" ajax="false" id="eliminar"
+						action="#{BicicletaBean.EliminarBicicleta}" icon="ui-icon-check"
+						validateClient="true" />
+				</p:panelGrid>
+
+			</p:outputPanel>
+		</p:dialog>
+
+
+	</h:form>
+
+	<!-- <p:confirmDialog
+						message="El usuario ha sido borrado satisfactoriamente."
+						widgetVar="delUsuarioExito" global="true" showEffect="fade"
+						hideEffect="explode">
+						<p:commandButton value="Ok" type="button"
+						onclick="PF('delUsuarioExito').hide();"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					</p:confirmDialog> -->
+
+	<p:confirmDialog
+		message="El usuario ha sido borrado satisfactoriamente."
+		widgetVar="delUsuarioExito" global="true" showEffect="fade"
+		hideEffect="explode">
+		<p:commandButton value="Ok" type="button"
+			styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+	</p:confirmDialog>
+
+
+	<p:confirmDialog message="El usuario esta siendo borrado."
+		widgetVar="delUsuarioEspera" global="true" showEffect="fade"
+		closable="false" hideEffect="explode">
+	</p:confirmDialog>
+
+
+	<p:confirmDialog message="El usuario esta siendo modificado."
+		widgetVar="modUsuarioEspera" global="true" showEffect="fade"
+		closable="false" hideEffect="explode">
+	</p:confirmDialog>
+
+	<!-- <p:confirmDialog
+						message="El usuario ha sido modificado satisfactoriamente."
+						widgetVar="modUsuarioExito" global="true" showEffect="fade"
+						closable="false" hideEffect="explode">
+						<p:commandButton value="Ok" type="button"
+							onclick="PF('modUsuarioExito').hide();"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					</p:confirmDialog> -->
+
+	<p:confirmDialog
+		message="El usuario ha sido modificado satisfactoriamente."
+		widgetVar="modUsuarioExito" global="true" showEffect="fade"
+		closable="false" hideEffect="explode">
+		<p:commandButton value="Ok" type="button"
+			styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+	</p:confirmDialog>
+
+</h:body>
+</html>

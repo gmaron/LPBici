@@ -12,9 +12,9 @@
 </h:head>
 <h:body>
 
-	<div class="ui-grid">
+	<!-- <div class="ui-grid">
 		<div class="ui-grid-row">
-			<div class="ui-grid-col-4">
+			<div class="ui-grid-col-2">
 				<h:form>
 					<p:menu>
 						<p:submenu label="Panel de Navegacion">
@@ -25,12 +25,36 @@
 						</p:submenu>
 					</p:menu>
 				</h:form>
+				<h:form>
+					<p:growl autoUpdate="true" />
+
+					<p:panelMenu style="width:200px;">
+						<p:submenu label="Usuarios">
+							<p:menuitem value="Listado" outcome="AdministracionUsr.xhtml"
+								icon="ui-icon-star" />									
+						</p:submenu>
+						<p:separator />
+						<p:submenu label="Bicicletas">
+							<p:menuitem value="Listado" outcome="AdministracionBicicletas.xhtml"
+								icon="ui-icon-star" />
+							<p:menuitem value="Nueva bici" outcome="AltaBicicleta.xhtml"
+								icon="ui-icon-star" />
+						</p:submenu>
+						<p:separator />
+						<p:submenu label="Estadisticas">
+							<p:menuitem value="Estadisticas" outcome="EstadisticasAdmin.html"
+								 icon="ui-icon-star" />
+						</p:submenu>
+					</p:panelMenu>
+				</h:form>
 			</div>
 			<div class="ui-grid-col-8">
-			
-			</div>			
+				
+			</div>
 		</div>
-	</div>
+	</div> -->
+
+
 
 </h:body>
 </html>

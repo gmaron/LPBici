@@ -39,7 +39,6 @@ public class Estacion {
 	public Estacion(){
 		
 	}
-
 	
 	public String getNombre() {
 		return nombre;

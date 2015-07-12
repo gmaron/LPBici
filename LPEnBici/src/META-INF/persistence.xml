@@ -17,7 +17,7 @@
 	<properties>
 		<property name="javax.persistence.validation.mode" value="none"/>
 		<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />		
-		<property name="hibernate.connection.url" value="jdbc:mysql://192.168.0.19:3306/LPbici" />		
+		<property name="hibernate.connection.url" value="jdbc:mysql://192.168.0.34:3306/LPbici" />		
  		<property name="hibernate.connection.username" value="jyaa" />
 		<!-- <property name="hibernate.connection.password" value="jyaa" /> -->		
 		<!-- <property name="hibernate.connection.url" value="jdbc:mysql://mysql.java.linti.unlp.edu.ar:3306/jyaa2015_bd18" />
