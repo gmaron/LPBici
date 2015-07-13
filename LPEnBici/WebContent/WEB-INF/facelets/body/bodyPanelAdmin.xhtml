@@ -8,12 +8,53 @@
 <h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Insert title here</title>
+
+<style type="text/css">
+	body {
+		font-family: Georgia, "Times New Roman", Times, serif;
+		font-size: 90%;
+		background-image: url("img/laplatabici.jpg");
+	}		
+	
+	.panel .ui-panelmenu-content 	
+	{
+		background-color: #5CB85C !important;;
+		border: #5CB85C !important;
+	}
+			
+	.panel .ui-menuitem-link{
+			background: #5CB85C !important;
+			border: #5CB85C !important;						
+	}
+		
+	.panel .ui-menuitem-text{
+		color:white !important;
+	}
+	
+			
+	.panel .ui-panelmenu-header {		
+		background: #178501 !important;
+		border: #178501 !important;	
+	}
+	
+	.panel .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited{
+		color:white !important;
+		font-weight: 100 !important;
+	}
+	
+	.panel .ui-panelmenu .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited{
+		color:white !important;
+		font-weight: 100 !important;
+	}
+		
+</style>
+
+
 </h:head>
 <h:body>
-
-	<h:form>
+	<h:form styleClass="panel" >
 		<p:growl autoUpdate="true" />
-		<p:panelMenu style="width:200px">
+		<p:panelMenu style="width:200px;">
 			<p:submenu label="Usuarios">
 				<p:menuitem value="Listado" outcome="AdministracionUsr.xhtml"
 					icon="ui-icon-star" />

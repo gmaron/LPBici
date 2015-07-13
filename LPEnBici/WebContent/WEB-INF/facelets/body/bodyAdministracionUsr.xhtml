@@ -4,12 +4,29 @@
     xmlns:h="http://java.sun.com/jsf/html"  
     xmlns:f="http://java.sun.com/jsf/core"  
     xmlns:p="http://primefaces.org/ui"> 
-    <h:head>
+<h:head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Insert title here</title>
+
+
+<style type="text/css">
+	.form .ui-button-text {
+		color: white !important;
+		font: 16px sans-serif;
+		background-color: #5CB85C !important;
+	}
+	
+	.form .ui-panelgrid tr, .ui-panelgrid td {
+		border: 0px !important;		
+	}	
+</style>
+
 </h:head>
+
+
+
 <h:body>
-	<h:form id="form">
+	<h:form id="form" styleClass="form">
 		<p:growl id="msgs" showDetail="true" />
 
 		<!-- 		<p:dataTable var="usuario" value="#{PersonaBean.usuarios}" -->
