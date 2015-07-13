@@ -45,9 +45,18 @@ public class Test {
 	    DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy"); 		
 		//String Hora = formatoHora.format(fechaActual);
 		String fecha= formatoFecha.format(fechaActual);
-		Estacion est = new Estacion("Estacion 1", "pza San Martin", 30, "Habilitada",fecha);
+		Estacion est = new Estacion("Estacion 6", "pza San Martin", 30, "Habilitada",fecha);
 		est.getListaBici().add(bici);
 		f.getEstacionDAO().guardarEstacion(est);
+		
+		Date fechaActual2 = new Date();
+		//DateFormat formatoHora = new SimpleDateFormat("HH:mm:ss");
+	    DateFormat formatoFecha2 = new SimpleDateFormat("dd/MM/yyyy"); 		
+		//String Hora = formatoHora.format(fechaActual);
+		String fecha2= formatoFecha2.format(fechaActual2);
+		Estacion est2 = new Estacion("Estacion 3", "pza San Martin", 30, "Habilitada",fecha2);		
+		f.getEstacionDAO().guardarEstacion(est2);
+		
 		
 		// Alta de denuncia
 		Denuncia den = new Denuncia(usr, "La bici no tiene cadena");
@@ -122,7 +131,7 @@ public class Test {
 //		f.getBicicletaDAO().modificarBicicleta(bici);
 			
 		// modifica la estacion
-		est.setNombre("Estacion 4");
+		est.setNombre("Estacion 8");
 		f.getEstacionDAO().modificarEstacion(est);
 		
 		// modificar la denuncia
