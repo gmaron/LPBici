@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import mipatronDAO.MyFactoryDAO;
+import misclases.Auditoria;
 import misclases.Bicicleta;
 import misclases.Denuncia;
 import misclases.Estacion;

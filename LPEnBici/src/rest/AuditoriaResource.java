@@ -1,4 +1,4 @@
-package aspecto;
+package rest;
 
 import java.util.ArrayList;
 import java.util.List;

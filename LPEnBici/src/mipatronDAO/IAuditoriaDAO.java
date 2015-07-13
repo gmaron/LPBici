@@ -3,8 +3,8 @@ package mipatronDAO;
 
 
 
-import aspecto.Auditoria;
-import aspecto.AuditoriaRest;
+import rest.AuditoriaRest;
+import misclases.Auditoria;
 
 public interface IAuditoriaDAO {
 	

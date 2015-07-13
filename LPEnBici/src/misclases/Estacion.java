@@ -8,7 +8,8 @@ import javax.persistence.*;
 @Entity
 public class Estacion {
 	private String nombre;
-	private String ubicacion;
+	private String lat;
+	private String lon;
 	private int cantEstacionamientoLibre;
 	private String estado; //OPERATIVA, CERRADA, EN CONSTRUCCION
 	
@@ -20,14 +21,17 @@ public class Estacion {
 	@OneToMany (cascade = CascadeType.ALL)
 	private List<Estado> historialEstado;
 	
-	@OneToMany (cascade = {CascadeType.MERGE,CascadeType.REMOVE}) //, 
+	
+	@OneToMany (cascade = {CascadeType.MERGE,CascadeType.REMOVE}) //,
+	@JoinColumn (name="id_Estacion")
  	private List<Bicicleta> listaBici; //el length = cantidad de bicicletas
 	
-	public Estacion(String nombre, String ubicacion,
+	public Estacion(String nombre, String lat, String lon,
 			int cantEstacionamientoLibre, String estado,String fecha) {
 		super();
 		this.nombre = nombre;
-		this.ubicacion = ubicacion;
+		this.lat = lat;
+		this.lon = lon;
 		this.cantEstacionamientoLibre = cantEstacionamientoLibre;
 		this.estado = estado;
 		this.listaBici = new ArrayList<Bicicleta>();
@@ -46,12 +50,24 @@ public class Estacion {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getUbicacion() {
-		return ubicacion;
+
+		
+	public String getLat() {
+		return lat;
 	}
-	public void setUbicacion(String ubicacion) {
-		this.ubicacion = ubicacion;
+
+	public void setLat(String lat) {
+		this.lat = lat;
 	}
+
+	public String getLon() {
+		return lon;
+	}
+
+	public void setLon(String lon) {
+		this.lon = lon;
+	}
+
 	public int getCantEstacionamientoLibre() {
 		return cantEstacionamientoLibre;
 	}

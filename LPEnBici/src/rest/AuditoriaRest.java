@@ -1,4 +1,4 @@
-package aspecto;
+package rest;
 
 import javax.xml.bind.annotation.XmlRootElement;
 

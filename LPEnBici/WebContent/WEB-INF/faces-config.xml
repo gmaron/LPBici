@@ -160,6 +160,59 @@
 		</navigation-case>
 	</navigation-rule>
 	
+	<!-- ESTACION -->
+			<!--  ALTA  -->
+	<navigation-rule>
+		<display-name>AltaEstacion.xhtml</display-name>
+		<from-view-id>/AltaEstacion.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>ExitoAltaEstacion</from-outcome>
+			<to-view-id>AltaEstacion.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>AltaEstacion.xhtml</display-name>
+		<from-view-id>/AltaEstacion.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>FracasoAltaEstacion</from-outcome>
+			<to-view-id>AltaEstacion.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<!--  BAJA  -->
+	
+	<navigation-rule>
+		<display-name>AdministracionEstaciones.xhtml</display-name>
+		<from-view-id>/AdministracionEstaciones.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>ExitoEliminarEstacion</from-outcome>
+			<to-view-id>AdministracionEstaciones.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	
+	<!--  MODIFICACION -->
+	
+	<navigation-rule>
+		<display-name>AdministracionEstaciones.xhtml</display-name>
+		<from-view-id>/AdministracionEstaciones.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>ExitoModEstacion</from-outcome>
+			<to-view-id>AdministracionEstaciones.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	
+	<!--  PAGINA DE ESTACION GENERICA  -->
+	<navigation-rule>
+		<display-name>AdministracionEstaciones.xhtml</display-name>
+		<from-view-id>/AdministracionEstaciones.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>ForwardEstacionGenericaAdmin</from-outcome>
+			<to-view-id>AdministracionEstacionGenerica.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 	
 	
 </faces-config>

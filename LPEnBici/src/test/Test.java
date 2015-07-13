@@ -45,7 +45,9 @@ public class Test {
 	    DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy"); 		
 		//String Hora = formatoHora.format(fechaActual);
 		String fecha= formatoFecha.format(fechaActual);
-		Estacion est = new Estacion("Estacion 6", "pza San Martin", 30, "Habilitada",fecha);
+		 
+		
+		Estacion est = new Estacion("Estacion 6", "-34.926552","-57.961434", 30, "Habilitada",fecha);
 		est.getListaBici().add(bici);
 		f.getEstacionDAO().guardarEstacion(est);
 		
@@ -54,7 +56,7 @@ public class Test {
 	    DateFormat formatoFecha2 = new SimpleDateFormat("dd/MM/yyyy"); 		
 		//String Hora = formatoHora.format(fechaActual);
 		String fecha2= formatoFecha2.format(fechaActual2);
-		Estacion est2 = new Estacion("Estacion 3", "pza San Martin", 30, "Habilitada",fecha2);		
+		Estacion est2 = new Estacion("Estacion 3","-34.915109", "-57.948707", 30, "Habilitada",fecha2);
 		f.getEstacionDAO().guardarEstacion(est2);
 		
 		

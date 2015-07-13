@@ -9,8 +9,8 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import aspecto.Auditoria;
-import aspecto.AuditoriaRest;
+import rest.AuditoriaRest;
+import misclases.Auditoria;
 
 public class AuditoriaHJPADAO implements IAuditoriaDAO {
 

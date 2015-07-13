@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui"> 
+ <h:head>
+ 
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	
+<style type="text/css">
+/*Style del header de REGISTRO*/		
+				.styleGreen{    
+				    color:white;				   
+				    background-color:#178501;
+				    font: 16px sans-serif;		
+				    padding: 10px;
+				    border-radius: 8px;				    
+				    border-color: #178501; 			    				    	  				 
+				} 
+				
+				.ui-button-text{
+					color: white !important;
+					font: 16px sans-serif;	
+					background-color: #5CB85C !important;			    				   				    
+				 }
+												
+				.ui-button{
+					background-color: #5CB85C !important;										
+					border-color: #5CB85C !important;			
+				}															
+											
+				.ui-panelgrid tr, .ui-panelgrid td{
+				   border: 0px !important;	
+				   border-radius: 8px;				   
+				   /*-moz-border-radius: 8px; -webkit-border-radius: 8px;*/	
+				   border-color: #5CB85C !important;				   					
+				}	
+</style>
+	
+</h:head>
+<h:body>
+	<p:panelGrid columns="1" style="position:relative; height: 300px;margin:auto;">
+		<f:facet name="header">
+			<div class="styleGreen">Alta Estacion</div>
+		</f:facet>
+
+		<h:form >
+			<p:messages id="errorReg" autoUpdate="true" />
+			<h:panelGrid columns="2" cellpadding="5">
+
+				<p:outputLabel for="nombre" value="Nombre:" />
+				<p:inputText id="nombre" value="#{EstacionBean.estacion.nombre}"
+					required="true">
+				</p:inputText>
+				
+				<p:outputLabel for="lat" value="Latitud:" />
+				<p:inputText id="lat" value="#{EstacionBean.estacion.lat}"
+					required="true">
+				</p:inputText>
+				
+				<p:outputLabel for="lon" value="Longitud:" />
+				<p:inputText id="lon" value="#{EstacionBean.estacion.lon}"
+					required="true">
+				</p:inputText>
+
+				<p:outputLabel for="cantEstLibres" value="Cant. estacionamientos libres:" />
+				<p:inputText id="cantEstLibres" value="#{EstacionBean.estacion.cantEstacionamientoLibre}"
+					required="true">
+				</p:inputText>
+
+				<h:outputText value="Estado actual: " />
+				<p:selectOneMenu required="true"
+					value="#{EstacionBean.estacion.estado}" style="width:150px">
+					<f:selectItem itemLabel="Seleccionar" itemValue=""
+						noSelectionOption="true" />
+					<f:selectItem itemLabel="Operativa"
+						itemValue="Operativa" />
+					<f:selectItem itemLabel="Cerrada" itemValue="Cerrada" />
+					<f:selectItem itemLabel="En construccion" itemValue="En construccion" />
+				</p:selectOneMenu>
+
+
+				<f:facet name="footer">
+					<div align="center">
+						<p:commandButton value="Terminado" ajax="false"
+							action="#{EstacionBean.altaEstacion}" icon="ui-icon-check"
+							style="width: 300px;margin:auto;" validateClient="true"
+							update="errorReg" />
+					</div>
+				</f:facet>
+			</h:panelGrid>
+		</h:form>
+	</p:panelGrid>
+</h:body>
+</html>

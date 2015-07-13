@@ -1,6 +1,7 @@
 package mipatronDAO;
 
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import misclases.Bicicleta;
 import misclases.Estacion;
 
 
@@ -92,6 +94,39 @@ public class EstacionHJPADAO implements IEstacionDAO {
 			System.out.println("Estacion: "+est.getNombre()+"\n");
 		}
 		return resultList;
+	}
+	
+	@Override
+	public Estacion recuperarEstacionNombre(String nombre){
+		em = emf.createEntityManager();
+		Estacion est = null;
+		Query q ;
+		try {
+			q = em.createQuery("FROM Estacion e WHERE e.nombre ='"+nombre+"'");
+			est = (Estacion) q.getSingleResult();
+			System.out.println("Nombre Estacion: "+est.getNombre());
+		} catch (Exception e) {
+			est = null;
+			//e.printStackTrace();
+		}
+		em.close();
+		return est;
+	}
+	
+	
+	@Override
+	public List<Bicicleta> listarBicicletasEstacion(Long idEstacion){
+		Query q = em.createQuery("from Bicicleta b where b.eliminado = '"+false+"'"
+				+ "and b.id_Estacion='"+idEstacion+"'");
+		
+		@SuppressWarnings("unchecked")
+		List<Bicicleta> auxList = Collections.checkedList(q.getResultList(), Bicicleta.class);
+//		List<Bicicleta> finalList = new ArrayList<Bicicleta>();
+		for (Bicicleta bi : auxList){
+//			if (bi.get)
+			System.out.println("Bicicleta: "+bi.getPatente()+"\n");
+		}
+		return auxList; 
 	}
 	
 

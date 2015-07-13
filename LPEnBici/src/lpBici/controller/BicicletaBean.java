@@ -37,6 +37,7 @@ public class BicicletaBean {
 			String fecha_hora= formato.format(fechaActual);
 			bicicleta.setFechaIngreso(fecha_hora);
 			
+			
 			/* Aca tendriamos que ver como linkear la bici con la estacion */
 			
 			System.out.println("Guardo la bici con patente: "+bicicleta.getPatente());						
@@ -65,7 +66,6 @@ public class BicicletaBean {
 		
 		/* Al eliminar una bicicleta, se deberian eliminar en cascada las cosas relacionadas a ella */
 		
-		bicicletaSeleccionada.setEliminado(true);
 		f.getBicicletaDAO().eliminarBicicletaLogica(bicicletaSeleccionada);
 		bicicletasNoEliminadas = f.getBicicletaDAO().recuperarBicicletasNoEliminadas();
 		return "BicicletaExitoEliminada";				
