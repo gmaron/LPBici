@@ -86,6 +86,9 @@
 						target="#{EstacionBean.estacionSeleccionada}" />
 				</p:commandButton>
 			</p:column>
+
+			
+
 			<p:column>
 			<p:commandButton ajax="false" value="IR" icon="ui-icon-star"
 				title="View" action="#{EstacionBean.mostrarEstacion}">
@@ -146,9 +149,21 @@
 							onclick="PF('modUsuarioEspera').show();"						
 							/>
  -->
+					<h:outputText value="Historial de estados" />
+
+					<p:commandButton update=":form:detalleEstacionEstado"
+						onclick="PF('estacionEstadoDialog').show()" icon="ui-icon-search"
+						title="View">
+						<f:setPropertyActionListener value="#{EstacionBean.estacionSeleccionada}"
+							target="#{EstacionBean.estacionSeleccionada}" />
+					</p:commandButton>
+
+
+
 					<p:commandButton value="Modificar" ajax="false" id="modificar"
 						action="#{EstacionBean.ModEstacion}" icon="ui-icon-check"
 						validateClient="true" />
+						
 
 					<!-- <p:commandButton value="Eliminar" ajax="false" id="eliminar"
 						action="#{PersonaBean.AdminEliminarUsuario}" icon="ui-icon-check"
@@ -157,13 +172,42 @@
 					<p:commandButton value="Eliminar" ajax="false" id="eliminar"
 						action="#{EstacionBean.EliminarEstacion}" icon="ui-icon-check"
 						validateClient="true" />
+					
 				</p:panelGrid>
 
 			</p:outputPanel>
 		</p:dialog>
 
+		<p:dialog header="Información de los estados de la Estacion"
+			widgetVar="estacionEstadoDialog" modal="true" showEffect="fade"
+			hideEffect="fade" resizable="false">
+
+			<p:outputPanel id="detalleEstacionEstado" style="text-align:center;">
+			
+				<p:dataScroller value="#{EstacionBean.estacionSeleccionada.historialEstado}" var="historial"
+					chunkSize="10">
+						<h:panelGrid columns="2" style="width:100%" columnClasses="label,value">
+							<h:outputText value="Estado" />
+							<h:outputText value="Fecha" />
+						</h:panelGrid>
+						<h:panelGrid columns="2" style="width:100%">
+							<h:outputText value="#{historial.estado}" style="font-weight: bold" />
+							<h:outputText value="#{historial.fecha}" style="font-weight: bold" />
+						
+					</h:panelGrid>
+				</p:dataScroller>
+		
+			</p:outputPanel>
+		</p:dialog>
+		
+
 
 	</h:form>
+
+
+	
+
+
 
 	<!-- <p:confirmDialog
 						message="El usuario ha sido borrado satisfactoriamente."

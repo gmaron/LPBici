@@ -2,6 +2,10 @@ package lpBici.controller;
 
 
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +13,7 @@ import java.util.Map;
 import mipatronDAO.MyFactoryDAO;
 import misclases.Bicicleta;
 import misclases.Estacion;
+import misclases.Estado;
 
 
 public class EstacionBean {
@@ -22,7 +27,7 @@ public class EstacionBean {
 	private List<Estacion> estacionesFiltradas;
 
 	private List<Bicicleta> bicicletasFiltradas;
-	private List<Bicicleta> bicicletasEstacion;
+	private List<Bicicleta> bicicletasEstacion = new ArrayList<Bicicleta>();
 	private Bicicleta bicicletaSeleccionada;
 	
 	public EstacionBean(){
@@ -31,15 +36,9 @@ public class EstacionBean {
 
 	
 	public String altaEstacion(){
-//		public Estacion(String nombre, String lat, String lon,
-//				int cantEstacionamientoLibre, String estado,String fecha
 		Estacion est = new Estacion();
 		est = f.getEstacionDAO().recuperarEstacionNombre(this.estacion.getNombre());
 		if (est == null){
-//			Date fechaActual = new Date();
-//			DateFormat formato = new SimpleDateFormat("HH:mm-dd/MM/yyyy");
-//			String fecha_hora= formato.format(fechaActual);
-//			estacion.setFecha(fecha_hora);
 			f.getEstacionDAO().guardarEstacion(estacion);
 			this.estacion = new Estacion();
 			return "ExitoAltaEstacion";
@@ -50,14 +49,19 @@ public class EstacionBean {
 	}
 	
 	public String ModEstacion(){
+		int tam = estacionSeleccionada.getHistorialEstado().size();
+		Estado estaAnt = estacionSeleccionada.getHistorialEstado().get(tam - 1);
+		if (!estaAnt.getEstado().equals(estacionSeleccionada.getEstado())){			
+			estacionSeleccionada.getHistorialEstado().add(new Estado(estacionSeleccionada.getEstado(), dameFecha()));			
+		}
 		f.getEstacionDAO().modificarEstacion(estacionSeleccionada);
 		estacionSeleccionada = null;
 		return "ExitoModEstacion";
 	}
-	
-	public String EliminarEstacion(){
-		
+			
+	public String EliminarEstacion(){		
 		//Si elimino la estacion, elimino todo lo que a ella corresponda.
+		
 		f.getEstacionDAO().eliminarEstacionLogica(estacionSeleccionada);
 		return "ExitoEliminarEstacion";
 	}
@@ -144,13 +148,17 @@ public class EstacionBean {
 
 
 	public List<Bicicleta> getBicicletasEstacion() {
-//		if (bicicletasEstacion == null){
-//			
-//			bicicletasEstacion = f.getEstacionDAO().listarBicicletasEstacion(1L);
-//			return bicicletasEstacion;
-//		}
-		System.out.println("Estacion Seleccionada: "+this.estacionSeleccionada.getId());
-		return f.getEstacionDAO().listarBicicletasEstacion(1L);
+		if (this.estacionSeleccionada.getListaBici().size()>0){
+			this.bicicletasEstacion = new ArrayList<Bicicleta>();
+			for (Bicicleta b : this.estacionSeleccionada.getListaBici()){
+				if (!b.isEliminado()){
+					this.bicicletasEstacion.add(b);
+				}
+			}
+			return this.bicicletasEstacion;
+		}else{
+			return new ArrayList<Bicicleta>();
+		}
 	}
 
 
@@ -169,6 +177,11 @@ public class EstacionBean {
 		this.bicicletaSeleccionada = bicicletaSeleccionada;
 	}
 
-	
+	private String dameFecha(){
+		
+		Date fechaActual = new Date();
+		DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy"); 		
+		return formatoFecha.format(fechaActual);
+	}
 	
 }

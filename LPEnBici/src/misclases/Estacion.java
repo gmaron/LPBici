@@ -1,6 +1,9 @@
 package misclases;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
@@ -22,22 +25,29 @@ public class Estacion {
 	private List<Estado> historialEstado;
 	
 	
-	@OneToMany (cascade = {CascadeType.MERGE,CascadeType.REMOVE}) //,
-	@JoinColumn (name="id_Estacion")
+	@OneToMany (cascade = {CascadeType.MERGE,CascadeType.REMOVE}) 
  	private List<Bicicleta> listaBici; //el length = cantidad de bicicletas
-	
 	public Estacion(String nombre, String lat, String lon,
-			int cantEstacionamientoLibre, String estado,String fecha) {
+			int cantEstacionamientoLibre, String estado) {
 		super();
 		this.nombre = nombre;
 		this.lat = lat;
 		this.lon = lon;
 		this.cantEstacionamientoLibre = cantEstacionamientoLibre;
 		this.estado = estado;
+		
 		this.listaBici = new ArrayList<Bicicleta>();
 		this.historialEstado = new ArrayList<Estado>();
-		this.historialEstado.add(new Estado(estado, fecha));
+		this.historialEstado.add(new Estado(estado, dameFecha()));
 		this.eliminado = false;
+	}
+	
+	
+	private String dameFecha(){
+		
+		Date fechaActual = new Date();
+		DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy"); 		
+		return formatoFecha.format(fechaActual);
 	}
 	
 	public Estacion(){
@@ -79,6 +89,7 @@ public class Estacion {
 	}
 	public void setEstado(String estado) {
 		this.estado = estado;
+		//this.historialEstado.add(new Estado(estado, dameFecha()));
 	}
 	public List<Bicicleta> getListaBici() {
 		return listaBici;

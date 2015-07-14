@@ -33,7 +33,7 @@ public class Test {
 		f.getAdministradorDAO().guardarAdministrador(admin);
 		
 		// Alta de Bicicleta
-		Bicicleta bici = new Bicicleta("MLP-002", "Apta para el uso", "10:29-04/06/2015","Estacion 1");
+		Bicicleta bici = new Bicicleta("MLP-002", "Apta para el uso", "10:29-04/06/2015","Estacion 8");
 		f.getBicicletaDAO().guardarBicicleta(bici);
 
 		//Bicicleta bici1 = new Bicicleta("MLP-003", "Apta para el uso", "10:29-04/06/2015","Estacion 1");
@@ -47,16 +47,16 @@ public class Test {
 		String fecha= formatoFecha.format(fechaActual);
 		 
 		
-		Estacion est = new Estacion("Estacion 6", "-34.926552","-57.961434", 30, "Habilitada",fecha);
+		Estacion est = new Estacion("Estacion 6", "-34.926552","-57.961434", 30, "Operativa");
 		est.getListaBici().add(bici);
 		f.getEstacionDAO().guardarEstacion(est);
-		
+		// Alta de Estacion
 		Date fechaActual2 = new Date();
 		//DateFormat formatoHora = new SimpleDateFormat("HH:mm:ss");
 	    DateFormat formatoFecha2 = new SimpleDateFormat("dd/MM/yyyy"); 		
 		//String Hora = formatoHora.format(fechaActual);
 		String fecha2= formatoFecha2.format(fechaActual2);
-		Estacion est2 = new Estacion("Estacion 3","-34.915109", "-57.948707", 30, "Habilitada",fecha2);
+		Estacion est2 = new Estacion("Estacion 3","-34.915109", "-57.948707", 30, "Operativa");
 		f.getEstacionDAO().guardarEstacion(est2);
 		
 		
