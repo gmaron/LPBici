@@ -13,6 +13,8 @@ import org.primefaces.event.UnselectEvent;
 
 import mipatronDAO.MyFactoryDAO;
 import misclases.Bicicleta;
+import misclases.Estacion;
+import misclases.Estado;
 
 public class BicicletaBean {
 	MyFactoryDAO f = new MyFactoryDAO();
@@ -35,13 +37,19 @@ public class BicicletaBean {
 			Date fechaActual = new Date();
 			DateFormat formato = new SimpleDateFormat("HH:mm-dd/MM/yyyy");
 			String fecha_hora= formato.format(fechaActual);
-			bicicleta.setFechaIngreso(fecha_hora);
+			bicicleta.setFechaIngreso(fecha_hora);			
 			
+			/*Esta bicicleta es la que voy a linkear con la estacion, si no la creo, no llamo al constructor, 
+			 * entonces nunca creo las listas historial y demas... 
+			 * */
+			Bicicleta bicle = new Bicicleta(bicicleta.getPatente(), bicicleta.getEstado(), dameFecha(), bicicleta.getUbicacionActual());
 			
-			/* Aca tendriamos que ver como linkear la bici con la estacion */
+			Estacion est = f.getEstacionDAO().recuperarEstacionNombre(bicicleta.getUbicacionActual());			
+			est.getListaBici().add(bicle);			
 			
-			System.out.println("Guardo la bici con patente: "+bicicleta.getPatente());						
-			f.getBicicletaDAO().guardarBicicleta(bicicleta);
+			System.out.println("Guardo la bici con patente: "+bicicleta.getPatente()+" en la estacion: "+est.getNombre());
+			f.getEstacionDAO().modificarEstacion(est);
+			//f.getBicicletaDAO().guardarBicicleta(bicicleta);
 			this.bicicleta = new Bicicleta();
 			return "BicicletaExitoAlta";			
 		}else{
@@ -50,26 +58,32 @@ public class BicicletaBean {
 		}					
 	}
 	
-	public String ModBicicleta(){
-		
+	public String ModBicicleta(){		
 		/* 
-		 * Hay que ver si se modifico la Estacion, para linkearla a la nueva y si se modifico el estado
-		 * agregarlo al historial.
-		 * */
-	
-		f.getBicicletaDAO().modificarBicicleta(bicicletaSeleccionada);
-		bicicletaSeleccionada = null;		
-		return "BicicletaExitoModificada";
+		 * Hay que ver si se modifico la Estacion, para linkearla a la nueva
+		 * */		
+		int tam = bicicletaSeleccionada.getHistorialEstado().size();
+		if (tam > 0){
+			Estado estaAnt = bicicletaSeleccionada.getHistorialEstado().get(tam - 1);
+			if (!estaAnt.getEstado().equals(bicicletaSeleccionada.getEstado())){			
+				bicicletaSeleccionada.getHistorialEstado().add(new Estado(bicicletaSeleccionada.getEstado(), dameFecha()));			
+			}	
+			f.getBicicletaDAO().modificarBicicleta(bicicletaSeleccionada);
+			bicicletaSeleccionada = null;		
+			return "BicicletaExitoModificada";
+		}
+		else{
+			return "BicicletaFracasoModificada";
+		}
 	}
 	
-	public String EliminarBicicleta(){
-		
-		/* Al eliminar una bicicleta, se deberian eliminar en cascada las cosas relacionadas a ella */
-		
+	public String EliminarBicicleta(){	
+		/* Al eliminar una bicicleta, se deberian eliminar en cascada las cosas relacionadas a ella */		
 		f.getBicicletaDAO().eliminarBicicletaLogica(bicicletaSeleccionada);
 		bicicletasNoEliminadas = f.getBicicletaDAO().recuperarBicicletasNoEliminadas();
 		return "BicicletaExitoEliminada";				
 	}
+	
 	
 	
 	public Bicicleta getBicicleta() {
@@ -116,5 +130,13 @@ public class BicicletaBean {
 	public void setBicicletasFiltradas(List<Bicicleta> bicicletasFiltradas) {
 		this.bicicletasFiltradas = bicicletasFiltradas;
 	}
+
+	private String dameFecha(){
+		
+		Date fechaActual = new Date();
+		DateFormat formatoFecha = new SimpleDateFormat("HH:mm-dd/MM/yyyy"); 		
+		return formatoFecha.format(fechaActual);
+	}
+	
 	
 }

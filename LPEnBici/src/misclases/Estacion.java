@@ -25,7 +25,7 @@ public class Estacion {
 	private List<Estado> historialEstado;
 	
 	
-	@OneToMany (cascade = {CascadeType.MERGE,CascadeType.REMOVE}) 
+	@OneToMany (cascade = {CascadeType.MERGE,CascadeType.REMOVE},fetch=FetchType.EAGER) 
  	private List<Bicicleta> listaBici; //el length = cantidad de bicicletas
 	public Estacion(String nombre, String lat, String lon,
 			int cantEstacionamientoLibre, String estado) {
@@ -46,7 +46,7 @@ public class Estacion {
 	private String dameFecha(){
 		
 		Date fechaActual = new Date();
-		DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy"); 		
+		DateFormat formatoFecha = new SimpleDateFormat("HH:mm-dd/MM/yyyy"); 		
 		return formatoFecha.format(fechaActual);
 	}
 	

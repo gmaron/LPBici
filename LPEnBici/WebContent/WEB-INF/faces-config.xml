@@ -151,6 +151,17 @@
 			<to-view-id>AdministracionBicicletas.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>AdministracionBicicletas.xhtml</display-name>
+		<from-view-id>/AdministracionBicicletas.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>BicicletaFracasoModificada</from-outcome>
+			<to-view-id>AdministracionBicicletas.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	
 	<navigation-rule>
 	<display-name>AdministracionBicicletas.xhtml</display-name>
 		<from-view-id>/AdministracionBicicletas.xhtml</from-view-id>

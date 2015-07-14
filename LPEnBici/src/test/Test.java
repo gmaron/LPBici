@@ -62,7 +62,7 @@ public class Test {
 		
 		// Alta de denuncia
 		Denuncia den = new Denuncia(usr, "La bici no tiene cadena");
-		f.getDenunciaDAO().guardarDenuncia(den);
+		//f.getDenunciaDAO().guardarDenuncia(den);
 		
 		// Alta de alquiler
 		RegistroAlquiler reg = new RegistroAlquiler(null, "04/06/2015", null, "10:33", null, est, usr);
@@ -125,7 +125,7 @@ public class Test {
 		f.getAdministradorDAO().modificarAdministrador(admin);
 //		
 		// modifica la patente y agrega un registro actual
-		bici.setPatente("MLP-005");
+		bici.getHistorialDenuncia().add(den);
 		f.getBicicletaDAO().modificarBicicleta(bici);
 	
 		//asociar registro de alquiler con la bicicleta
@@ -136,15 +136,16 @@ public class Test {
 		est.setNombre("Estacion 8");
 		f.getEstacionDAO().modificarEstacion(est);
 		
-		// modificar la denuncia
-		den.setComentario("La bici esta pinchada");
-		f.getDenunciaDAO().modificarDenuncia(den);		
+//		// modificar la denuncia
+		//den.setComentario("La bici esta pinchada");
+		//f.getDenunciaDAO().modificarDenuncia(den);		
 				
+		
 		// modificar el alquiler convirtiendo en un alquiler historico
 		reg.setEstacionEntrada(est);
 		reg.setFechaEntrada("05/06/2015");
 		reg.setHoraEntrada("18:00");
-		reg.setDenuncia(den);
+		//reg.setDenuncia(den);
 		f.getRegAlquilerDAO().modificarRegistroAlquiler(reg);			
 		
 		System.out.println("Termino el test de modificaciones\n");
@@ -158,7 +159,7 @@ public class Test {
 		f.getEstacionDAO().eliminarEstacionLogica(est);
 //		
 		f.getBicicletaDAO().eliminarBicicletaLogica(bici); //No se puede borrar una bicicleta asociada a una estacion
-		f.getDenunciaDAO().eliminarDenunciaLogica(den);		
+//		f.getDenunciaDAO().eliminarDenunciaLogica(den);		
 		f.getUsuarioDAO().eliminarUsuarioLogica(usr);
 //			
 		System.out.println("Termino el test de bajas\n");

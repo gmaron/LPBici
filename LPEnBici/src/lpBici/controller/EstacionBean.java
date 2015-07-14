@@ -60,8 +60,7 @@ public class EstacionBean {
 	}
 			
 	public String EliminarEstacion(){		
-		//Si elimino la estacion, elimino todo lo que a ella corresponda.
-		
+		//Si elimino la estacion, elimino todo lo que a ella corresponda.		
 		f.getEstacionDAO().eliminarEstacionLogica(estacionSeleccionada);
 		return "ExitoEliminarEstacion";
 	}
@@ -180,7 +179,7 @@ public class EstacionBean {
 	private String dameFecha(){
 		
 		Date fechaActual = new Date();
-		DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy"); 		
+		DateFormat formatoFecha = new SimpleDateFormat("HH:mm-dd/MM/yyyy"); 		
 		return formatoFecha.format(fechaActual);
 	}
 	

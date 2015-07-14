@@ -30,7 +30,7 @@ public class Bicicleta {
 	@OneToMany(cascade=CascadeType.MERGE)
 	private List<RegistroAlquiler> historial;
 
-	@OneToMany(cascade={CascadeType.MERGE,CascadeType.REMOVE})
+	@OneToMany(cascade={CascadeType.MERGE,CascadeType.REMOVE, CascadeType.REFRESH})
 	private List<Denuncia> historialDenuncia;
 	
 	public Bicicleta(String patente, String estado, String fechaIngreso,
@@ -45,7 +45,7 @@ public class Bicicleta {
 		this.historialEstado.add(new Estado(estado, this.fechaIngreso));
 		
 		/* Agrego el estado */
-		this.estado = historialEstado.get(historialEstado.size() - 1).getEstado();		
+		this.estado = estado;		
 		this.eliminado = false;
 	}
 	
