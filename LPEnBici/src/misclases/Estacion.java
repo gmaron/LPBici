@@ -69,11 +69,28 @@ public class Estacion {
 		return null;					
 	}
 	
-	
 	public void agregarBicicleta(Bicicleta bici){
 		this.listaBici.add(bici);
 		this.cantEstacionamientoLibre--;
 		this.cantBiciDisponible++;		
+	}
+	
+	public boolean estacionarBicicleta(Bicicleta bici,Estacion estSalida){
+		if (!this.nombre.equals(estSalida.getNombre())){
+			this.listaBici.add(bici);
+			this.cantEstacionamientoLibre--;
+			this.cantBiciDisponible++;
+			return true;
+		}else{
+			this.cantEstacionamientoLibre--;
+			this.cantBiciDisponible++;
+			return false;
+		}
+	}
+	
+	public void retirarBicicleta(){
+		this.cantEstacionamientoLibre++;
+		this.cantBiciDisponible--;
 	}
 	
 	

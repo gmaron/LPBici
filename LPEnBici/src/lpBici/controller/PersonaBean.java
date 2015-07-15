@@ -234,8 +234,9 @@ public class PersonaBean {
 		if (b != null){
 			RegistroAlquiler reg = new RegistroAlquiler(estacionSeleccionada, this.usr, b);
 			b.setAlquilada(true);
-			estacionSeleccionada.setCantBiciDisponible(estacionSeleccionada.getCantBiciDisponible()-1);
-			estacionSeleccionada.setCantEstacionamientoLibre(estacionSeleccionada.getCantEstacionamientoLibre()+1);
+			estacionSeleccionada.retirarBicicleta();
+//			estacionSeleccionada.setCantBiciDisponible(estacionSeleccionada.getCantBiciDisponible()-1);
+//			estacionSeleccionada.setCantEstacionamientoLibre(estacionSeleccionada.getCantEstacionamientoLibre()+1);
 			f.getBicicletaDAO().modificarBicicleta(b);		
 			f.getEstacionDAO().modificarEstacion(estacionSeleccionada);
 			f.getRegAlquilerDAO().guardarRegistroAlquiler(reg);
@@ -250,20 +251,29 @@ public class PersonaBean {
 		alquilerSeleccionado.setFechaEntrada(fecha);
 		alquilerSeleccionado.setHoraEntrada(hora);
 		
-		System.out.println("alquilerSeleccionado.estacionEntrada.nombre: "+alquilerSeleccionado.getEstacionEntrada().getNombre());
+		System.out.println("alquilerSeleccionado.estacionEntrada.nombre: "+alquilerSeleccionado.getNombreEstacionEntrada());
 		
-		Estacion est = f.getEstacionDAO().recuperarEstacionNombre(alquilerSeleccionado.getEstacionEntrada().getNombre());
+		Estacion est = f.getEstacionDAO().recuperarEstacionNombre(alquilerSeleccionado.getNombreEstacionEntrada());
 		alquilerSeleccionado.setEstacionEntrada(est);
-		est.setCantBiciDisponible(est.getCantBiciDisponible()+1);
-		est.setCantEstacionamientoLibre(est.getCantEstacionamientoLibre()-1);
+//		est.setCantBiciDisponible(est.getCantBiciDisponible()+1);
+//		est.setCantEstacionamientoLibre(est.getCantEstacionamientoLibre()-1);
 		Bicicleta b = alquilerSeleccionado.getBicicleta();
-		b.setAlquilada(false);
+		if  (est.estacionarBicicleta(b,alquilerSeleccionado.getEstacionSalida())){
+			alquilerSeleccionado.getEstacionSalida().getListaBici().remove(b);							
+		}	
 		
-		f.getEstacionDAO().modificarEstacion(est);
+		b.setAlquilada(false);
+		b.setUbicacionActual(est.getNombre());
+		
+		denuncia.setBicicleta(b);
+		denuncia.setUsuarioDenuncia(usr);
+		
+		f.getDenunciaDAO().guardarDenuncia(denuncia);
+		//f.getEstacionDAO().modificarEstacion(alquilerSeleccionado.getEstacionSalida());
+		//f.getEstacionDAO().modificarEstacion(est);
 		f.getBicicletaDAO().modificarBicicleta(b);
 		f.getRegAlquilerDAO().modificarRegistroAlquiler(alquilerSeleccionado);
-		
-		
+
 		return null;
 	}
 	

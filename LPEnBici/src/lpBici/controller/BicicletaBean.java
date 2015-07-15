@@ -49,8 +49,10 @@ public class BicicletaBean {
 			Bicicleta bicle = new Bicicleta(bicicleta.getPatente(), bicicleta.getEstado(), dameFecha(), bicicleta.getUbicacionActual());
 			
 			Estacion est = f.getEstacionDAO().recuperarEstacionNombre(bicicleta.getUbicacionActual());
-			est.setCantBiciDisponible(est.getCantBiciDisponible()+1);
-			est.getListaBici().add(bicle);			
+			est.agregarBicicleta(bicle);
+			
+//			est.setCantBiciDisponible(est.getCantBiciDisponible()+1);
+//			est.getListaBici().add(bicle);			
 			
 			System.out.println("Guardo la bici con patente: "+bicicleta.getPatente()+" en la estacion: "+est.getNombre());
 			f.getEstacionDAO().modificarEstacion(est);

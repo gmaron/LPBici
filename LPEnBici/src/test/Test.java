@@ -42,7 +42,7 @@ public class Test {
 		// Alta de Estacion
 		Date fechaActual = new Date();		//
 	    DateFormat formatoFecha = new SimpleDateFormat("HH:mm-dd/MM/yyyy"); 				//
-		String fecha= formatoFecha.format(fechaActual);		 		
+//		String fecha= formatoFecha.format(fechaActual);		 		
 		Estacion est = new Estacion("Estacion 6", "-34.926552","-57.961434", 30, "Operativa");
 		est.agregarBicicleta(bici);
 		f.getEstacionDAO().guardarEstacion(est);
@@ -59,7 +59,7 @@ public class Test {
 		// Alta de alquiler
 		RegistroAlquiler reg = new RegistroAlquiler(est, usr,bici);
 		f.getRegAlquilerDAO().guardarRegistroAlquiler(reg);									
-		
+			
 		System.out.println("Termino el test de alta\n");
 		/*-------------------------------------Fin Test para altas-------------------------------------*/
 		/*

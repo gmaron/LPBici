@@ -18,7 +18,7 @@ public class RegistroAlquiler {
 	private String horaEntrada; //hora de entrada = 0
 	private String horaSalida; 
 	private String estado;
-	
+	private String nombreEstacionEntrada;
 //	@OneToOne (cascade =  CascadeType.ALL)
 //	@JoinColumn (name = "id_denuncia")
 //	private Denuncia denuncia;
@@ -37,13 +37,16 @@ public class RegistroAlquiler {
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
 	private Bicicleta bicicleta; 
 	
+	
+	
 	public RegistroAlquiler( Estacion estacionSalida, Usuario usuarioUso, Bicicleta bicicleta) {
 		super();
 		
 		this.fechaSalida = dameFecha();
 		this.horaSalida = dameHora();		
 		this.estacionSalida = estacionSalida;
-		this.estacionEntrada = new Estacion();
+		this.nombreEstacionEntrada = "";
+//		this.estacionEntrada = new Estacion();
 		//this.estado = estado;
 //		this.denuncia = new Denuncia();
 //		this.denuncia.setComentario(null);
@@ -73,6 +76,17 @@ public class RegistroAlquiler {
 	}
 	
 	
+	
+	
+	
+	public String getNombreEstacionEntrada() {
+		return nombreEstacionEntrada;
+	}
+
+	public void setNombreEstacionEntrada(String nombreEstacionEntrada) {
+		this.nombreEstacionEntrada = nombreEstacionEntrada;
+	}
+
 	public Bicicleta getBicicleta() {
 		return bicicleta;
 	}
