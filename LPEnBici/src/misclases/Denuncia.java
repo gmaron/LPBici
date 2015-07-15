@@ -8,15 +8,20 @@ public class Denuncia {
 	@ManyToOne(cascade=CascadeType.MERGE)
 	private Usuario usuarioDenuncia;
 	
+	@ManyToOne(cascade=CascadeType.MERGE)
+	private Bicicleta bicicleta;
+	
+	
 	boolean eliminado;
 	private String comentario; //el comentario puede venir vacio
 	
 	@Id @GeneratedValue
 	private Long id;
 		
-	public Denuncia(Usuario usuarioDenuncia, String comentario) {
+	public Denuncia(Usuario usr, Bicicleta bicicleta, String comentario) {
 		super();
-		this.usuarioDenuncia = usuarioDenuncia;
+		this.bicicleta = bicicleta;
+		this.usuarioDenuncia = usr;
 		this.comentario = comentario;
 		this.eliminado = false;
 	}
@@ -52,6 +57,17 @@ public class Denuncia {
 
 	public void setEliminado(boolean eliminado) {
 		this.eliminado = eliminado;
+	}
+
+	
+	
+	
+	public Bicicleta getBicicleta() {
+		return bicicleta;
+	}
+
+	public void setBicicleta(Bicicleta bicicleta) {
+		this.bicicleta = bicicleta;
 	}
 
 	@Override

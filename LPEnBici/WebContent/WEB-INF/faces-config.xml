@@ -215,7 +215,7 @@
 	</navigation-rule>
 	
 	
-	<!--  PAGINA DE ESTACION GENERICA  -->
+	<!--  PAGINA DE ESTACION GENERICA ADMINISTRADOR -->
 	<navigation-rule>
 		<display-name>AdministracionEstaciones.xhtml</display-name>
 		<from-view-id>/AdministracionEstaciones.xhtml</from-view-id>
@@ -224,6 +224,35 @@
 			<to-view-id>AdministracionEstacionGenerica.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	
+		<!--  PAGINA DE ESTACION GENERICA USUARIO -->
+	<navigation-rule>
+		<display-name>EstacionesUsuario.xhtml</display-name>
+		<from-view-id>/EstacionesUsuario.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>ForwardEstacionGenericaUsuario</from-outcome>
+			<to-view-id>EstacionGenericaUsuario.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>EstacionGenericaUsuario.xhtml</display-name>
+		<from-view-id>/EstacionGenericaUsuario.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>ExitoRetiroBicicleta</from-outcome>
+			<to-view-id>EstacionGenericaUsuario.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>EstacionGenericaUsuario.xhtml</display-name>
+		<from-view-id>/EstacionGenericaUsuario.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>FracasoRetiroBicicleta</from-outcome>
+			<to-view-id>EstacionGenericaUsuario.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
 	
 	
 </faces-config>

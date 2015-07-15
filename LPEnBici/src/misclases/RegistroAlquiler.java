@@ -1,5 +1,9 @@
 package misclases;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,34 +19,35 @@ public class RegistroAlquiler {
 	private String horaSalida; 
 	private String estado;
 	
+//	@OneToOne (cascade =  CascadeType.ALL)
+//	@JoinColumn (name = "id_denuncia")
+//	private Denuncia denuncia;
+	
 	boolean eliminado;
 
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}) // puede haber mas de un registro asociado a un usuario
 	private Usuario usuarioUso;
 
-	
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}) 
 	private Estacion estacionEntrada; // estacion de entrada = estacion de salida hasta que la devuelva
 	
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}) 
 	private Estacion estacionSalida;
-		
-	//preguntar porque hay redundancia de datos
-	@ManyToOne(cascade = CascadeType.MERGE) 
-	private Denuncia denuncia;
-		
 	
-	public RegistroAlquiler(String fechaEntrada, String fechaSalida,
-			String horaEntrada, String horaSalida, Estacion estacionEntrada,
-			Estacion estacionSalida,/* String estado,*/ Usuario usuarioUso) {
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	private Bicicleta bicicleta; 
+	
+	public RegistroAlquiler( Estacion estacionSalida, Usuario usuarioUso, Bicicleta bicicleta) {
 		super();
-		this.fechaEntrada = fechaEntrada;
-		this.fechaSalida = fechaSalida;
-		this.horaEntrada = horaEntrada;
-		this.horaSalida = horaSalida;
-		this.estacionEntrada = estacionEntrada;
+		
+		this.fechaSalida = dameFecha();
+		this.horaSalida = dameHora();		
 		this.estacionSalida = estacionSalida;
+		this.estacionEntrada = new Estacion();
 		//this.estado = estado;
+//		this.denuncia = new Denuncia();
+//		this.denuncia.setComentario(null);
+		this.bicicleta = bicicleta; 
 		this.usuarioUso = usuarioUso;
 		this.eliminado = false;
 		
@@ -52,6 +57,30 @@ public class RegistroAlquiler {
 		
 	}
 	
+	
+	private String dameFecha(){
+		
+		Date fechaActual = new Date();
+		DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy"); 		
+		return formatoFecha.format(fechaActual);
+	}
+	
+	private String dameHora(){
+		
+		Date fechaActual = new Date();
+		DateFormat formatoFecha = new SimpleDateFormat("HH:mm"); 		
+		return formatoFecha.format(fechaActual);
+	}
+	
+	
+	public Bicicleta getBicicleta() {
+		return bicicleta;
+	}
+
+	public void setBicicleta(Bicicleta bicicleta) {
+		this.bicicleta = bicicleta;
+	}
+
 	public String getFechaEntrada() {
 		return fechaEntrada;
 	}
@@ -109,14 +138,14 @@ public class RegistroAlquiler {
 		this.id = id;
 	}
 
-	public Denuncia getDenuncia() {
-		//si no hay nada en denuncia , retorna null
-		return denuncia;
-	}
-
-	public void setDenuncia(Denuncia denuncia) {
-		this.denuncia = denuncia;
-	}
+//	public Denuncia getDenuncia() {
+//		//si no hay nada en denuncia , retorna null
+//		return denuncia;
+//	}
+//
+//	public void setDenuncia(Denuncia denuncia) {
+//		this.denuncia = denuncia;
+//	}
 
 	public boolean isEliminado() {
 		return eliminado;

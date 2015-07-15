@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui"> 
+    <h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<style type="text/css">
+	.form .ui-button-text {
+		color: white !important;
+		font: 16px sans-serif;
+		background-color: #5CB85C !important;
+	}
+	
+	.form .ui-panelgrid tr, .ui-panelgrid td {
+		border: 0px !important;		
+	}
+	
+</style>
+
+
+</h:head>
+<h:body>
+	<h:form id="form" styleClass="form">
+		<p:growl id="msgs" showDetail="true" />
+
+		<!-- 		<p:dataTable var="usuario" value="#{PersonaBean.usuarios}" -->
+		<p:dataTable var="estacion"
+			value="#{EstacionBean.estacionesNoEliminadas}"
+			widgetVar="tablaEstacion"
+			emptyMessage="No se encontraron estaciones con ese criterio."
+			filteredValue="#{EstacionBean.estacionesFiltradas}">
+
+
+			<f:facet name="header">
+				<p:outputPanel>
+					<h:outputText value="Buscar en todos los campos:" />
+					<p:inputText id="globalFilter"
+						onkeyup="PF('tablaEstacion').filter()" style="width:150px"
+						placeholder="Ingrese texto..." />
+				</p:outputPanel>
+			</f:facet>
+				
+			<p:column filterBy="#{estacion.nombre}" headerText="Nombre:"
+				filterMatchMode="contains" sortBy="#{estacion.nombre}">
+				<h:outputText value="#{estacion.nombre}" />
+			</p:column>
+
+			<p:column filterBy="#{estacion.lat}"
+				headerText="Latitud" filterMatchMode="contains"
+				sortBy="#{estacion.lat}">
+				<h:outputText value="#{estacion.lat}" />
+			</p:column>
+
+
+			<p:column filterBy="#{estacion.lon}"
+				headerText="Longitud:" filterMatchMode="contains"
+				sortBy="#{estacion.lon}">
+				<h:outputText value="#{estacion.lon}" />
+			</p:column>
+
+
+			<p:column filterBy="#{estacion.cantEstacionamientoLibre}"
+				headerText="Cant. estacionamientos libre:" filterMatchMode="contains"
+				sortBy="#{estacion.cantEstacionamientoLibre}">
+				<h:outputText value="#{estacion.cantEstacionamientoLibre}" />
+			</p:column>
+
+
+			<p:column filterBy="#{estacion.estado}" headerText="Estado actual"
+				filterMatchMode="contains" sortBy="#{estacion.estado}">
+				<h:outputText value="#{estacion.estado}" />
+			</p:column>
+						
+			<p:column filterBy="#{estacion.cantBiciDisponible}" headerText="Bicicletas disponibles"
+				filterMatchMode="contains" sortBy="#{estacion.cantBiciDisponible}">
+				<h:outputText value="#{estacion.cantBiciDisponible}" />
+			</p:column>								
+
+			<p:column>
+			<p:commandButton ajax="false" value="IR" icon="ui-icon-star"
+				title="View" action="#{EstacionBean.mostrarEstacionUsuario}">
+				<f:setPropertyActionListener value="#{estacion}"
+					target="#{EstacionBean.estacionSeleccionada}" />
+			</p:commandButton>
+			</p:column>
+
+		</p:dataTable>		
+
+	</h:form>
+
+
+	
+
+
+
+	<!-- <p:confirmDialog
+						message="El usuario ha sido borrado satisfactoriamente."
+						widgetVar="delUsuarioExito" global="true" showEffect="fade"
+						hideEffect="explode">
+						<p:commandButton value="Ok" type="button"
+						onclick="PF('delUsuarioExito').hide();"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					</p:confirmDialog> -->
+
+	<p:confirmDialog
+		message="El usuario ha sido borrado satisfactoriamente."
+		widgetVar="delUsuarioExito" global="true" showEffect="fade"
+		hideEffect="explode">
+		<p:commandButton value="Ok" type="button"
+			styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+	</p:confirmDialog>
+
+
+	<p:confirmDialog message="El usuario esta siendo borrado."
+		widgetVar="delUsuarioEspera" global="true" showEffect="fade"
+		closable="false" hideEffect="explode">
+	</p:confirmDialog>
+
+
+	<p:confirmDialog message="El usuario esta siendo modificado."
+		widgetVar="modUsuarioEspera" global="true" showEffect="fade"
+		closable="false" hideEffect="explode">
+	</p:confirmDialog>
+
+	<!-- <p:confirmDialog
+						message="El usuario ha sido modificado satisfactoriamente."
+						widgetVar="modUsuarioExito" global="true" showEffect="fade"
+						closable="false" hideEffect="explode">
+						<p:commandButton value="Ok" type="button"
+							onclick="PF('modUsuarioExito').hide();"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					</p:confirmDialog> -->
+
+	<p:confirmDialog
+		message="El usuario ha sido modificado satisfactoriamente."
+		widgetVar="modUsuarioExito" global="true" showEffect="fade"
+		closable="false" hideEffect="explode">
+		<p:commandButton value="Ok" type="button"
+			styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+	</p:confirmDialog>
+
+</h:body>
+</html>

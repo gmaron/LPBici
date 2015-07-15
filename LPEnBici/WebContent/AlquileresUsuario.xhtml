@@ -5,19 +5,19 @@
  	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="WEB-INF/facelets/templates/Layout.xhtml" >
+	
 
 
 	<ui:define name="encabezado">
 		<ui:include src="WEB-INF/facelets/header/headerUsuario.xhtml" />
 	</ui:define>
 
-	<ui:define name="panelIzqAdmin">
+ 	<ui:define name="panelIzqAdmin">
 		<ui:include src="WEB-INF/facelets/body/bodyPanelUsuario.xhtml"/>
 	</ui:define>
 
 	<ui:define name="panelDerAdmin">
-		<ui:include src="WEB-INF/facelets/body/bodyPerfilUsuario.xhtml"/>
+		<ui:include src="WEB-INF/facelets/body/bodyAlquilerUsuario.xhtml"/>
 	</ui:define>
-
 
 </ui:composition>

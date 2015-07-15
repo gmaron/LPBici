@@ -54,33 +54,16 @@
 <h:body>
 	<h:form styleClass="panel" >
 		<p:growl autoUpdate="true" />
-		<p:panelMenu style="width:200px;">
-			<p:submenu label="Usuarios">
-				<p:menuitem value="Listado" outcome="AdministracionUsr.xhtml"
-					icon="ui-icon-star" />
-			</p:submenu>
-			<p:separator />
-			<p:submenu label="Bicicletas">
-				<p:menuitem value="Listado" outcome="AdministracionBicicletas.xhtml"
-					icon="ui-icon-star" />
-				<p:menuitem value="Denuncias" outcome="AdministracionDenuncias.xhtml"
-					icon="ui-icon-star" />
-				<p:menuitem value="Nueva bici" outcome="AltaBicicleta.xhtml"
-					icon="ui-icon-star" />
-			</p:submenu>
-			<p:separator />
+		<p:panelMenu style="width:200px;">					
 			<p:submenu label="Estaciones">
-
-				<p:menuitem value="Listado" icon="ui-icon-star"
-					outcome="AdministracionEstaciones.xhtml" />
-				<p:menuitem value="Nueva estacion" outcome="AltaEstacion.xhtml"
-					icon="ui-icon-star" />
+				<p:menuitem value="Listado" outcome="EstacionesUsuario.xhtml"
+				icon="ui-icon-star" />				
 			</p:submenu>
-			<p:separator />
-			<p:submenu label="Estadisticas">
-				<p:menuitem value="Estadisticas" outcome="EstadisticasAdmin.html"
-					icon="ui-icon-star" />
-			</p:submenu>
+			<p:separator />	
+			<p:submenu label="Alquileres">
+				<p:menuitem value="Listado" outcome="AlquileresUsuario.xhtml"
+				icon="ui-icon-star" />				
+			</p:submenu>		
 		</p:panelMenu>
 	</h:form>
 

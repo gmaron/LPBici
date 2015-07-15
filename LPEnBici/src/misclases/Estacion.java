@@ -15,6 +15,7 @@ public class Estacion {
 	private String lon;
 	private int cantEstacionamientoLibre;
 	private String estado; //OPERATIVA, CERRADA, EN CONSTRUCCION
+	private int cantBiciDisponible;
 	
 	boolean eliminado;
 	
@@ -23,10 +24,12 @@ public class Estacion {
 	
 	@OneToMany (cascade = CascadeType.ALL)
 	private List<Estado> historialEstado;
-	
-	
+		
 	@OneToMany (cascade = {CascadeType.MERGE,CascadeType.REMOVE},fetch=FetchType.EAGER) 
  	private List<Bicicleta> listaBici; //el length = cantidad de bicicletas
+	
+	
+	
 	public Estacion(String nombre, String lat, String lon,
 			int cantEstacionamientoLibre, String estado) {
 		super();
@@ -34,11 +37,11 @@ public class Estacion {
 		this.lat = lat;
 		this.lon = lon;
 		this.cantEstacionamientoLibre = cantEstacionamientoLibre;
-		this.estado = estado;
-		
+		this.estado = estado;		
 		this.listaBici = new ArrayList<Bicicleta>();
 		this.historialEstado = new ArrayList<Estado>();
 		this.historialEstado.add(new Estado(estado, dameFecha()));
+		this.cantBiciDisponible = listaBici.size();
 		this.eliminado = false;
 	}
 	
@@ -52,8 +55,38 @@ public class Estacion {
 	
 	public Estacion(){
 		
+	}			
+	
+	
+	public Bicicleta dameBiciDisponible(){		 
+		if (this.cantBiciDisponible > 0){
+			for (Bicicleta b: this.listaBici){
+				if(!b.isAlquilada()){
+					return b; 
+				}					
+			}			
+		}
+		return null;					
 	}
 	
+	
+	public void agregarBicicleta(Bicicleta bici){
+		this.listaBici.add(bici);
+		this.cantEstacionamientoLibre--;
+		this.cantBiciDisponible++;		
+	}
+	
+	
+	public int getCantBiciDisponible() {		
+		return cantBiciDisponible;
+	}
+
+
+	public void setCantBiciDisponible(int cantBiciDisponible) {
+		this.cantBiciDisponible = cantBiciDisponible;
+	}
+
+
 	public String getNombre() {
 		return nombre;
 	}

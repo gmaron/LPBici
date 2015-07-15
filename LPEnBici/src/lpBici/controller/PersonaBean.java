@@ -20,6 +20,10 @@ import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 
 import mipatronDAO.MyFactoryDAO;
 import misclases.Administrador;
+import misclases.Bicicleta;
+import misclases.Denuncia;
+import misclases.Estacion;
+import misclases.RegistroAlquiler;
 import misclases.Usuario;
 import misservlets.Emailer;
 
@@ -36,7 +40,7 @@ public class PersonaBean {
 	private Usuario usr = new Usuario();
 	private Administrador admin = new Administrador();
 	private String fechaActual;
-
+	
 	private String email;
 	private String pass;
 	
@@ -50,13 +54,18 @@ public class PersonaBean {
     private String Months[]= {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"
     		, "Oct", "Nov", "Dec" };
     
+    
+    private List<RegistroAlquiler> listaAlquileres;
+    private List<RegistroAlquiler> alquileresFiltrados;
+    private RegistroAlquiler alquilerSeleccionado;
+    private Denuncia denuncia = new Denuncia();
 	
 	public PersonaBean(){
 		
 	}
 	
 	
-
+	
 	public String altaUsuario(){
 		//System.out.println("email: "+this.email+" | "+"pass: "+this.pass);
 		Usuario usuario = new Usuario(); 
@@ -219,6 +228,45 @@ public class PersonaBean {
 		return "/index.xhtml?faces-redirect=true";	
 	}
 
+	
+	public String retirarBicicleta(Estacion estacionSeleccionada){				
+		Bicicleta b = estacionSeleccionada.dameBiciDisponible();	
+		if (b != null){
+			RegistroAlquiler reg = new RegistroAlquiler(estacionSeleccionada, this.usr, b);
+			b.setAlquilada(true);
+			estacionSeleccionada.setCantBiciDisponible(estacionSeleccionada.getCantBiciDisponible()-1);
+			estacionSeleccionada.setCantEstacionamientoLibre(estacionSeleccionada.getCantEstacionamientoLibre()+1);
+			f.getBicicletaDAO().modificarBicicleta(b);		
+			f.getEstacionDAO().modificarEstacion(estacionSeleccionada);
+			f.getRegAlquilerDAO().guardarRegistroAlquiler(reg);
+			return "ExitoRetiroBicicleta";
+		}else
+			return "FracasoRetiroBicicleta";		
+	}
+	
+	public String devolverBicicleta (){
+		String fecha = dameFecha();
+		String hora = dameHora();
+		alquilerSeleccionado.setFechaEntrada(fecha);
+		alquilerSeleccionado.setHoraEntrada(hora);
+		
+		System.out.println("alquilerSeleccionado.estacionEntrada.nombre: "+alquilerSeleccionado.getEstacionEntrada().getNombre());
+		
+		Estacion est = f.getEstacionDAO().recuperarEstacionNombre(alquilerSeleccionado.getEstacionEntrada().getNombre());
+		alquilerSeleccionado.setEstacionEntrada(est);
+		est.setCantBiciDisponible(est.getCantBiciDisponible()+1);
+		est.setCantEstacionamientoLibre(est.getCantEstacionamientoLibre()-1);
+		Bicicleta b = alquilerSeleccionado.getBicicleta();
+		b.setAlquilada(false);
+		
+		f.getEstacionDAO().modificarEstacion(est);
+		f.getBicicletaDAO().modificarBicicleta(b);
+		f.getRegAlquilerDAO().modificarRegistroAlquiler(alquilerSeleccionado);
+		
+		
+		return null;
+	}
+	
 	public Usuario getUsr() {
 		return usr;
 	}
@@ -263,6 +311,19 @@ public class PersonaBean {
 	public void setAdmin(Administrador admin) {
 		this.admin = admin;
 	}
+
+	
+
+	public RegistroAlquiler getAlquilerSeleccionado() {
+		return alquilerSeleccionado;
+	}
+
+
+
+	public void setAlquilerSeleccionado(RegistroAlquiler alquilerSeleccionado) {
+		this.alquilerSeleccionado = alquilerSeleccionado;
+	}
+
 
 
 	public List<Usuario> getUsuarios() {
@@ -309,7 +370,46 @@ public class PersonaBean {
 		this.usuarioSeleccionado = usuarioSeleccionado;
 	}
 	
-	 public void onRowSelect(SelectEvent event) {
+	
+	
+	 public List<RegistroAlquiler> getListaAlquileres() {
+		listaAlquileres = f.getRegAlquilerDAO().recuperarAlquilerUsuario(usr);
+		return listaAlquileres;
+	}
+
+
+
+	public void setListaAlquileres(List<RegistroAlquiler> listaAlquileres) {
+		this.listaAlquileres = listaAlquileres;
+	}
+
+
+
+	public List<RegistroAlquiler> getAlquileresFiltrados() {
+		return alquileresFiltrados;
+	}
+
+
+
+	public void setAlquileresFiltrados(List<RegistroAlquiler> alquileresFiltrados) {
+		this.alquileresFiltrados = alquileresFiltrados;
+	}
+
+	
+
+	public Denuncia getDenuncia() {
+		return denuncia;
+	}
+
+
+
+	public void setDenuncia(Denuncia denuncia) {
+		this.denuncia = denuncia;
+	}
+
+
+
+	public void onRowSelect(SelectEvent event) {
 	        FacesMessage msg = new FacesMessage("Usuario Seleccionado", ((Usuario) event.getObject()).getNombre());
 	        FacesContext.getCurrentInstance().addMessage(null, msg);
 	    }
@@ -318,6 +418,19 @@ public class PersonaBean {
 	        FacesMessage msg = new FacesMessage("Usuario no Seleccionado", ((Usuario) event.getObject()).getNombre());
 	        FacesContext.getCurrentInstance().addMessage(null, msg);
 	    }
- 
+		private String dameFecha(){
+			
+			Date fechaActual = new Date();
+			DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy"); 		
+			return formatoFecha.format(fechaActual);
+		}
+		
+		private String dameHora(){
+			
+			Date fechaActual = new Date();
+			DateFormat formatoFecha = new SimpleDateFormat("HH:mm"); 		
+			return formatoFecha.format(fechaActual);
+		}
+		
 	
 }

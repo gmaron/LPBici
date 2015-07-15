@@ -4,7 +4,7 @@
 <ui:composition
  	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	template="WEB-INF/facelets/templates/defaultLayout.xhtml" >
+	template="WEB-INF/facelets/templates/Layout.xhtml" >
 	
 
 
@@ -12,8 +12,12 @@
 		<ui:include src="WEB-INF/facelets/header/headerUsuario.xhtml" />
 	</ui:define>
 
- 	<ui:define name="contenido">
+ 	<ui:define name="panelIzqAdmin">
+		<ui:include src="WEB-INF/facelets/body/bodyPanelUsuario.xhtml"/>
+	</ui:define>
+
+	<ui:define name="panelDerAdmin">
 		<ui:include src="WEB-INF/facelets/body/bodyLoginUsuario.xhtml"/>
-	</ui:define> 
+	</ui:define>
 
 </ui:composition>

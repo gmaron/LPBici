@@ -13,6 +13,7 @@ import org.primefaces.event.UnselectEvent;
 
 import mipatronDAO.MyFactoryDAO;
 import misclases.Bicicleta;
+import misclases.Denuncia;
 import misclases.Estacion;
 import misclases.Estado;
 
@@ -21,8 +22,11 @@ public class BicicletaBean {
 		
 	private Bicicleta bicicleta = new Bicicleta();	
 	private List<Bicicleta> bicicletasNoEliminadas = null;
-	private List<Bicicleta> bicicletasFiltradas;
+	private List<Bicicleta> bicicletasFiltradas;	
 	private Bicicleta bicicletaSeleccionada;
+	
+	private List<Denuncia> denunciasBicicletas;
+	private List<Denuncia> denunciasFiltradas;
 	
 	EstacionBean est = new EstacionBean();
 	
@@ -44,7 +48,8 @@ public class BicicletaBean {
 			 * */
 			Bicicleta bicle = new Bicicleta(bicicleta.getPatente(), bicicleta.getEstado(), dameFecha(), bicicleta.getUbicacionActual());
 			
-			Estacion est = f.getEstacionDAO().recuperarEstacionNombre(bicicleta.getUbicacionActual());			
+			Estacion est = f.getEstacionDAO().recuperarEstacionNombre(bicicleta.getUbicacionActual());
+			est.setCantBiciDisponible(est.getCantBiciDisponible()+1);
 			est.getListaBici().add(bicle);			
 			
 			System.out.println("Guardo la bici con patente: "+bicicleta.getPatente()+" en la estacion: "+est.getNombre());
@@ -84,8 +89,34 @@ public class BicicletaBean {
 		return "BicicletaExitoEliminada";				
 	}
 	
+
+	public List<Denuncia> getDenunciasBicicletas() {		
+		if (denunciasBicicletas == null){
+			denunciasBicicletas = f.getDenunciaDAO().recuperarDenuncias();
+			return denunciasBicicletas;
+		}
+		else{
+			return f.getDenunciaDAO().recuperarDenuncias();
+		}		
+	}
+
 	
 	
+	
+	public void setDenunciasBicicletas(List<Denuncia> denunciasBicicletas) {
+		this.denunciasBicicletas = denunciasBicicletas;
+	}
+
+	
+	
+	public List<Denuncia> getDenunciasFiltradas() {
+		return denunciasFiltradas;
+	}
+
+	public void setDenunciasFiltradas(List<Denuncia> denunciasFiltradas) {
+		this.denunciasFiltradas = denunciasFiltradas;
+	}
+
 	public Bicicleta getBicicleta() {
 		return bicicleta;
 	}

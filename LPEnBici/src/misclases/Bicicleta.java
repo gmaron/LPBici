@@ -16,22 +16,24 @@ public class Bicicleta {
 	private String fechaIngreso;
 	private String ubicacionActual;	
 	
+	private boolean alquilada; 
+	
 	boolean eliminado;
 	
 	@Id @GeneratedValue
 	private Long id;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
-	private RegistroAlquiler regActual;
-	
+//	@ManyToOne(cascade=CascadeType.ALL)
+//	private RegistroAlquiler regActual;
+//	
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Estado> historialEstado;
 	
-	@OneToMany(cascade=CascadeType.MERGE)
-	private List<RegistroAlquiler> historial;
-
-	@OneToMany(cascade={CascadeType.MERGE,CascadeType.REMOVE, CascadeType.REFRESH})
-	private List<Denuncia> historialDenuncia;
+//	@OneToMany(cascade=CascadeType.ALL)
+//	private List<RegistroAlquiler> historial;
+////
+//	@OneToMany(cascade={CascadeType.MERGE,CascadeType.REMOVE, CascadeType.REFRESH})
+//	private List<Denuncia> historialDenuncia;
 	
 	public Bicicleta(String patente, String estado, String fechaIngreso,
 			String ubicacionActual) {
@@ -39,11 +41,11 @@ public class Bicicleta {
 		this.patente = patente;
 		this.fechaIngreso = fechaIngreso;
 		this.ubicacionActual = ubicacionActual;
-		this.historial = new ArrayList<RegistroAlquiler>();
-		this.historialDenuncia = new ArrayList<Denuncia>();
+		//this.historial = new ArrayList<RegistroAlquiler>();
+		//this.historialDenuncia = new ArrayList<Denuncia>();
 		this.historialEstado = new ArrayList<Estado>();
 		this.historialEstado.add(new Estado(estado, this.fechaIngreso));
-		
+		this.alquilada = false; 
 		/* Agrego el estado */
 		this.estado = estado;		
 		this.eliminado = false;
@@ -53,17 +55,27 @@ public class Bicicleta {
 		
 	}
 	
-	public void retirarBicicleta(RegistroAlquiler reg){
-		this.regActual = reg;
-	}
-	
+//	public void retirarBicicleta(RegistroAlquiler reg){
+//		this.regActual = reg;
+//	}
+//	
 	public void estacionarBicicleta(Denuncia den){
 		//completar la fecha/hora/estacion devolucion
-		historial.add(this.regActual);
-		if (den != null)
-			historialDenuncia.add(den);
+		//historial.add(this.regActual);
+		//if (den != null)
+			//historialDenuncia.add(den);
 	}
 	
+	
+	
+	public boolean isAlquilada() {
+		return alquilada;
+	}
+
+	public void setAlquilada(boolean alquilada) {
+		this.alquilada = alquilada;
+	}
+
 	public String getPatente() {
 		return patente;
 	}
@@ -90,24 +102,26 @@ public class Bicicleta {
 	public void setUbicacionActual(String ubicacionActual) {
 		this.ubicacionActual = ubicacionActual;
 	}
-	public List<RegistroAlquiler> getHistorial() {
-		return historial;
-	}
-	public void setHistorial(List<RegistroAlquiler> historial) {
-		this.historial = historial;
-	}
-	public RegistroAlquiler getRegActual() {
-		return regActual;
-	}
-	public void setRegActual(RegistroAlquiler regActual) {
-		this.regActual = regActual;
-	}
-	public List<Denuncia> getHistorialDenuncia() {
-		return historialDenuncia;
-	}
-	public void setHistorialDenuncia(List<Denuncia> historialDenuncia) {
-		this.historialDenuncia = historialDenuncia;
-	}
+	
+//	public List<RegistroAlquiler> getHistorial() {
+//		return historial;
+//	}
+//	public void setHistorial(List<RegistroAlquiler> historial) {
+//		this.historial = historial;
+//	}
+	
+//	public RegistroAlquiler getRegActual() {
+//		return regActual;
+//	}
+//	public void setRegActual(RegistroAlquiler regActual) {
+//		this.regActual = regActual;
+//	}
+//	public List<Denuncia> getHistorialDenuncia() {
+//		return historialDenuncia;
+//	}
+//	public void setHistorialDenuncia(List<Denuncia> historialDenuncia) {
+//		this.historialDenuncia = historialDenuncia;
+//	}
 
 	public List<Estado> getHistorialEstado() {
 		return historialEstado;

@@ -30,6 +30,8 @@ public class EstacionBean {
 	private List<Bicicleta> bicicletasEstacion = new ArrayList<Bicicleta>();
 	private Bicicleta bicicletaSeleccionada;
 	
+	private List<Bicicleta> bicicletasEstacionDisponibles = new ArrayList<Bicicleta>();
+	
 	public EstacionBean(){
 		
 	}
@@ -65,13 +67,30 @@ public class EstacionBean {
 		return "ExitoEliminarEstacion";
 	}
 	
-	public String mostrarEstacion(){
-		
+	public String mostrarEstacion(){		
 		return "ForwardEstacionGenericaAdmin";
+	}
+	
+	public String mostrarEstacionUsuario(){
+		return "ForwardEstacionGenericaUsuario";		
 	}
 	
 	
 	
+	public List<Bicicleta> getBicicletasEstacionDisponibles() {
+		
+		
+		
+		return bicicletasEstacionDisponibles;
+	}
+
+
+	public void setBicicletasEstacionDisponibles(
+			List<Bicicleta> bicicletasEstacionDisponibles) {
+		this.bicicletasEstacionDisponibles = bicicletasEstacionDisponibles;
+	}
+
+
 	public Estacion getEstacion() {
 		return estacion;
 	}

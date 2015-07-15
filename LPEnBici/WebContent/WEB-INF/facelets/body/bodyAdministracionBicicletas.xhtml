@@ -126,6 +126,16 @@
 							onclick="PF('modUsuarioEspera').show();"						
 							/>
  -->
+ 
+ 					<h:outputText value="Historial de estados" />
+
+					<p:commandButton update=":form:detalleBicicletaEstado"
+						onclick="PF('bicicletaEstadoDialog').show()" icon="ui-icon-search"
+						title="View">
+						<f:setPropertyActionListener value="#{BicicletaBean.bicicletaSeleccionada}"
+							target="#{BicicletaBean.bicicletaSeleccionada}" />
+					</p:commandButton>
+ 
 					<p:commandButton value="Modificar" ajax="false" id="modificar"
 						action="#{BicicletaBean.ModBicicleta}" icon="ui-icon-check"
 						validateClient="true" />
@@ -141,6 +151,28 @@
 
 			</p:outputPanel>
 		</p:dialog>
+		
+		<p:dialog header="Información de los estados de la Bicicleta"
+			widgetVar="bicicletaEstadoDialog" modal="true" showEffect="fade"
+			hideEffect="fade" resizable="false">
+
+			<p:outputPanel id="detalleBicicletaEstado" style="text-align:center;">
+			
+				<p:dataScroller value="#{BicicletaBean.bicicletaSeleccionada.historialEstado}" var="historial"
+					chunkSize="10">
+						<h:panelGrid columns="2" style="width:100%" columnClasses="label,value">
+							<h:outputText value="Estado" />
+							<h:outputText value="Fecha" />
+						</h:panelGrid>
+						<h:panelGrid columns="2" style="width:100%">
+							<h:outputText value="#{historial.estado}" style="font-weight: bold" />
+							<h:outputText value="#{historial.fecha}" style="font-weight: bold" />
+						
+					</h:panelGrid>
+				</p:dataScroller>		
+			</p:outputPanel>
+		</p:dialog>
+		
 
 
 	</h:form>

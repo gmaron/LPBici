@@ -22,60 +22,61 @@
 
 </h:head>
 <h:body>
-	<h:form id="form" styleClass="form">
+
+<h:form id="form" styleClass="form">
 		<p:growl id="msgs" showDetail="true" />
 
 		<!-- 		<p:dataTable var="usuario" value="#{PersonaBean.usuarios}" -->
-		<p:dataTable var="bicicleta"
-			value="#{EstacionBean.bicicletasEstacion}"
-			widgetVar="tablaBicicleta"
+		<p:dataTable var="denuncia"
+			value="#{BicicletaBean.denunciasBicicletas}"
+			widgetVar="tablaDenuncias"
 			emptyMessage="No se encontraron bicicletas con ese criterio."
-			filteredValue="#{BicicletaBean.bicicletasFiltradas}">
+			filteredValue="#{BicicletaBean.denunciasFiltradas}">
 
 
 			<f:facet name="header">
 				<p:outputPanel>
 					<h:outputText value="Buscar en todos los campos:" />
 					<p:inputText id="globalFilter"
-						onkeyup="PF('tablaBicicleta').filter()" style="width:150px"
+						onkeyup="PF('tablaDenuncias').filter()" style="width:150px"
 						placeholder="Ingrese texto..." />
 				</p:outputPanel>
 			</f:facet>
 
-			<p:column filterBy="#{bicicleta.patente}" headerText="Patente"
-				filterMatchMode="contains" sortBy="#{bicicleta.patente}">
-				<h:outputText value="#{bicicleta.patente}" />
+			<p:column filterBy="#{denuncia.bicicleta.patente}" headerText="Patente"
+				filterMatchMode="contains" sortBy="#{denuncia.bicicleta.patente}">
+				<h:outputText value="#{denuncia.bicicleta.patente}" />
 			</p:column>
 
-			<p:column filterBy="#{bicicleta.fechaIngreso}"
-				headerText="Fecha de ingreso" filterMatchMode="contains"
-				sortBy="#{bicicleta.fechaIngreso}">
-				<h:outputText value="#{bicicleta.fechaIngreso}" />
+			<p:column filterBy="#{denuncia.comentario}"
+				headerText="Comentario" filterMatchMode="contains"
+				sortBy="#{denuncia.comentario}">
+				<h:outputText value="#{denuncia.comentario}" />
 			</p:column>
 
 
-			<p:column filterBy="#{bicicleta.ubicacionActual}"
-				headerText="Ubicacion actual" filterMatchMode="contains"
-				sortBy="#{bicicleta.ubicacionActual}">
-				<h:outputText value="#{bicicleta.ubicacionActual}" />
+			<p:column filterBy="#{denuncia.usuarioDenuncia.email}"
+				headerText="Email de denunciante" filterMatchMode="contains"
+				sortBy="#{denuncia.usuarioDenuncia.email}">
+				<h:outputText value="#{denuncia.usuarioDenuncia.email}" />
 			</p:column>
 
-			<p:column filterBy="#{bicicleta.estado}" headerText="Estado actual"
+			<!-- <p:column filterBy="#{bicicleta.estado}" headerText="Estado actual"
 				filterMatchMode="contains" sortBy="#{bicicleta.estado}">
 				<h:outputText value="#{bicicleta.estado}" />
-			</p:column>
+			</p:column> -->
 
 			<!--  FALTA ULTIMA MODIFICACION Y HISTORIAL DE DENUNCIAS -->
 
 
-			<p:column style="width:32px;text-align: center">
+			<!-- <p:column style="width:32px;text-align: center">
 				<p:commandButton update=":form:detalleBicicleta"
 					oncomplete="PF('bicicletaDialog').show()" icon="ui-icon-search"
 					title="View">
 					<f:setPropertyActionListener value="#{bicicleta}"
 						target="#{BicicletaBean.bicicletaSeleccionada}" />
 				</p:commandButton>
-			</p:column>
+			</p:column> -->
 		</p:dataTable>
 
 		<p:dialog header="Información de Bicicleta"
@@ -126,15 +127,6 @@
 							onclick="PF('modUsuarioEspera').show();"						
 							/>
  -->
- 					<h:outputText value="Historial de estados" />
-
-					<p:commandButton update=":form:detalleBicicletaEstado"
-						onclick="PF('bicicletaEstadoDialog').show()" icon="ui-icon-search"
-						title="View">
-						<f:setPropertyActionListener value="#{BicicletaBean.bicicletaSeleccionada}"
-							target="#{BicicletaBean.bicicletaSeleccionada}" />
-					</p:commandButton>
-					
 					<p:commandButton value="Modificar" ajax="false" id="modificar"
 						action="#{BicicletaBean.ModBicicleta}" icon="ui-icon-check"
 						validateClient="true" />
@@ -150,31 +142,8 @@
 
 			</p:outputPanel>
 		</p:dialog>
-		
-		<p:dialog header="Información de los estados de la Bicicleta"
-			widgetVar="bicicletaEstadoDialog" modal="true" showEffect="fade"
-			hideEffect="fade" resizable="false">
 
-			<p:outputPanel id="detalleBicicletaEstado" style="text-align:center;">
-			
-				<p:dataScroller value="#{BicicletaBean.bicicletaSeleccionada.historialEstado}" var="historial"
-					chunkSize="10">
-						<h:panelGrid columns="2" style="width:100%" columnClasses="label,value">
-							<h:outputText value="Estado" />
-							<h:outputText value="Fecha" />
-						</h:panelGrid>
-						<h:panelGrid columns="2" style="width:100%">
-							<h:outputText value="#{historial.estado}" style="font-weight: bold" />
-							<h:outputText value="#{historial.fecha}" style="font-weight: bold" />
-						
-					</h:panelGrid>
-				</p:dataScroller>		
-			</p:outputPanel>
-		</p:dialog>
-		
-		
-		
-		
+
 	</h:form>
 
 	<!-- <p:confirmDialog
@@ -222,6 +191,9 @@
 		<p:commandButton value="Ok" type="button"
 			styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
 	</p:confirmDialog>
+
+
+
 
 </h:body>
 </html>
