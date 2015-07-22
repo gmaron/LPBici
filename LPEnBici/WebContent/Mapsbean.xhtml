@@ -1,41 +1,37 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:m="http://code.google.com/p/gmaps4jsf/">
-      
 <h:head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<script
 
-<!-- 	<script
-		src="http://maps.google.com/maps?file=api&amp;v=2&amp;
+src="http://maps.google.com/maps?file=api&amp;v=2&amp;
 key=ABQIAAAAxrVS1QxlpJHXxQ2Vxg2bJBT2yXp_ZAY8_ufC3CFXhHIE1NvwkxS9AOPy_YJl48ifAy4mq6I8SgK8fg"
-		type="text/javascript">
-		
-	</script> -->
-	
-	<script type="text/javascript"
-		src="http://maps.google.com/maps?file=api&amp;v=2&amp;
-		key=ABQIAAAAeb_IK_wEDqBzexae-bhG6hReCZLzLEJSKxaYmbwBuovNMhDBtRQ0fdyx2KOKsZLPlngeXILMy7n9Sg">
-</script>
+type="text/javascript">
+
+</script>     
 </h:head>
       
 <h:body>
-<h:form>
+<h:form >
 		<m:map width="90%" height="90%" latitude="-34.921369" longitude="-57.954431" zoom="15" >
 
 			<ui:repeat var="estacion" value="#{EstacionBean.estacionesNoEliminadas}">
 				<m:marker latitude="#{estacion.lat}" longitude="#{estacion.lon}">
 					<m:htmlInformationWindow htmlText="Iam #{estacion.nombre}" />
 				</m:marker>
-			</ui:repeat>	
+			</ui:repeat>
+
+			
+			
 
 			
 		</m:map>
-</h:form>
+
+	</h:form>
+
+
 </h:body>
       
       

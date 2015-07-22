@@ -22,6 +22,7 @@ public class EstacionBean {
 	private Estacion estacion = new Estacion();
 	private Estacion estacionSeleccionada;
 	private List<Estacion> estacionesNoEliminadas = null;
+	
 	private Map<String , String> estacionesNoEliminadasMap = null;
 	
 	private List<Estacion> estacionesFiltradas;
@@ -31,6 +32,9 @@ public class EstacionBean {
 	private Bicicleta bicicletaSeleccionada;
 	
 	private List<Bicicleta> bicicletasEstacionDisponibles = new ArrayList<Bicicleta>();
+	
+	
+	private List<Bicicleta> bicicletasOperativas = new ArrayList<Bicicleta>();
 	
 	public EstacionBean(){
 		
@@ -201,5 +205,18 @@ public class EstacionBean {
 		DateFormat formatoFecha = new SimpleDateFormat("HH:mm-dd/MM/yyyy"); 		
 		return formatoFecha.format(fechaActual);
 	}
+
+
+	public List<Bicicleta> getBicicletasOperativas() {
+		return bicicletasOperativas;
+	}
+
+
+	public void setBicicletasOperativas(List<Bicicleta> bicicletasOperativas) {
+		this.bicicletasOperativas = bicicletasOperativas;
+	}
+	
+	
+	
 	
 }

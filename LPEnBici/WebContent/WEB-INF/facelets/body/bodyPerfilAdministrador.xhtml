@@ -62,7 +62,7 @@
 					validatorMessage="Nombre: caracteres alfabeticos | Long. minima: 4 | Long. maxima: 20"
 					required="true">
 					<f:validateLength minimum="3" maximum="20" />
-					<f:validateRegex pattern="[a-zA-Z]+" />
+					<f:validateRegex pattern="[a-zA-Z ]*"/>
 				</p:inputText>
 
 
@@ -71,7 +71,7 @@
 					validatorMessage="Apellido: caracteres alfabeticos | Long. minima: 4 | Long. maxima: 20"
 					required="true">
 					<f:validateLength minimum="3" maximum="20" />
-					<f:validateRegex pattern="[a-zA-Z]+" />
+					<f:validateRegex pattern="[a-zA-Z ]*"/>
 				</p:inputText>
 				<!-- <p:messages for="apellido"/> -->
 
