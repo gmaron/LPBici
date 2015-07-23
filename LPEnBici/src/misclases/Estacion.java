@@ -28,7 +28,7 @@ public class Estacion {
 	@OneToMany (cascade = {CascadeType.MERGE,CascadeType.REMOVE},fetch=FetchType.EAGER) 
  	private List<Bicicleta> listaBici; //el length = cantidad de bicicletas
 	
-	
+	private String info;
 	
 	public Estacion(String nombre, String lat, String lon,
 			int cantEstacionamientoLibre, String estado) {
@@ -178,6 +178,43 @@ public class Estacion {
 	public String toString() {
 		return "Estacion";
 	} 
+	
+	
+	
+	public String getInfo() {
+		info = "<br><b>Estacion: </b>"+this.getNombre()+"<br>"
+				+ "<b>Cant Bicicletas aptas:</b> "+this.getCantBiciDisponible()+"<br>"
+				+ "<b>Cant de estacionamientos libres:</b> "+this.getCantEstacionamientoLibre();
+//		info = "<h:form><p:commandButton ajax=\"false\" value=\"IR\" icon=\"ui-icon-star\""
+//				+ " title=\"View\" action=\"#{EstacionBean.mostrarEstacion}\">"
+//				+ "	<f:setPropertyActionListener value=\"#{estacion}\""
+//				+ "target=\"#{EstacionBean.estacionSeleccionada}\" />"
+//				+ "</p:commandButton></h:form>"; 
+		System.out.println(info);
+		return info;
+	}
+
+	public String informacion() {
+		String informacion = "<br><b>Estacion: </b>"+this.getNombre()+"<br>"
+				+ "<b>Cant Bicicletas aptas:</b> "+this.getCantBiciDisponible()+"<br>"
+				+ "<b>Cant de estacionamientos libres:</b> "+this.getCantEstacionamientoLibre()+"<br>"
+				+ "<b>Estado: </b>"+this.getEstado();
+//		info = "<h:form><p:commandButton ajax=\"false\" value=\"IR\" icon=\"ui-icon-star\""
+//				+ " title=\"View\" action=\"#{EstacionBean.mostrarEstacion}\">"
+//				+ "	<f:setPropertyActionListener value=\"#{estacion}\""
+//				+ "target=\"#{EstacionBean.estacionSeleccionada}\" />"
+//				+ "</p:commandButton></h:form>"; 
+		System.out.println(info);
+		return informacion;
+	}
+	
+
+	public void setInfo(String info) {
+		this.info = info;
+	}
+
+
+
 	
 	
 }

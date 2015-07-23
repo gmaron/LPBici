@@ -66,6 +66,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/aspectjrt.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/gmaps4jsf-core-3.0.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/gmaps4jsf-1.1.4.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/gmaps4jsf-core-1.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
