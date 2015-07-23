@@ -60,6 +60,12 @@ public class PersonaBean {
     private RegistroAlquiler alquilerSeleccionado;
     private Denuncia denuncia = new Denuncia();
 	
+    
+    
+    private boolean errorLogin = false;
+    private boolean modAdmin = false;
+    private boolean modUsr = false;
+    
 	public PersonaBean(){
 		
 	}
@@ -88,8 +94,9 @@ public class PersonaBean {
 //			RequestContext.getCurrentInstance().execute("PF('esperaAlta').hide();");
 //			RequestContext.getCurrentInstance().execute("PF('errorAlta').show();");
 			this.usr = new Usuario();
-			//return null;
-			return "FracasoRegistro";
+			this.errorLogin = true;
+			return null;
+			//return "FracasoRegistro";
 		}				
 	}
 		
@@ -441,6 +448,15 @@ public class PersonaBean {
 			DateFormat formatoFecha = new SimpleDateFormat("HH:mm"); 		
 			return formatoFecha.format(fechaActual);
 		}
+
+
+		public boolean isErrorLogin() {
+			return errorLogin;
+		}
+
+		public void setErrorLogin(boolean errorLogin) {
+			this.errorLogin = errorLogin;
+		}
 		
-	
+		
 }

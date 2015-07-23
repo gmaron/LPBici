@@ -36,6 +36,8 @@ public class EstacionBean {
 	
 	private List<Bicicleta> bicicletasOperativas = new ArrayList<Bicicleta>();
 	
+	private List<Estacion> estacionesOperativas = new ArrayList<Estacion>();
+	
 	public EstacionBean(){
 		
 	}
@@ -56,10 +58,16 @@ public class EstacionBean {
 	
 	public String ModEstacion(){
 		int tam = estacionSeleccionada.getHistorialEstado().size();
-		Estado estaAnt = estacionSeleccionada.getHistorialEstado().get(tam - 1);
-		if (!estaAnt.getEstado().equals(estacionSeleccionada.getEstado())){			
-			estacionSeleccionada.getHistorialEstado().add(new Estado(estacionSeleccionada.getEstado(), dameFecha()));			
+		Estado estaAnt;
+		if (tam > 0){
+			 estaAnt = estacionSeleccionada.getHistorialEstado().get(tam - 1);
+			 if (!estaAnt.getEstado().equals(estacionSeleccionada.getEstado())){			
+					estacionSeleccionada.getHistorialEstado().add(new Estado(estacionSeleccionada.getEstado(), dameFecha()));			
+			 }
 		}
+		else
+			estaAnt = new Estado();
+		
 		f.getEstacionDAO().modificarEstacion(estacionSeleccionada);
 		estacionSeleccionada = null;
 		return "ExitoModEstacion";
@@ -215,6 +223,24 @@ public class EstacionBean {
 	public void setBicicletasOperativas(List<Bicicleta> bicicletasOperativas) {
 		this.bicicletasOperativas = bicicletasOperativas;
 	}
+
+
+	public List<Estacion> getEstacionesOperativas() {
+		if (this.estacionesOperativas == null){
+			this.estacionesOperativas = f.getEstacionDAO().recuperarEstacionesOperativas();
+			return this.estacionesOperativas;
+		}
+		else{
+			return  f.getEstacionDAO().recuperarEstacionesOperativas();
+		}
+	}
+
+
+	public void setEstacionesOperativas(List<Estacion> estacionesOperativas) {
+		this.estacionesOperativas = estacionesOperativas;
+	}
+	
+	
 	
 	
 	

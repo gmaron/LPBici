@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"  
     xmlns:h="http://java.sun.com/jsf/html"  
     xmlns:f="http://java.sun.com/jsf/core"  
@@ -11,6 +12,7 @@
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 
 <script type="text/javascript">
+
 	google.load("visualization", "1", {
 		packages : [ "corechart" ]
 	});
@@ -24,24 +26,28 @@
 			var googleData = new google.visualization.DataTable();
 			googleData.addColumn('string', 'Operacion');
 			googleData.addColumn('number', 'Cantidad');
-			var total = data.length;
-
-			for (i = 0; i < total; i++) {
-				//googleData.addRow(["Moco",10]);				
+			var total = data.length - 1 ;
+			var i = 0;
+			
+			while (total != i){
 				googleData.addRow([ data[i].operacion, data[i].cant ]);
+				i++;
 			}
-
+			
+				
 			var chart = new google.visualization.PieChart(document
 					.getElementById('chart_usuario'));
 			chart.draw(googleData, {
-				width : 450,
-				height : 300,
+				width : 350,
+				height : 250,
 				title : 'Operaciones sobre Entidad Usuario',
 				is3D : true
 			});
 		});
 	}
 </script>
+
+
 
 <script type="text/javascript">
 	google.load("visualization", "1", {
@@ -57,18 +63,19 @@
 			var googleData = new google.visualization.DataTable();
 			googleData.addColumn('string', 'Operacion');
 			googleData.addColumn('number', 'Cantidad');
-			var total = data.length;
-
-			for (i = 0; i < total; i++) {
-				//googleData.addRow(["Moco",10]);				
+			var total = data.length - 1 ;
+			var i = 0;
+			
+			while (total != i){
 				googleData.addRow([ data[i].operacion, data[i].cant ]);
+				i++;
 			}
 
 			var chart = new google.visualization.PieChart(document
 					.getElementById('chart_admin'));
 			chart.draw(googleData, {
-				width : 450,
-				height : 300,
+				width : 350,
+				height : 250,
 				title : 'Operaciones sobre Entidad Administrador',
 				is3D : true
 			});
@@ -90,18 +97,19 @@
 			var googleData = new google.visualization.DataTable();
 			googleData.addColumn('string', 'Operacion');
 			googleData.addColumn('number', 'Cantidad');
-			var total = data.length;
-
-			for (i = 0; i < total; i++) {
-				//googleData.addRow(["Moco",10]);				
+			var total = data.length - 1 ;
+			var i = 0;
+			
+			while (total != i){
 				googleData.addRow([ data[i].operacion, data[i].cant ]);
+				i++;
 			}
 
 			var chart = new google.visualization.PieChart(document
 					.getElementById('chart_estacion'));
 			chart.draw(googleData, {
-				width : 450,
-				height : 300,
+				width : 350,
+				height : 250,
 				title : 'Operaciones sobre Entidad Estacion',
 				is3D : true
 			});
@@ -123,18 +131,19 @@
 			var googleData = new google.visualization.DataTable();
 			googleData.addColumn('string', 'Operacion');
 			googleData.addColumn('number', 'Cantidad');
-			var total = data.length;
-
-			for (i = 0; i < total; i++) {
-				//googleData.addRow(["Moco",10]);				
+			var total = data.length - 1 ;
+			var i = 0;
+			
+			while (total != i){
 				googleData.addRow([ data[i].operacion, data[i].cant ]);
+				i++;
 			}
 
 			var chart = new google.visualization.PieChart(document
 					.getElementById('chart_bicicleta'));
 			chart.draw(googleData, {
-				width : 450,
-				height : 300,
+				width : 350,
+				height : 250,
 				title : 'Operaciones sobre Entidad Bicicleta',
 				is3D : true
 			});
@@ -156,18 +165,19 @@
 			var googleData = new google.visualization.DataTable();
 			googleData.addColumn('string', 'Operacion');
 			googleData.addColumn('number', 'Cantidad');
-			var total = data.length;
-
-			for (i = 0; i < total; i++) {
-				//googleData.addRow(["Moco",10]);				
+			var total = data.length - 1 ;
+			var i = 0;
+			
+			while (total != i){
 				googleData.addRow([ data[i].operacion, data[i].cant ]);
+				i++;
 			}
 
 			var chart = new google.visualization.PieChart(document
 					.getElementById('chart_denuncia'));
 			chart.draw(googleData, {
-				width : 450,
-				height : 300,
+				width : 350,
+				height : 250,
 				title : 'Operaciones sobre Entidad Denuncia',
 				is3D : true
 			});
@@ -189,18 +199,19 @@
 			var googleData = new google.visualization.DataTable();
 			googleData.addColumn('string', 'Operacion');
 			googleData.addColumn('number', 'Cantidad');
-			var total = data.length;
-
-			for (i = 0; i < total; i++) {
-				//googleData.addRow(["Moco",10]);				
+			var total = data.length - 1 ;
+			var i = 0;
+			
+			while (total != i){
 				googleData.addRow([ data[i].operacion, data[i].cant ]);
+				i++;
 			}
 
 			var chart = new google.visualization.PieChart(document
 					.getElementById('chart_registroAlquiler'));
 			chart.draw(googleData, {
-				width : 450,
-				height : 300,
+				width : 350,
+				height : 250,
 				title : 'Operaciones sobre Entidad Registro Alquiler',
 				is3D : true
 			});
@@ -208,10 +219,12 @@
 	}
 </script>
 
+
 </h:head>
 
 <h:body>
-	<table style="width: 100%">
+
+			<table>
 		<tr>
 			<td  id ="chart_usuario"></td>
 			<td  id ="chart_admin"></td>
@@ -223,5 +236,6 @@
 			<td id="chart_registroAlquiler"></td>
 		</tr>
 	</table>
+
 </h:body>	  
 </html>

@@ -114,10 +114,14 @@
 
 				<f:facet name="footer">
 					<div align="center">
-						<p:commandButton value="Terminado" ajax="false"
-							action="#{PersonaBean.altaUsuario}" icon="ui-icon-check"
-							style="width: 300px;margin:auto;" validateClient="true"
+						<p:commandButton value="Terminado" 
+							ajax="false"
+							action="#{PersonaBean.altaUsuario}" 
+							icon="ui-icon-check"
+							style="width: 300px;margin:auto;" 
+							validateClient="true"
 							update="errorReg"
+							
 							
 							/>
 <!-- 							onclick="PF('esperaAlta').show();"
@@ -126,7 +130,9 @@
 			</h:panelGrid>			
 		</h:form>
 	</p:panelGrid>
-	
+	<h:outputScript rendered="#{PersonaBean.errorLogin}">
+    	alert("Usuario ya registrado!");
+	</h:outputScript>
 	
 			<!-- <p:confirmDialog
 				message="Aguarde un momento. Se estan registrando sus datos..."

@@ -128,6 +128,19 @@ public class EstacionHJPADAO implements IEstacionDAO {
 		}
 		return auxList; 
 	}
+
+	@Override
+	public List<Estacion> recuperarEstacionesOperativas() {
+		em = emf.createEntityManager();
+		Query q = em.createQuery("from Estacion e where e.eliminado = '"+false+"' and e.estado='Operativa'") ;
+		@SuppressWarnings("unchecked")
+		List<Estacion> resultList = Collections.checkedList(q.getResultList(), Estacion.class);
+		System.out.println("Busque estaciones");
+		for (Estacion est : resultList){
+			System.out.println("Estacion: "+est.getNombre()+"\n");
+		}
+		return resultList;
+	}
 	
 
 }

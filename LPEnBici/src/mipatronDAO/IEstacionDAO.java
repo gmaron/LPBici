@@ -13,6 +13,7 @@ public interface IEstacionDAO {
 	public Estacion recuperarEstacion(Long id);
 	public void eliminarEstacionLogica(Estacion estacion);
 	public List<Estacion> recuperarEstacionesNoEliminadas();
+	public List<Estacion> recuperarEstacionesOperativas();
 	public Estacion recuperarEstacionNombre(String nombre);
 	public List<Bicicleta> listarBicicletasEstacion(Long idEstacion);
 	
