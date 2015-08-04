@@ -104,7 +104,7 @@
 						style="width:150px">
 						<f:selectItem itemLabel="Seleccionar" itemValue=""
 							noSelectionOption="true" />
-						<f:selectItems value="#{EstacionBean.estacionesNoEliminadasMap}" />
+						<f:selectItems value="#{EstacionBean.estacionesConEstacionamientoLibre}" />
 					</p:selectOneMenu>
 
 
@@ -112,8 +112,8 @@
 					
 
 					<h:outputText value="Denuncia: " />
-					<p:inputTextarea value="#{PersonaBean.denuncia.comentario}"/>
-
+					<p:inputTextarea id ="comentarioDenuncia" value="#{PersonaBean.denuncia.comentario}"/>
+					<p:watermark for="comentarioDenuncia" value="Ingrese aquí su denuncia (En caso de ser necesario)" id="watermark" />
 					<p:commandButton value="Aceptar" ajax="false" id="aceptar"
 						action="#{PersonaBean.devolverBicicleta}" icon="ui-icon-check"
 						validateClient="true" />

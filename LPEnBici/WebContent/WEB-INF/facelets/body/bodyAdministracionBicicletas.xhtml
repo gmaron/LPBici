@@ -100,10 +100,10 @@
 					<h:outputText value="Ubicacion actual: " />
 					<!-- 						<h:inputText value="#{BicicletaBean.bicicletaSeleccionada.ubicacionActual}"/> -->
 					<p:selectOneMenu required="true" id="estacion"
-						value="#{BicicletaBean.bicicleta.ubicacionActual}"
+						value="#{BicicletaBean.ubicacion_nueva}"
 						style="width:150px">
 						<!-- <f:selectItem itemLabel="Seleccionar" itemValue="" noSelectionOption="true" /> -->
-						<f:selectItems value="#{EstacionBean.estacionesNoEliminadasMap}" />
+						<f:selectItems value="#{EstacionBean.estacionesModificar(BicicletaBean.bicicletaSeleccionada)}" />
 					</p:selectOneMenu>
 
 					<h:outputText value="Estado actual: " />

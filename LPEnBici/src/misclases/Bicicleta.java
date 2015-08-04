@@ -17,7 +17,7 @@ public class Bicicleta {
 	private String ubicacionActual;	
 	
 	private boolean alquilada; 
-	
+		
 	boolean eliminado;
 	
 	@Id @GeneratedValue

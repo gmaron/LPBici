@@ -23,6 +23,7 @@ import misclases.Administrador;
 import misclases.Bicicleta;
 import misclases.Denuncia;
 import misclases.Estacion;
+import misclases.Estado;
 import misclases.RegistroAlquiler;
 import misclases.Usuario;
 import misservlets.Emailer;
@@ -73,8 +74,7 @@ public class PersonaBean {
     private boolean modUsr = false;
     
     
-    
-    
+
 	public boolean isRegistroExitoso() {
 		return registroExitoso;
 	}
@@ -106,29 +106,39 @@ public class PersonaBean {
 	
 	
 	public String altaUsuario(){
-		//System.out.println("email: "+this.email+" | "+"pass: "+this.pass);
+
 		Usuario usuario = new Usuario(); 
 		this.esperarRegistro = true;
+		Administrador admin = (Administrador) f.getAdministradorDAO().recuperarAdministrador(usr.getEmail());
+		
+		if ((admin != null)){
+			return "FracasoRegistro";
+		}
+		
 		String password_generada = UUID.randomUUID().toString().substring(0, 8);
 		usuario = (Usuario) f.getUsuarioDAO().recuperarUsuario(usr.getEmail());
+		
 		if (usuario == null){
 			usr.setPassword(password_generada);
 			System.out.println("Fecha de nacimiento: "+usr.getFechaNacimiento());
 			String fecha_aux = convertirFecha(usr.getFechaNacimiento());
 			usr.setFechaNacimiento(fecha_aux);
+			usr.setHabilitado(true);
 			f.getUsuarioDAO().guardarUsuario(usr);
 			this.enviarContrasena();
 			this.usr = new Usuario();
 			this.esperarRegistro = false;
 			this.registroExitoso = true;
-//			RequestContext.getCurrentInstance().execute("PF('esperaAlta').hide();");			
-//			RequestContext.getCurrentInstance().execute("PF('exitoAlta').show();");			
-			return null;
+			
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "What we do in life", "SE REGISTRO DE MANERA CORRECTA");
+	        RequestContext.getCurrentInstance().showMessageInDialog(message);	
+			
+	        return null;
 			//return "ExitoRegistro";
 		}
-		else{			
-//			RequestContext.getCurrentInstance().execute("PF('esperaAlta').hide();");
-//			RequestContext.getCurrentInstance().execute("PF('errorAlta').show();");
+		else{		
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "What we do in life", "SE REGISTRO DE MANERA CORRECTA");
+	        RequestContext.getCurrentInstance().showMessageInDialog(message);	
 			this.usr = new Usuario();
 			this.errorLogin = true;
 			return null;
@@ -227,7 +237,7 @@ public class PersonaBean {
 	public String login(){
 		System.out.println("email: "+this.email+" | "+"pass: "+this.pass);
 		Usuario usuario = new Usuario(); 
-		usuario = (Usuario) f.getUsuarioDAO().recuperarUsuarioNoEliminado(this.email);
+		usuario = (Usuario) f.getUsuarioDAO().recuperarUsuarioNoEliminadoHabilitado(this.email);
 		if (usuario == null){
 			Administrador admin = new Administrador();
 			admin = (Administrador) f.getAdministradorDAO().recuperarAdministrador(this.email);
@@ -296,28 +306,80 @@ public class PersonaBean {
 		
 		System.out.println("alquilerSeleccionado.estacionEntrada.nombre: "+alquilerSeleccionado.getNombreEstacionEntrada());
 		
-		Estacion est = f.getEstacionDAO().recuperarEstacionNombre(alquilerSeleccionado.getNombreEstacionEntrada());
-		alquilerSeleccionado.setEstacionEntrada(est);
-//		est.setCantBiciDisponible(est.getCantBiciDisponible()+1);
-//		est.setCantEstacionamientoLibre(est.getCantEstacionamientoLibre()-1);
-		Bicicleta b = alquilerSeleccionado.getBicicleta();
-		if  (est.estacionarBicicleta(b,alquilerSeleccionado.getEstacionSalida())){
-			alquilerSeleccionado.getEstacionSalida().getListaBici().remove(b);							
-		}	
+		Estacion estacion_entrada = f.getEstacionDAO().recuperarEstacionNombre(alquilerSeleccionado.getNombreEstacionEntrada());
 		
-		b.setAlquilada(false);
-		b.setUbicacionActual(est.getNombre());
-		
-		denuncia.setBicicleta(b);
-		denuncia.setUsuarioDenuncia(usr);
-		
-		f.getDenunciaDAO().guardarDenuncia(denuncia);
-		//f.getEstacionDAO().modificarEstacion(alquilerSeleccionado.getEstacionSalida());
-		//f.getEstacionDAO().modificarEstacion(est);
-		//f.getBicicletaDAO().modificarBicicleta(b); -- BORRE ESTO, CREO QUE ESTA DE MAS
-		f.getRegAlquilerDAO().modificarRegistroAlquiler(alquilerSeleccionado);
+		if (estacion_entrada.getCantEstacionamientoLibre() > 0){
+			
+//			alquilerSeleccionado.setEstacionEntrada(est);
+			
+			Bicicleta b = alquilerSeleccionado.getBicicleta();
+			
+			//Analizo la denuncia
+			String st = denuncia.getComentario();
+			st.replaceAll("\\s+","");
+			
+			if (!st.isEmpty()){
+				
+				denuncia.setBicicleta(b);
+				denuncia.setUsuarioDenuncia(usr);
+				
+				
+				/*AGREGAR EL ESTADO DE DENUNCIADA POR PARTE DEL USUARIO*/
+				
 
-		return null;
+				f.getDenunciaDAO().guardarDenuncia(denuncia);
+				b.setEstado("Denunciada");
+				b.getHistorialEstado().add(new Estado(b.getEstado(), dameFecha()));
+				
+			}
+			
+			
+			
+			
+			
+			//Si la estacion de entrada != estacion salida
+			if (!estacion_entrada.getNombre().equals(b.getUbicacionActual())){
+				Estacion estacion_salida = f.getEstacionDAO().recuperarEstacionNombre(b.getUbicacionActual());
+				
+				estacion_salida.getListaBici().remove(b);
+				estacion_salida.setCantEstacionamientoLibre(estacion_salida.getCantEstacionamientoLibre()+1);
+				estacion_salida.setCantBiciDisponible(estacion_salida.getCantBiciDisponible()-1);
+				f.getEstacionDAO().modificarEstacion(estacion_salida);
+				
+				estacion_entrada.getListaBici().add(b);
+				estacion_entrada.setCantEstacionamientoLibre(estacion_entrada.getCantEstacionamientoLibre()-1);
+				if (b.getEstado().equals("Apta para el uso")){
+					estacion_entrada.setCantBiciDisponible(estacion_entrada.getCantBiciDisponible()+1);
+				}
+				
+			}else{
+				estacion_entrada.setCantEstacionamientoLibre(estacion_entrada.getCantEstacionamientoLibre()-1);
+				if (b.getEstado().equals("Apta para el uso")){
+					estacion_entrada.setCantBiciDisponible(estacion_entrada.getCantBiciDisponible()+1);
+				}
+			}
+			
+			
+//			if  (est.estacionarBicicleta(b,alquilerSeleccionado.getEstacionSalida())){
+//				
+//				alquilerSeleccionado.getEstacionSalida().getListaBici().remove(b);	
+//				
+//				//actualizo estacion de salida
+//				f.getEstacionDAO().modificarEstacion(alquilerSeleccionado.getEstacionSalida());
+//			}
+
+			b.setAlquilada(false);
+			b.setUbicacionActual(estacion_entrada.getNombre());
+			f.getRegAlquilerDAO().modificarRegistroAlquiler(alquilerSeleccionado);
+			f.getEstacionDAO().modificarEstacion(estacion_entrada);
+
+			f.getBicicletaDAO().modificarBicicleta(b); 
+
+			
+			denuncia.setComentario("");
+			return "ExitoDevolucion";
+		}
+		return "FracasoDevolucion";
 	}
 	
 	public Usuario getUsr() {

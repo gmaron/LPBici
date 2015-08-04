@@ -28,6 +28,9 @@ public class BicicletaBean {
 	private List<Denuncia> denunciasBicicletas;
 	private List<Denuncia> denunciasFiltradas;
 	
+	
+	private String ubicacion_nueva;
+	
 	EstacionBean est = new EstacionBean();
 	
 	public BicicletaBean(){
@@ -51,8 +54,6 @@ public class BicicletaBean {
 			Estacion est = f.getEstacionDAO().recuperarEstacionNombre(bicicleta.getUbicacionActual());
 			est.agregarBicicleta(bicle);
 			
-//			est.setCantBiciDisponible(est.getCantBiciDisponible()+1);
-//			est.getListaBici().add(bicle);			
 			
 			System.out.println("Guardo la bici con patente: "+bicicleta.getPatente()+" en la estacion: "+est.getNombre());
 			f.getEstacionDAO().modificarEstacion(est);
@@ -66,18 +67,61 @@ public class BicicletaBean {
 	}
 	
 	public String ModBicicleta(){		
-		/* 
-		 * Hay que ver si se modifico la Estacion, para linkearla a la nueva
-		 * */		
+
+		Bicicleta bici = (Bicicleta) f.getBicicletaDAO().recuperarBicicletaPatente(bicicletaSeleccionada.getPatente());
+
+		//si no es null quiere decir que la bicicleta existe por esa patente
+		if (bici != null){
+			//me fijo que no sea la misma bicicleta
+			//si da distinto quiere decir quiero hacer una bicicleta melliza
+			if (!bici.getId().equals(bicicletaSeleccionada.getId()))
+				return "BicicletaFracasoModificada";
+		}		
 		int tam = bicicletaSeleccionada.getHistorialEstado().size();
+		Estacion estacion_salida = f.getEstacionDAO().recuperarEstacionNombre(bicicletaSeleccionada.getUbicacionActual());
+
 		if (tam > 0){
 			Estado estaAnt = bicicletaSeleccionada.getHistorialEstado().get(tam - 1);
 			if (!estaAnt.getEstado().equals(bicicletaSeleccionada.getEstado())){			
-				bicicletaSeleccionada.getHistorialEstado().add(new Estado(bicicletaSeleccionada.getEstado(), dameFecha()));			
+
+				//Guarda un nuevo estado al historial
+				bicicletaSeleccionada.getHistorialEstado().add(new Estado(bicicletaSeleccionada.getEstado(), dameFecha()));
+				
+				
+				//Si el estado actual es Apta para el uso
+				if (bicicletaSeleccionada.getEstado().equals("Apta para el uso")){
+					estacion_salida.setCantBiciDisponible(estacion_salida.getCantBiciDisponible()+1);
+				}
+				else{
+					if (estaAnt.equals("Apta para el uso")){
+						//quiere decir que paso a estar en desuso, denunciada o en reparacion
+						estacion_salida.setCantBiciDisponible(estacion_salida.getCantBiciDisponible()-1);
+					}
+				}
+
+
 			}	
+
+			if (!this.ubicacion_nueva.equals(bicicletaSeleccionada.getUbicacionActual())){
+				Estacion nueva = f.getEstacionDAO().recuperarEstacionNombre(ubicacion_nueva);
+
+				bicicletaSeleccionada.setUbicacionActual(ubicacion_nueva);
+
+				estacion_salida.getListaBici().remove(bicicletaSeleccionada);
+				estacion_salida.setCantEstacionamientoLibre(estacion_salida.getCantEstacionamientoLibre()+1);
+				estacion_salida.setCantBiciDisponible(estacion_salida.getCantBiciDisponible()-1);
+				
+
+				nueva.agregarBicicleta(bicicletaSeleccionada);
+				f.getEstacionDAO().modificarEstacion(nueva);
+			}
+			
+			
+			f.getEstacionDAO().modificarEstacion(estacion_salida);
 			f.getBicicletaDAO().modificarBicicleta(bicicletaSeleccionada);
+
 			bicicletaSeleccionada = null;		
-			return "BicicletaExitoModificada";
+			return "BicicletaExitoModificada";		
 		}
 		else{
 			return "BicicletaFracasoModificada";
@@ -169,6 +213,15 @@ public class BicicletaBean {
 		Date fechaActual = new Date();
 		DateFormat formatoFecha = new SimpleDateFormat("HH:mm-dd/MM/yyyy"); 		
 		return formatoFecha.format(fechaActual);
+	}
+
+	public String getUbicacion_nueva() {
+		ubicacion_nueva = bicicletaSeleccionada.getUbicacionActual();
+		return ubicacion_nueva;
+	}
+
+	public void setUbicacion_nueva(String ubicacion_nueva) {
+		this.ubicacion_nueva = ubicacion_nueva;
 	}
 	
 	

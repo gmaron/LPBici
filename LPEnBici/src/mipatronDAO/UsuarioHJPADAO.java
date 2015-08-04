@@ -124,6 +124,7 @@ public class UsuarioHJPADAO implements IUsuarioDAO{
 		try {
 			q = em.createQuery("FROM Usuario u WHERE (u.email ='"+email+"' and u.eliminado='"+false+"')");
 			usr = (Usuario) q.getSingleResult();
+			
 		} catch (Exception e) {
 			usr = null;
 			//e.printStackTrace();
@@ -132,6 +133,27 @@ public class UsuarioHJPADAO implements IUsuarioDAO{
 		return usr;
 	}
 
+	
+	@Override
+	public Usuario recuperarUsuarioNoEliminadoHabilitado(String email) {
+		em = emf.createEntityManager();
+		//Usuario usr = em.find(Usuario.class, id);
+		
+		Usuario usr = null;
+		Query q ;
+		try {
+			q = em.createQuery("FROM Usuario u WHERE (u.email ='"+email+"' and u.eliminado='"+false+"')");
+			usr = (Usuario) q.getSingleResult();
+			if (!usr.isHabilitado())
+				usr = null;
+		} catch (Exception e) {
+			usr = null;
+			//e.printStackTrace();
+		}
+		em.close();
+		return usr;
+	}
+	
 	
 
 }

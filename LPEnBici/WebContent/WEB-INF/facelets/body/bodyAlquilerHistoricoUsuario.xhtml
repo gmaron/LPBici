@@ -80,10 +80,10 @@
 				<h:outputText value="#{alquiler.estacionSalida.nombre}" />
 			</p:column>
 			
-			<p:column filterBy="#{alquiler.estacionEntrada.nombre}"
+			<p:column filterBy="#{alquiler.nombreEstacionEntrada}"
 				headerText="Estacion de entrada" filterMatchMode="contains"
-				sortBy="#{alquiler.estacionEntrada.nombre}">
-				<h:outputText value="#{alquiler.estacionEntrada.nombre}" />
+				sortBy="#{alquiler.nombreEstacionEntrada}">
+				<h:outputText value="#{alquiler.nombreEstacionEntrada}" />
 			</p:column>			
 
 			<!-- <p:column filterBy="#{bicicleta.estado}" headerText="Estado actual"

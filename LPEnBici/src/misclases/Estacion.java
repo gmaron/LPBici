@@ -26,6 +26,7 @@ public class Estacion {
 	private List<Estado> historialEstado;
 		
 	@OneToMany (cascade = {CascadeType.MERGE,CascadeType.REMOVE},fetch=FetchType.EAGER) 
+	@JoinColumn (name="Estacion_id")
  	private List<Bicicleta> listaBici; //el length = cantidad de bicicletas
 		
 	public Estacion(String nombre, String lat, String lon,
@@ -59,7 +60,8 @@ public class Estacion {
 	public Bicicleta dameBiciDisponible(){		 
 		if (this.cantBiciDisponible > 0){
 			for (Bicicleta b: this.listaBici){
-				if(!b.isAlquilada()){
+				//si hay una bici que no este eliminada & alquilada & que este apta para el uso
+				if((!b.isEliminado())&&(!b.isAlquilada())&&(b.getEstado().equals("Apta para el uso"))){
 					return b; 
 				}					
 			}			
@@ -73,18 +75,34 @@ public class Estacion {
 		this.cantBiciDisponible++;		
 	}
 	
-	public boolean estacionarBicicleta(Bicicleta bici,Estacion estSalida){
-		if (!this.nombre.equals(estSalida.getNombre())){
-			this.listaBici.add(bici);
-			this.cantEstacionamientoLibre--;
-			this.cantBiciDisponible++;
-			return true;
-		}else{
-			this.cantEstacionamientoLibre--;
-			this.cantBiciDisponible++;
-			return false;
-		}
-	}
+	
+//	//estacion de entrada
+//	public boolean estacionarBicicleta(Bicicleta bici,Estacion estSalida){
+//		//si la estacion de entrada es distinta a la de salida
+//		if (!this.nombre.equals(estSalida.getNombre())){
+//			
+//			//agrego una bicicleta a la estacion de entrada
+//			this.listaBici.add(bici);			
+//			this.cantEstacionamientoLibre--;
+//			
+//			//si esta denunciada no se suma para que este la bici disponible
+//			if (!bici.getEstado().equals("Denunciada")){
+//				this.cantBiciDisponible++;			
+//			}
+//
+//			return true;
+//			
+//			
+//		}else{			
+//			this.cantEstacionamientoLibre--;			
+//			//si esta denunciada no se suma para que este la bici disponible
+//			if (!bici.getEstado().equals("Denunciada")){
+//				this.cantBiciDisponible++;
+//			}
+//			
+//			return false;
+//		}
+//	}
 	
 	public void retirarBicicleta(){
 		this.cantEstacionamientoLibre++;
@@ -137,7 +155,6 @@ public class Estacion {
 	}
 	public void setEstado(String estado) {
 		this.estado = estado;
-		//this.historialEstado.add(new Estado(estado, dameFecha()));
 	}
 	public List<Bicicleta> getListaBici() {
 		return listaBici;

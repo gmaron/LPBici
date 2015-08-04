@@ -24,7 +24,9 @@ public class EstacionBean {
 	private List<Estacion> estacionesNoEliminadas = null;
 	
 	private Map<String , String> estacionesNoEliminadasMap = null;
-	
+	private Map<String , String> estacionesConEstacionamientoLibre = null;
+	private Map<String , String> estacionesModificar = null;
+
 	private List<Estacion> estacionesFiltradas;
 
 	private List<Bicicleta> bicicletasFiltradas;
@@ -37,6 +39,7 @@ public class EstacionBean {
 	private List<Bicicleta> bicicletasOperativas = new ArrayList<Bicicleta>();
 	
 	private List<Estacion> estacionesOperativas = new ArrayList<Estacion>();
+	
 	
 	public EstacionBean(){
 		
@@ -238,6 +241,46 @@ public class EstacionBean {
 
 	public void setEstacionesOperativas(List<Estacion> estacionesOperativas) {
 		this.estacionesOperativas = estacionesOperativas;
+	}
+
+
+	public Map<String, String> getEstacionesConEstacionamientoLibre() {
+		estacionesConEstacionamientoLibre = new HashMap<String, String>();
+		estacionesNoEliminadas =  f.getEstacionDAO().recuperarEstacionesNoEliminadas();		
+		for (Estacion est : estacionesNoEliminadas){
+			if (est.getCantEstacionamientoLibre()>0)
+				estacionesConEstacionamientoLibre.put(est.getNombre(),est.getNombre());		
+		}
+		
+		return estacionesConEstacionamientoLibre;
+	}
+
+
+	public void setEstacionesConEstacionamientoLibre(
+			Map<String, String> estacionesConEstacionamientoLibre) {
+		this.estacionesConEstacionamientoLibre = estacionesConEstacionamientoLibre;
+	}
+
+
+	public Map<String, String> getEstacionesModificar() {
+		return estacionesModificar;
+	}
+
+	
+	public Map<String, String> estacionesModificar (Bicicleta bici){
+		estacionesModificar = new HashMap<String, String>();
+		estacionesNoEliminadas =  f.getEstacionDAO().recuperarEstacionesNoEliminadas();		
+		for (Estacion est : estacionesNoEliminadas){
+			if ((est.getCantEstacionamientoLibre()>0)||(est.getNombre().equals(bici.getUbicacionActual())))
+				estacionesModificar.put(est.getNombre(),est.getNombre());
+		}
+		
+		return estacionesModificar;
+	}
+		
+	
+	public void setEstacionesModificar(Map<String, String> estacionesModificar) {
+		this.estacionesModificar = estacionesModificar;
 	}
 	
 	
