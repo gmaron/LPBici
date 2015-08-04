@@ -130,24 +130,39 @@
 			</h:panelGrid>			
 		</h:form>
 	</p:panelGrid>
-	<h:outputScript rendered="#{PersonaBean.errorLogin}">
-    	alert("Usuario ya registrado!");
-	</h:outputScript>
 	
-			<!-- <p:confirmDialog
+	
+		<h:outputScript rendered="#{PersonaBean.errorLogin}">
+    			alert("Usuario ya registrado!");
+		</h:outputScript>
+	
+	
+	
+	<!-- 
+			
+		<p:confirmDialog
 				message="Aguarde un momento. Se estan registrando sus datos..."
 				widgetVar="esperaAlta" global="true" showEffect="fade"
 				closable="false"
-				hideEffect="explode">
-			</p:confirmDialog>
+				hideEffect="explode"
+				rendered="#{PersonaBean.esperarRegistro}">
+	</p:confirmDialog>
+
+
+
+	<p:confirmDialog
+		message="Revise su casilla de correo para la contraseña"
+		widgetVar="exitoAlta" global="true" showEffect="fade"
+		hideEffect="explode"
+		rendered="#{PersonaBean.registroExitoso}">
+		<p:commandButton value="Ok" type="button"
+			styleClass="ui-confirmdialog-yes"
+			icon="ui-icon-check" />
+	</p:confirmDialog>
+			
+			
 	
-			<p:confirmDialog
-				message="Revise su casilla de correo para la contraseña"
-				widgetVar="exitoAlta" global="true" showEffect="fade"
-				hideEffect="explode">
-				<p:commandButton value="Ok" type="button" onclick="PF('exitoAlta').hide();"
-					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-			</p:confirmDialog>
+			
 			
 			<p:confirmDialog
 				message="Error. No se pudo registrar el usuario."

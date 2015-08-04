@@ -3,6 +3,7 @@ si la bicicleta tiene una denuncia, no tiene que aparecer en la lista de bicicle
 	-> cuando el administrador la pone apta para el uso, ahi recien puede pasar a estar disponible
 	-> sin embargo va a ocupar un estacionamiento
 	-> posiblemente se agregue un campo de denunciada para poder distinguirla
-emprolijar las estadisticas 
-el tema del mapa con las estaciones
-los mensajes de error
+
+emprolijar las estadisticas ----------------------HECHO
+el tema del mapa con las estaciones --------------HECHO
+los mensajes de error	--------------------------SOLO EN EL INDEX.XHTML

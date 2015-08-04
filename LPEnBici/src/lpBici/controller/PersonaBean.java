@@ -67,9 +67,38 @@ public class PersonaBean {
 
     
     private boolean errorLogin = false;
+    private boolean esperarRegistro = false;
+    private boolean registroExitoso = false;
     private boolean modAdmin = false;
     private boolean modUsr = false;
     
+    
+    
+    
+	public boolean isRegistroExitoso() {
+		return registroExitoso;
+	}
+
+
+
+	public void setRegistroExitoso(boolean registroExitoso) {
+		this.registroExitoso = registroExitoso;
+	}
+
+
+
+	public boolean isEsperarRegistro() {
+		return esperarRegistro;
+	}
+
+
+
+	public void setEsperarRegistro(boolean esperarRegistro) {
+		this.esperarRegistro = esperarRegistro;
+	}
+
+
+
 	public PersonaBean(){
 		
 	}
@@ -79,6 +108,7 @@ public class PersonaBean {
 	public String altaUsuario(){
 		//System.out.println("email: "+this.email+" | "+"pass: "+this.pass);
 		Usuario usuario = new Usuario(); 
+		this.esperarRegistro = true;
 		String password_generada = UUID.randomUUID().toString().substring(0, 8);
 		usuario = (Usuario) f.getUsuarioDAO().recuperarUsuario(usr.getEmail());
 		if (usuario == null){
@@ -89,10 +119,12 @@ public class PersonaBean {
 			f.getUsuarioDAO().guardarUsuario(usr);
 			this.enviarContrasena();
 			this.usr = new Usuario();
+			this.esperarRegistro = false;
+			this.registroExitoso = true;
 //			RequestContext.getCurrentInstance().execute("PF('esperaAlta').hide();");			
 //			RequestContext.getCurrentInstance().execute("PF('exitoAlta').show();");			
-			//return null;
-			return "ExitoRegistro";
+			return null;
+			//return "ExitoRegistro";
 		}
 		else{			
 //			RequestContext.getCurrentInstance().execute("PF('esperaAlta').hide();");
@@ -488,7 +520,7 @@ public class PersonaBean {
 
 		public void setErrorLogin(boolean errorLogin) {
 			this.errorLogin = errorLogin;
-		}
+		}	
 		
 		
 }
