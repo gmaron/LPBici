@@ -60,7 +60,11 @@ public class PersonaBean {
     private RegistroAlquiler alquilerSeleccionado;
     private Denuncia denuncia = new Denuncia();
 	
+    private List<RegistroAlquiler> listaAlquileresHistoricos;
     
+    private List<RegistroAlquiler> listaAlquileresActivosAdmin;
+    private List<RegistroAlquiler> listaAlquileresHistoricosAdmin;
+
     
     private boolean errorLogin = false;
     private boolean modAdmin = false;
@@ -278,7 +282,7 @@ public class PersonaBean {
 		f.getDenunciaDAO().guardarDenuncia(denuncia);
 		//f.getEstacionDAO().modificarEstacion(alquilerSeleccionado.getEstacionSalida());
 		//f.getEstacionDAO().modificarEstacion(est);
-		f.getBicicletaDAO().modificarBicicleta(b);
+		//f.getBicicletaDAO().modificarBicicleta(b); -- BORRE ESTO, CREO QUE ESTA DE MAS
 		f.getRegAlquilerDAO().modificarRegistroAlquiler(alquilerSeleccionado);
 
 		return null;
@@ -398,6 +402,34 @@ public class PersonaBean {
 
 	public void setListaAlquileres(List<RegistroAlquiler> listaAlquileres) {
 		this.listaAlquileres = listaAlquileres;
+	}
+
+	
+	public List<RegistroAlquiler> getListaAlquileresHistoricos() {
+		listaAlquileresHistoricos = f.getRegAlquilerDAO().recuperarAlquilerHistoricoUsuario(usr);
+		return listaAlquileresHistoricos;
+	}
+
+	public void setListaAlquileresHistoricos(List<RegistroAlquiler> listaAlquileresHistoricos) {
+		this.listaAlquileresHistoricos = listaAlquileresHistoricos;
+	}
+
+	public List<RegistroAlquiler> getListaAlquileresActivosAdmin() {
+		listaAlquileresActivosAdmin = f.getRegAlquilerDAO().recuperarAlquileres("Activo");
+		return listaAlquileresActivosAdmin;
+	}
+
+	public void setListaAlquileresActivosAdmin(List<RegistroAlquiler> listaAlquileresActivosAdmin) {
+		this.listaAlquileresActivosAdmin = listaAlquileresActivosAdmin;
+	}
+
+	public List<RegistroAlquiler> getListaAlquileresHistoricosAdmin() {
+		listaAlquileresHistoricosAdmin = f.getRegAlquilerDAO().recuperarAlquileres("Historico");
+		return listaAlquileresHistoricosAdmin;
+	}
+
+	public void setListaAlquileresHistoricosAdmin(List<RegistroAlquiler> listaAlquileresHistoricosAdmin) {
+		this.listaAlquileresHistoricosAdmin = listaAlquileresHistoricosAdmin;
 	}
 
 

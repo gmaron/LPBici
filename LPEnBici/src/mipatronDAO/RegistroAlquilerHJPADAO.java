@@ -101,5 +101,40 @@ public class RegistroAlquilerHJPADAO implements IRegistroAlquilerDAO {
 		em.close();
 		return resultList;
 	}
+	
+	@Override
+	public List<RegistroAlquiler> recuperarAlquilerHistoricoUsuario(Usuario usr){
+		em = emf.createEntityManager();
+		List<RegistroAlquiler> resultList = new ArrayList<RegistroAlquiler>();
+		Query q = em.createQuery("from RegistroAlquiler r where r.fechaEntrada is not null");
+		System.out.println("Buscando registros por usuarios");
+		@SuppressWarnings("unchecked")
+		List<RegistroAlquiler> listAux = Collections.checkedList(q.getResultList(), RegistroAlquiler.class);
+		for (RegistroAlquiler ra : listAux){
+			if (ra.getUsuarioUso().getEmail().equals(usr.getEmail())){
+				resultList.add(ra);
+				System.out.println("Usuario: "+ra.getUsuarioUso().getNombre());
+			}
+		}
+		
+		em.close();
+		return resultList;
+	}
+	
+	@Override
+	public List<RegistroAlquiler> recuperarAlquileres(String tipo){
+		em = emf.createEntityManager();
+		Query q;
+		if (tipo.equals("Activo")){
+			q = em.createQuery("from RegistroAlquiler r where r.fechaEntrada ="+null) ;
+		}else{
+			q = em.createQuery("from RegistroAlquiler r where r.fechaEntrada is not null");
+		}				
+		@SuppressWarnings("unchecked")
+		List<RegistroAlquiler> resultList = Collections.checkedList(q.getResultList(), RegistroAlquiler.class);		
+		em.close();
+		return resultList;
+	}
+	
 
 }

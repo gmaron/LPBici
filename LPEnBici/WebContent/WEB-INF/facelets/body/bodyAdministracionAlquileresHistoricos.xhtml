@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui"> 
+    <h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<style type="text/css">
+	.form .ui-button-text {
+		color: white !important;
+		font: 16px sans-serif;
+		background-color: #5CB85C !important;
+	}
+	
+	.form .ui-panelgrid tr, .ui-panelgrid td {
+		border: 0px !important;		
+	}
+	
+</style>
+
+
+</h:head>
+<h:body>
+
+<h:form id="form" styleClass="form">
+		<p:growl id="msgs" showDetail="true" />
+
+		<p:dataTable var="alquiler"
+			value="#{PersonaBean.listaAlquileresHistoricosAdmin}"
+			widgetVar="tablaAlquileres"
+			emptyMessage="No se encontraron alquileres con ese criterio."
+			filteredValue="#{PersonaBean.alquileresFiltrados}">
+
+
+			<f:facet name="header">
+				<p:outputPanel>
+					<h:outputText value="Buscar en todos los campos:" />
+					<p:inputText id="globalFilter"
+						onkeyup="PF('tablaAlquileres').filter()" style="width:150px"
+						placeholder="Ingrese texto..." />
+				</p:outputPanel>
+			</f:facet>
+
+			<p:column filterBy="#{alquiler.bicicleta.patente}" headerText="Patente"
+				filterMatchMode="contains" sortBy="#{alquiler.bicicleta.patente}">
+				<h:outputText value="#{alquiler.bicicleta.patente}" />
+			</p:column>
+
+			<p:column filterBy="#{alquiler.fechaSalida}"
+				headerText="Fecha de salida" filterMatchMode="contains"
+				sortBy="#{alquiler.fechaSalida}">
+				<h:outputText value="#{alquiler.fechaSalida}" />
+			</p:column>
+
+
+			<p:column filterBy="#{alquiler.horaSalida}"
+				headerText="Hora de salida" filterMatchMode="contains"
+				sortBy="#{alquiler.horaSalida}">
+				<h:outputText value="#{alquiler.horaSalida}" />
+			</p:column>
+			
+			<p:column filterBy="#{alquiler.fechaEntrada}"
+				headerText="Fecha de entrada" filterMatchMode="contains"
+				sortBy="#{alquiler.fechaEntrada}">
+				<h:outputText value="#{alquiler.fechaEntrada}" />
+			</p:column>
+
+
+			<p:column filterBy="#{alquiler.horaEntrada}"
+				headerText="Hora de entrada" filterMatchMode="contains"
+				sortBy="#{alquiler.horaEntrada}">
+				<h:outputText value="#{alquiler.horaEntrada}" />
+			</p:column>
+			
+			<p:column filterBy="#{alquiler.estacionSalida.nombre}"
+				headerText="Estacion de salida" filterMatchMode="contains"
+				sortBy="#{alquiler.estacionSalida.nombre}">
+				<h:outputText value="#{alquiler.estacionSalida.nombre}" />
+			</p:column>
+			
+			<p:column filterBy="#{alquiler.estacionEntrada.nombre}"
+				headerText="Estacion de entrada" filterMatchMode="contains"
+				sortBy="#{alquiler.estacionEntrada.nombre}">
+				<h:outputText value="#{alquiler.estacionEntrada.nombre}" />
+			</p:column>	
+			
+			<p:column filterBy="#{alquiler.usuarioUso.email}"
+				headerText="Usuario" filterMatchMode="contains"
+				sortBy="#{alquiler.usuarioUso.email}">
+				<h:outputText value="#{alquiler.usuarioUso.email}" />
+				<p:commandButton update=":form:detalleUsuario"
+					oncomplete="PF('usuarioDialog').show()" icon="ui-icon-search"
+					title="View">
+					<f:setPropertyActionListener value="#{alquiler.usuarioUso}"
+						target="#{PersonaBean.usuarioSeleccionado}" />
+				</p:commandButton>
+			</p:column>
+
+			<!-- <p:column filterBy="#{bicicleta.estado}" headerText="Estado actual"
+				filterMatchMode="contains" sortBy="#{bicicleta.estado}">
+				<h:outputText value="#{bicicleta.estado}" />
+			</p:column> -->
+
+			<!--  FALTA ULTIMA MODIFICACION Y HISTORIAL DE DENUNCIAS -->
+
+
+			<!-- <p:column style="width:32px;text-align: center">
+				<p:commandButton update=":form:detalleAlquiler"
+					oncomplete="PF('alquilerDialog').show()" value= "Devolver">
+					<f:setPropertyActionListener value="#{alquiler}"
+						target="#{PersonaBean.alquilerSeleccionado}" />
+				</p:commandButton>
+			</p:column>  -->
+		</p:dataTable>
+		
+		<p:dialog header="Información Usuario" widgetVar="usuarioDialog"
+			modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+
+			<p:outputPanel id="detalleUsuario" style="text-align:center;">
+
+				<p:panelGrid columns="2"
+					rendered="#{not empty PersonaBean.usuarioSeleccionado}"
+					columnClasses="label,value">
+					<f:facet name="header">
+						<!--<p:graphicImage name="demo/images/car/#{dtFilterView.selectedCar.brand}-big.gif"/>-->
+					</f:facet>
+					<h:outputText value="Nombre: " />
+					<h:outputText value="#{PersonaBean.usuarioSeleccionado.nombre}" />
+
+					<h:outputText value="Apellido: " />
+					<h:outputText value="#{PersonaBean.usuarioSeleccionado.apellido}" />
+
+					<h:outputText value="DNI: " />
+					<h:outputText value="#{PersonaBean.usuarioSeleccionado.dni}" />
+
+					<h:outputText value="Email: " />
+					<h:outputText value="#{PersonaBean.usuarioSeleccionado.email}" />
+
+					<h:outputText value="Sexo: " />
+					<h:outputText value="#{PersonaBean.usuarioSeleccionado.sexo}" />
+
+					<h:outputText value="Domicilio: " />
+					<h:outputText value="#{PersonaBean.usuarioSeleccionado.domicilio}" />
+
+					<h:outputText value="Fecha de Nacimiento: " />
+					<h:outputText value="#{PersonaBean.usuarioSeleccionado.fechaNacimiento}" />
+					
+					<!-- <p:calendar id="fechaNac"
+						value="#{PersonaBean.usuarioSeleccionado.fechaNacimiento}"
+						navigator="true" maxdate="#{PersonaBean.fechaActual}"
+						effect="fold" required="true">
+						<f:convertDateTime pattern="dd/MM/yy" />
+					</p:calendar> -->
+
+					<h:outputText value="Estado" />
+					<h:outputText value="#{PersonaBean.usuarioSeleccionado.habilitado}" />
+					
+					<!-- <p:selectOneRadio
+						value="#{PersonaBean.usuarioSeleccionado.habilitado}"
+						required="true">
+						<f:selectItem itemLabel="Habilitado" itemValue="true" />
+						<f:selectItem itemLabel="Deshabilitado" itemValue="false" />
+					</p:selectOneRadio> -->
+
+
+
+					<!-- <p:commandButton value="Modificar" ajax="false"
+							id="modificar"
+							action="#{PersonaBean.AdminmodUsuario}" icon="ui-icon-check"
+							validateClient="true"
+							onclick="PF('modUsuarioEspera').show();"						
+							/>
+ -->
+					<!-- <p:commandButton value="Modificar" ajax="false" id="modificar"
+						action="#{PersonaBean.AdminmodUsuario}" icon="ui-icon-check"
+						validateClient="true" />
+ -->
+					<!-- <p:commandButton value="Eliminar" ajax="false" id="eliminar"
+						action="#{PersonaBean.AdminEliminarUsuario}" icon="ui-icon-check"
+						validateClient="true" onclick="PF('delUsuarioEspera').show();" /> -->
+
+					<!-- <p:commandButton value="Eliminar" ajax="false" id="eliminar"
+						action="#{PersonaBean.AdminEliminarUsuario}" icon="ui-icon-check"
+						validateClient="true" /> -->
+
+				</p:panelGrid>
+
+			</p:outputPanel>
+		</p:dialog>
+		
+		
+
+		<p:dialog header="Devolucion de Bicicleta"
+			widgetVar="alquilerDialog" modal="true" showEffect="fade"
+			hideEffect="fade" resizable="false">
+
+			<p:outputPanel id="detalleAlquiler" style="text-align:center;">
+
+				<p:panelGrid columns="2" rendered="#{not empty PersonaBean.alquilerSeleccionado}"
+					columnClasses="label,value">
+					
+					<h:outputText value="Patente: " />
+					<h:outputText value="#{PersonaBean.alquilerSeleccionado.bicicleta.patente}" />
+
+
+					<p:outputLabel for="estacion" value="Estacion: " />
+					<p:selectOneMenu required="true" id="estacion"
+						value="#{PersonaBean.alquilerSeleccionado.nombreEstacionEntrada}"
+						style="width:150px">
+						<f:selectItem itemLabel="Seleccionar" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItems value="#{EstacionBean.estacionesNoEliminadasMap}" />
+					</p:selectOneMenu>
+
+
+
+					
+
+					<h:outputText value="Denuncia: " />
+					<p:inputTextarea value="#{PersonaBean.denuncia.comentario}"/>
+
+					<p:commandButton value="Aceptar" ajax="false" id="aceptar"
+						action="#{PersonaBean.devolverBicicleta}" icon="ui-icon-check"
+						validateClient="true" />
+
+
+					<!-- <p:commandButton value="Modificar" ajax="false"
+							id="modificar"
+							action="#{PersonaBean.AdminmodUsuario}" icon="ui-icon-check"
+							validateClient="true"
+							onclick="PF('modUsuarioEspera').show();"						
+							/>
+ -->
+					<!-- <p:commandButton value="Modificar" ajax="false" id="modificar"
+						action="#{BicicletaBean.ModBicicleta}" icon="ui-icon-check"
+						validateClient="true" /> -->
+
+					<!-- <p:commandButton value="Eliminar" ajax="false" id="eliminar"
+						action="#{PersonaBean.AdminEliminarUsuario}" icon="ui-icon-check"
+						validateClient="true" onclick="PF('delUsuarioEspera').show();" /> -->
+
+					<!-- <p:commandButton value="Eliminar" ajax="false" id="eliminar"
+						action="#{BicicletaBean.EliminarBicicleta}" icon="ui-icon-check"
+						validateClient="true" /> -->
+				</p:panelGrid>
+
+			</p:outputPanel>
+		</p:dialog>
+
+
+	</h:form>
+
+	<!-- <p:confirmDialog
+						message="El usuario ha sido borrado satisfactoriamente."
+						widgetVar="delUsuarioExito" global="true" showEffect="fade"
+						hideEffect="explode">
+						<p:commandButton value="Ok" type="button"
+						onclick="PF('delUsuarioExito').hide();"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					</p:confirmDialog> -->
+
+	<p:confirmDialog
+		message="El usuario ha sido borrado satisfactoriamente."
+		widgetVar="delUsuarioExito" global="true" showEffect="fade"
+		hideEffect="explode">
+		<p:commandButton value="Ok" type="button"
+			styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+	</p:confirmDialog>
+
+
+	<p:confirmDialog message="El usuario esta siendo borrado."
+		widgetVar="delUsuarioEspera" global="true" showEffect="fade"
+		closable="false" hideEffect="explode">
+	</p:confirmDialog>
+
+
+	<p:confirmDialog message="El usuario esta siendo modificado."
+		widgetVar="modUsuarioEspera" global="true" showEffect="fade"
+		closable="false" hideEffect="explode">
+	</p:confirmDialog>
+
+	<!-- <p:confirmDialog
+						message="El usuario ha sido modificado satisfactoriamente."
+						widgetVar="modUsuarioExito" global="true" showEffect="fade"
+						closable="false" hideEffect="explode">
+						<p:commandButton value="Ok" type="button"
+							onclick="PF('modUsuarioExito').hide();"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					</p:confirmDialog> -->
+
+	<p:confirmDialog
+		message="El usuario ha sido modificado satisfactoriamente."
+		widgetVar="modUsuarioExito" global="true" showEffect="fade"
+		closable="false" hideEffect="explode">
+		<p:commandButton value="Ok" type="button"
+			styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+	</p:confirmDialog>
+
+
+
+
+</h:body>
+</html>

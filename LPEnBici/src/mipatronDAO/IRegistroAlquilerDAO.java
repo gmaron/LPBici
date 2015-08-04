@@ -13,4 +13,6 @@ public interface IRegistroAlquilerDAO {
 	public RegistroAlquiler recuperarRegistroAlquiler(Long id);
 	public void eliminarRegistroAlquilerLogica(RegistroAlquiler reg);
 	public List<RegistroAlquiler> recuperarAlquilerUsuario(Usuario usr);
+	public List<RegistroAlquiler> recuperarAlquilerHistoricoUsuario(Usuario usr);
+	public List<RegistroAlquiler> recuperarAlquileres(String tipo);
 }
