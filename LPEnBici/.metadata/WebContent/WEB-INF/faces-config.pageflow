@@ -1,32 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" name="PersonaBean" id="pf14351778070160" configfile="/LPEnBiciGrupo18/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="122" y="754" id="pf14357850635780" referenceLink="//@navigationRule.5/@fromViewId|" outlinks="pf14357850635781 pf14363723609780 pf14363723609781 pf14363723609783 pf14363794347770" inlinks="pf14363723609781" path="/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="122" y="754" id="pf14357850635780" referenceLink="//@navigationRule.5/@fromViewId|" outlinks="pf14357850635781 pf14363723609780 pf14363723609781 pf14363723609783 pf14387236587300" inlinks="pf14363723609781 pf14387236587300" path="/index.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="LoginUsuario.xhtml" x="338" y="178" id="pf14357850635785" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf14357850635781" path="/LoginUsuario.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="errorlogin" x="338" y="562" id="pf14363723609794" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf14363723609780" path="/errorlogin.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="errorlogin" x="338" y="562" id="pf14363723609794" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf14363723609780" path="/index.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="LoginAdministrador.xhtml" x="338" y="946" id="pf14363723609796" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" inlinks="pf14363723609783" path="/LoginAdministrador.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="perfilUsuario.xhtml" x="122" y="1234" id="pf143637264626710" referenceLink="//@navigationRule.7/@navigationCase.0/@toViewId|" outlinks="pf143637264626711" inlinks="pf143637264626711" path="/perfilUsuario.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="PerfilAdministrador.xhtml" x="122" y="1714" id="pf143637267507012" referenceLink="//@navigationRule.8/@fromViewId|" outlinks="pf143637267507013" path="/PerfilAdministrador.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="PerfilAdministrador.xhtml" x="338" y="1714" id="pf143637267507014" referenceLink="//@navigationRule.8/@navigationCase.0/@toViewId|" inlinks="pf143637267507013" path="PerfilAdministrador.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="ErrorRegistro.xhtml" x="338" y="1330" id="pf14363794347791" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf14363794347770" path="/ErrorRegistro.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="AdministracionUsr.xhtml" x="122" y="2098" id="pf14366421760010" referenceLink="//@navigationRule.6/@navigationCase.0/@toViewId|" outlinks="pf14366421760021 pf14366421886172" inlinks="pf14366421760021 pf14366421886172" path="/AdministracionUsr.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="perfilUsuario" x="122" y="2482" id="pf14366558721401" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" path="WEB-INF/NewFile.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="AltaBicicleta.xhtml" x="122" y="2866" id="pf14366578667772" referenceLink="//@navigationRule.10/@fromViewId|" outlinks="pf14366578667773 pf14368171008960" path="/AltaBicicleta.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="bicicleta.xhtml" x="338" y="2866" id="pf14366578667775" referenceLink="//@navigationRule.10/@navigationCase.0/@toViewId|" inlinks="pf14366578667773 pf14368171008960" path="AltaBicicleta.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="error.xhtml" x="122" y="3634" id="pf14366578667776" referenceLink="//@navigationRule.10/@navigationCase.0/@toViewId|" path="AltaBicicleta.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="perfilUsuario" x="122" y="2866" id="pf14366558721401" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" path="WEB-INF/NewFile.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="AltaBicicleta.xhtml" x="122" y="2482" id="pf14366578667772" referenceLink="//@navigationRule.10/@fromViewId|" outlinks="pf14366578667773 pf14368171008960" path="/AltaBicicleta.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="bicicleta.xhtml" x="338" y="2482" id="pf14366578667775" referenceLink="//@navigationRule.10/@navigationCase.0/@toViewId|" inlinks="pf14366578667773 pf14368171008960" path="AltaBicicleta.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="error.xhtml" x="122" y="4018" id="pf14366578667776" referenceLink="//@navigationRule.10/@navigationCase.0/@toViewId|" path="AltaBicicleta.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="AdministracionBicicletas.xhtml" x="122" y="3250" id="pf14367247416697" referenceLink="//@navigationRule.13/@fromViewId|" outlinks="pf14367247416698 pf14367247416699 pf14368953284400" path="/AdministracionBicicletas.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="AdministracionBicicletas.xhtml" x="338" y="3250" id="pf143672474166910" referenceLink="//@navigationRule.13/@navigationCase.0/@toViewId|" inlinks="pf14367247416698 pf14367247416699 pf14368953284400" path="AdministracionBicicletas.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="AltaEstacion.xhtml" x="122" y="4018" id="pf14368171553603" referenceLink="//@navigationRule.15/@fromViewId|" outlinks="pf14368171553604 pf14368171553605" path="/AltaEstacion.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="AltaEstacion.xhtml" x="338" y="4018" id="pf14368171553606" referenceLink="//@navigationRule.15/@navigationCase.0/@toViewId|" inlinks="pf14368171553604 pf14368171553605" path="AltaEstacion.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="AltaEstacion.xhtml" x="122" y="3634" id="pf14368171553603" referenceLink="//@navigationRule.15/@fromViewId|" outlinks="pf14368171553604 pf14368171553605" path="/AltaEstacion.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="AltaEstacion.xhtml" x="338" y="3634" id="pf14368171553606" referenceLink="//@navigationRule.15/@navigationCase.0/@toViewId|" inlinks="pf14368171553604 pf14368171553605" path="AltaEstacion.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="AdministracionEstaciones.xhtml" x="122" y="4402" id="pf14368953284411" referenceLink="//@navigationRule.18/@fromViewId|" outlinks="pf14368953284412 pf14368953284413 pf14368953284414" path="/AdministracionEstaciones.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="AdministracionEstaciones.xhtml" x="338" y="4402" id="pf14368953284415" referenceLink="//@navigationRule.17/@navigationCase.0/@toViewId|" inlinks="pf14368953284412 pf14368953284413" path="AdministracionEstaciones.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="AdministracionEstacionGenerica.xhtml" x="338" y="4786" id="pf14368953284416" referenceLink="//@navigationRule.18/@navigationCase.0/@toViewId|" inlinks="pf14368953284414" path="AdministracionEstacionGenerica.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="EstacionesUsuario.xhtml" id="pf14369789660231" referenceLink="//@navigationRule.19/@fromViewId|" outlinks="pf14369789660232" path="/EstacionesUsuario.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="EstacionGenericaUsuario.xhtml" id="pf14369789660233" referenceLink="//@navigationRule.19/@navigationCase.0/@toViewId|" inlinks="pf14369789660232" path="EstacionGenericaUsuario.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="EstacionesUsuario.xhtml" x="122" y="4786" id="pf14369789660231" referenceLink="//@navigationRule.19/@fromViewId|" outlinks="pf14369789660232" path="/EstacionesUsuario.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="EstacionGenericaUsuario.xhtml" x="338" y="5170" id="pf14369789660233" referenceLink="//@navigationRule.21/@navigationCase.0/@toViewId|" inlinks="pf14369789660232 pf14387236587451 pf14387236587452" path="EstacionGenericaUsuario.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="EstacionGenericaUsuario.xhtml" x="122" y="5170" id="pf14387236587453" referenceLink="//@navigationRule.21/@fromViewId|" outlinks="pf14387236587451 pf14387236587452" path="/EstacionGenericaUsuario.xhtml"/>
   <links id="pf14357850635781" target="pf14357850635785" source="pf14357850635780" outcome="ExitoLoginUsuario"/>
   <links id="pf14363723609780" target="pf14363723609794" source="pf14357850635780" outcome="FracasoLogin"/>
   <links id="pf14363723609783" target="pf14363723609796" source="pf14357850635780" outcome="ExitoLoginAdministrador"/>
   <links id="pf143637267507013" target="pf143637267507014" source="pf143637267507012" outcome="ExitoModPerfilAdministrador"/>
-  <links id="pf14363794347770" target="pf14363794347791" source="pf14357850635780" outcome="FracasoRegistro"/>
   <links id="pf14366578667773" target="pf14366578667775" source="pf14366578667772" outcome="BicicletaExitoAlta"/>
   <links id="pf14367247416698" target="pf143672474166910" source="pf14367247416697" outcome="BicicletaExitoModificada"/>
   <links id="pf14367247416699" target="pf143672474166910" source="pf14367247416697" outcome="BicicletaFracasoModificada"/>
@@ -36,6 +35,10 @@
   <links id="pf14368953284412" target="pf14368953284415" source="pf14368953284411" outcome="ExitoEliminarEstacion"/>
   <links id="pf14368953284413" target="pf14368953284415" source="pf14368953284411" outcome="ExitoModEstacion"/>
   <links id="pf14368953284414" target="pf14368953284416" source="pf14368953284411" outcome="ForwardEstacionGenericaAdmin"/>
+  <links id="pf14368953284400" target="pf143672474166910" source="pf14367247416697" outcome="BicicletaExitoEliminada"/>
+  <links id="pf14369789660232" target="pf14369789660233" source="pf14369789660231" outcome="ForwardEstacionGenericaUsuario"/>
+  <links id="pf14387236587451" target="pf14369789660233" source="pf14387236587453" outcome="ExitoRetiroBicicleta"/>
+  <links id="pf14387236587452" target="pf14369789660233" source="pf14387236587453" outcome="FracasoRetiroBicicleta"/>
   <links id="pf14363723609781" target="pf14357850635780" source="pf14357850635780" outcome="ExitoRegistro">
     <bendPoints d1Height="-36" d2Height="-36"/>
     <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
@@ -56,6 +59,5 @@
     <bendPoints d1Width="-94" d1Height="-66" d2Width="-94" d2Height="-66"/>
     <bendPoints d1Width="-94" d2Width="-94"/>
   </links>
-  <links id="pf14368953284400" target="pf143672474166910" source="pf14367247416697" outcome="BicicletaExitoEliminada"/>
-  <links id="pf14369789660232" target="pf14369789660233" source="pf14369789660231" outcome="ForwardEstacionGenericaUsuario"/>
+  <links id="pf14387236587300" target="pf14357850635780" source="pf14357850635780" outcome="FracasoRegistro"/>
 </pageflow:Pageflow>

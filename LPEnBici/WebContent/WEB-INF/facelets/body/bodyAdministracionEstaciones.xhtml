@@ -25,7 +25,6 @@
 	<h:form id="form" styleClass="form">
 		<p:growl id="msgs" showDetail="true" />
 
-		<!-- 		<p:dataTable var="usuario" value="#{PersonaBean.usuarios}" -->
 		<p:dataTable var="estacion"
 			value="#{EstacionBean.estacionesNoEliminadas}"
 			widgetVar="tablaEstacion"
@@ -73,11 +72,6 @@
 				<h:outputText value="#{estacion.estado}" />
 			</p:column>
 			
-			
-
-			<!--  FALTA ULTIMA MODIFICACION Y HISTORIAL DE DENUNCIAS -->
-
-
 			<p:column style="width:32px;text-align: center">
 				<p:commandButton update=":form:detalleEstacion"
 					oncomplete="PF('estacionDialog').show()" icon="ui-icon-search"
@@ -86,8 +80,6 @@
 						target="#{EstacionBean.estacionSeleccionada}" />
 				</p:commandButton>
 			</p:column>
-
-			
 
 			<p:column>
 			<p:commandButton ajax="false" value="IR" icon="ui-icon-star"
@@ -108,9 +100,8 @@
 				<p:panelGrid columns="2"
 					rendered="#{not empty EstacionBean.estacionSeleccionada}"
 					columnClasses="label,value">
-					<f:facet name="header">
-						<!--<p:graphicImage name="demo/images/car/#{dtFilterView.selectedCar.brand}-big.gif"/>-->
-					</f:facet>
+					<f:facet name="header" />
+					
 					<h:outputText value="Nombre: " />
 					<h:inputText value="#{EstacionBean.estacionSeleccionada.nombre}" />
 
@@ -142,13 +133,6 @@
 							itemValue="En construccion" />
 					</p:selectOneMenu>
 
-					<!-- <p:commandButton value="Modificar" ajax="false"
-							id="modificar"
-							action="#{PersonaBean.AdminmodUsuario}" icon="ui-icon-check"
-							validateClient="true"
-							onclick="PF('modUsuarioEspera').show();"						
-							/>
- -->
 					<h:outputText value="Historial de estados" />
 
 					<p:commandButton update=":form:detalleEstacionEstado"
@@ -164,11 +148,6 @@
 						action="#{EstacionBean.ModEstacion}" icon="ui-icon-check"
 						validateClient="true" />
 						
-
-					<!-- <p:commandButton value="Eliminar" ajax="false" id="eliminar"
-						action="#{PersonaBean.AdminEliminarUsuario}" icon="ui-icon-check"
-						validateClient="true" onclick="PF('delUsuarioEspera').show();" /> -->
-
 					<p:commandButton value="Eliminar" ajax="false" id="eliminar"
 						action="#{EstacionBean.EliminarEstacion}" icon="ui-icon-check"
 						validateClient="true" />
@@ -183,7 +162,6 @@
 			hideEffect="fade" resizable="false">
 
 			<p:outputPanel id="detalleEstacionEstado" style="text-align:center;">
-			
 				<p:dataScroller value="#{EstacionBean.estacionSeleccionada.historialEstado}" var="historial"
 					chunkSize="10">
 						<h:panelGrid columns="2" style="width:100%" columnClasses="label,value">
@@ -193,67 +171,11 @@
 						<h:panelGrid columns="2" style="width:100%">
 							<h:outputText value="#{historial.estado}" style="font-weight: bold" />
 							<h:outputText value="#{historial.fecha}" style="font-weight: bold" />
-						
 					</h:panelGrid>
 				</p:dataScroller>
-		
 			</p:outputPanel>
 		</p:dialog>
-		
-
-
 	</h:form>
-
-
-	
-
-
-
-	<!-- <p:confirmDialog
-						message="El usuario ha sido borrado satisfactoriamente."
-						widgetVar="delUsuarioExito" global="true" showEffect="fade"
-						hideEffect="explode">
-						<p:commandButton value="Ok" type="button"
-						onclick="PF('delUsuarioExito').hide();"
-							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-					</p:confirmDialog> -->
-
-	<p:confirmDialog
-		message="El usuario ha sido borrado satisfactoriamente."
-		widgetVar="delUsuarioExito" global="true" showEffect="fade"
-		hideEffect="explode">
-		<p:commandButton value="Ok" type="button"
-			styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-	</p:confirmDialog>
-
-
-	<p:confirmDialog message="El usuario esta siendo borrado."
-		widgetVar="delUsuarioEspera" global="true" showEffect="fade"
-		closable="false" hideEffect="explode">
-	</p:confirmDialog>
-
-
-	<p:confirmDialog message="El usuario esta siendo modificado."
-		widgetVar="modUsuarioEspera" global="true" showEffect="fade"
-		closable="false" hideEffect="explode">
-	</p:confirmDialog>
-
-	<!-- <p:confirmDialog
-						message="El usuario ha sido modificado satisfactoriamente."
-						widgetVar="modUsuarioExito" global="true" showEffect="fade"
-						closable="false" hideEffect="explode">
-						<p:commandButton value="Ok" type="button"
-							onclick="PF('modUsuarioExito').hide();"
-							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-					</p:confirmDialog> -->
-
-	<p:confirmDialog
-		message="El usuario ha sido modificado satisfactoriamente."
-		widgetVar="modUsuarioExito" global="true" showEffect="fade"
-		closable="false" hideEffect="explode">
-		<p:commandButton value="Ok" type="button"
-			styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-	</p:confirmDialog>
 
 </h:body>
 </html>

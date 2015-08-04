@@ -8,6 +8,7 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
@@ -121,17 +122,22 @@ public class BicicletaBean {
 			f.getBicicletaDAO().modificarBicicleta(bicicletaSeleccionada);
 
 			bicicletaSeleccionada = null;		
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "La Plata en Bici - Administracion Bicicleta", "Bicicleta modificada con exito.");
+			RequestContext.getCurrentInstance().showMessageInDialog(message);
 			return "BicicletaExitoModificada";		
 		}
 		else{
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "La Plata en Bici - Administracion Bicicleta", "Bicicleta no ha sido modificada.");
+			RequestContext.getCurrentInstance().showMessageInDialog(message);
 			return "BicicletaFracasoModificada";
 		}
 	}
 	
 	public String EliminarBicicleta(){	
-		/* Al eliminar una bicicleta, se deberian eliminar en cascada las cosas relacionadas a ella */		
 		f.getBicicletaDAO().eliminarBicicletaLogica(bicicletaSeleccionada);
 		bicicletasNoEliminadas = f.getBicicletaDAO().recuperarBicicletasNoEliminadas();
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "La Plata en Bici - Adminsitracion Bicicleta", "Bicicleta eliminada con exito.");
+		RequestContext.getCurrentInstance().showMessageInDialog(message);
 		return "BicicletaExitoEliminada";				
 	}
 	

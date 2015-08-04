@@ -28,90 +28,42 @@ import misclases.RegistroAlquiler;
 import misclases.Usuario;
 import misservlets.Emailer;
 
-
-
 public class PersonaBean {
 	
-
-
 	MyFactoryDAO f = new MyFactoryDAO();
 
-//	private Usuario usr = new Usuario();
-//	private Administrador admin = new Administrador();
 	private Usuario usr = new Usuario();
 	private Administrador admin = new Administrador();
 	private String fechaActual;
-	
 	private String email;
-	private String pass;
-	
-	
+	private String pass;	
 	private List<Usuario> usuarios = null;
 	private List<Usuario> usuariosNoEliminados = null;
     private List<Usuario> usuariosFiltrados;
-    private Usuario usuarioSeleccionado;
-	
-	
+    private Usuario usuarioSeleccionado;	
     private String Months[]= {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"
     		, "Oct", "Nov", "Dec" };
-    
-    
     private List<RegistroAlquiler> listaAlquileres;
     private List<RegistroAlquiler> alquileresFiltrados;
     private RegistroAlquiler alquilerSeleccionado;
     private Denuncia denuncia = new Denuncia();
-	
     private List<RegistroAlquiler> listaAlquileresHistoricos;
-    
     private List<RegistroAlquiler> listaAlquileresActivosAdmin;
     private List<RegistroAlquiler> listaAlquileresHistoricosAdmin;
 
-    
-    private boolean errorLogin = false;
-    private boolean esperarRegistro = false;
-    private boolean registroExitoso = false;
-    private boolean modAdmin = false;
-    private boolean modUsr = false;
-    
-    
-
-	public boolean isRegistroExitoso() {
-		return registroExitoso;
-	}
-
-
-
-	public void setRegistroExitoso(boolean registroExitoso) {
-		this.registroExitoso = registroExitoso;
-	}
-
-
-
-	public boolean isEsperarRegistro() {
-		return esperarRegistro;
-	}
-
-
-
-	public void setEsperarRegistro(boolean esperarRegistro) {
-		this.esperarRegistro = esperarRegistro;
-	}
-
-
-
+   
 	public PersonaBean(){
 		
 	}
 	
-	
-	
 	public String altaUsuario(){
 
 		Usuario usuario = new Usuario(); 
-		this.esperarRegistro = true;
 		Administrador admin = (Administrador) f.getAdministradorDAO().recuperarAdministrador(usr.getEmail());
 		
 		if ((admin != null)){
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "La Plata en Bici - Registro erroneo", "Usuario ya existente o error en el sistema.");
+	        RequestContext.getCurrentInstance().showMessageInDialog(message);	
 			return "FracasoRegistro";
 		}
 		
@@ -119,30 +71,28 @@ public class PersonaBean {
 		usuario = (Usuario) f.getUsuarioDAO().recuperarUsuario(usr.getEmail());
 		
 		if (usuario == null){
-			usr.setPassword(password_generada);
-			System.out.println("Fecha de nacimiento: "+usr.getFechaNacimiento());
 			String fecha_aux = convertirFecha(usr.getFechaNacimiento());
+			
+			usr.setPassword(password_generada);
 			usr.setFechaNacimiento(fecha_aux);
 			usr.setHabilitado(true);
-			f.getUsuarioDAO().guardarUsuario(usr);
-			this.enviarContrasena();
-			this.usr = new Usuario();
-			this.esperarRegistro = false;
-			this.registroExitoso = true;
 			
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "What we do in life", "SE REGISTRO DE MANERA CORRECTA");
+			f.getUsuarioDAO().guardarUsuario(usr);
+			
+			this.enviarContrasena();
+			
+			this.usr = new Usuario();
+			
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "La Plata en Bici - Registro exitoso", "Revise su correo para obtener su contraseña.");
 	        RequestContext.getCurrentInstance().showMessageInDialog(message);	
 			
-	        return null;
-			//return "ExitoRegistro";
+			return "ExitoRegistro";
 		}
 		else{		
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "What we do in life", "SE REGISTRO DE MANERA CORRECTA");
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "La Plata en Bici - Registro erroneo", "Usuario ya existente o error en el sistema.");
 	        RequestContext.getCurrentInstance().showMessageInDialog(message);	
 			this.usr = new Usuario();
-			this.errorLogin = true;
-			return null;
-			//return "FracasoRegistro";
+			return "FracasoRegistro";
 		}				
 	}
 		
@@ -154,13 +104,10 @@ public class PersonaBean {
 		try {
 			smtpMailSender.postMail( emailList, usr.getPassword(),usr);
 		} catch (AuthenticationFailedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (javax.mail.MessagingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 							    	
@@ -173,8 +120,8 @@ public class PersonaBean {
 			String fe= convertirFecha(this.usr.getFechaNacimiento());
 			this.usr.setFechaNacimiento(fe);
 			f.getUsuarioDAO().modificarUsuario(this.usr);
-//			RequestContext.getCurrentInstance().execute("PF('modUsuarioEspera').hide();");
-//			RequestContext.getCurrentInstance().execute("PF('modUsuarioExito').show();");
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "La Plata en Bici - Modificar Perfil", "Su perfil ha sido modificado con exito.");
+	        RequestContext.getCurrentInstance().showMessageInDialog(message);	
 			return "ExitoModPerfilUsuario";
 		}
 		else{
@@ -182,23 +129,20 @@ public class PersonaBean {
 				String fe= convertirFecha(this.admin.getFechaNacimiento());
 				this.admin.setFechaNacimiento(fe);
 				f.getAdministradorDAO().modificarAdministrador(admin);
-//				RequestContext.getCurrentInstance().execute("PF('modUsuarioEspera').hide();");
-//				RequestContext.getCurrentInstance().execute("PF('modUsuarioExito').show();");
+				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "La Plata en Bici - Modificar Perfil", "Su perfil ha sido modificado con exito.");
+		        RequestContext.getCurrentInstance().showMessageInDialog(message);
 				return "ExitoModPerfilAdministrador";
 			}
 			return  null;
 		}
 	}
 	
-
-	
 	public String AdminEliminarUsuario(){
 		usuarioSeleccionado.setEliminado(true);
 		f.getUsuarioDAO().eliminarUsuarioLogica(usuarioSeleccionado);
 		usuariosNoEliminados = f.getUsuarioDAO().recuperarUsuariosNoEliminados();
-//		RequestContext.getCurrentInstance().execute("PF('delUsuarioEspera').hide();");
-//		RequestContext.getCurrentInstance().execute("PF('delUsuarioExito').show();");
-//		return null;
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "La Plata en Bici - Administracion Usuarios", "Usuario eliminado con exito.");
+		RequestContext.getCurrentInstance().showMessageInDialog(message);
 		return "Exito_usuarioEliminado";
 	}
 	
@@ -227,25 +171,26 @@ public class PersonaBean {
 		String fe= convertirFecha(usuarioSeleccionado.getFechaNacimiento());
 		usuarioSeleccionado.setFechaNacimiento(fe);
 		f.getUsuarioDAO().modificarUsuario(usuarioSeleccionado);
-//		RequestContext.getCurrentInstance().execute("PF('modUsuarioEspera').hide();");
-//		RequestContext.getCurrentInstance().execute("PF('modUsuarioExito').show();");
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "La Plata en Bici - Administracion Usuarios", "Usuario modificado con exito.");
+		RequestContext.getCurrentInstance().showMessageInDialog(message);
 		usuarioSeleccionado = null;
-//		return null;
+
 		return "Exito_AdminmodUsuario";
 	}
 	
 	public String login(){
-		System.out.println("email: "+this.email+" | "+"pass: "+this.pass);
 		Usuario usuario = new Usuario(); 
 		usuario = (Usuario) f.getUsuarioDAO().recuperarUsuarioNoEliminadoHabilitado(this.email);
+		
 		if (usuario == null){
 			Administrador admin = new Administrador();
 			admin = (Administrador) f.getAdministradorDAO().recuperarAdministrador(this.email);
 			if (admin == null){	
-				System.out.println("email: "+this.email+" | "+"pass: "+this.pass);
-				RequestContext.getCurrentInstance().execute("PF('uci').show();");
-				//return "FracasoLogin";
-				return null;
+				
+				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "La Plata en Bici - Acceso erroneo", "Usuario/Contraseña invalidos");
+		        RequestContext.getCurrentInstance().showMessageInDialog(message);
+		        
+		        return "FracasoLogin";
 			}
 			else{
 				if (admin.getPassword().equals(this.pass)){
@@ -254,9 +199,9 @@ public class PersonaBean {
 					return "ExitoLoginAdministrador";
 				}
 				else{
-					RequestContext.getCurrentInstance().execute("PF('uci').show();");
-					//return "FracasoLogin";
-					return null;
+					FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "La Plata en Bici - Acceso erroneo", "Usuario/Contraseña invalidos");
+			        RequestContext.getCurrentInstance().showMessageInDialog(message);
+			        return "FracasoLogin";
 				}
 			}
 		}
@@ -267,9 +212,9 @@ public class PersonaBean {
 				return "ExitoLoginUsuario";
 			}
 			else{
-				RequestContext.getCurrentInstance().execute("PF('uci').show();");
-//				return "FracasoLogin";
-				return null;
+				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "La Plata en Bici - Acceso erroneo", "Usuario/Contraseña invalidos");
+		        RequestContext.getCurrentInstance().showMessageInDialog(message);
+		        return "FracasoLogin";
 			}
 		}
 	}
@@ -281,37 +226,37 @@ public class PersonaBean {
 		return "/index.xhtml?faces-redirect=true";	
 	}
 
-	
 	public String retirarBicicleta(Estacion estacionSeleccionada){				
 		Bicicleta b = estacionSeleccionada.dameBiciDisponible();	
 		if (b != null){
 			RegistroAlquiler reg = new RegistroAlquiler(estacionSeleccionada, this.usr, b);
 			b.setAlquilada(true);
 			estacionSeleccionada.retirarBicicleta();
-//			estacionSeleccionada.setCantBiciDisponible(estacionSeleccionada.getCantBiciDisponible()-1);
-//			estacionSeleccionada.setCantEstacionamientoLibre(estacionSeleccionada.getCantEstacionamientoLibre()+1);
+
 			f.getBicicletaDAO().modificarBicicleta(b);		
 			f.getEstacionDAO().modificarEstacion(estacionSeleccionada);
 			f.getRegAlquilerDAO().guardarRegistroAlquiler(reg);
+
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "La Plata en Bici - Alquiler de bicicleta", "Bicicleta alquilada con exito.");
+			RequestContext.getCurrentInstance().showMessageInDialog(message);
 			return "ExitoRetiroBicicleta";
-		}else
-			return "FracasoRetiroBicicleta";		
+		}else{
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "La Plata en Bici - Alquiler de bicicleta", "No hay bicicletas disponibles en este momento.");
+			RequestContext.getCurrentInstance().showMessageInDialog(message);
+			return "FracasoRetiroBicicleta";
+		}		
 	}
-	
+		
 	public String devolverBicicleta (){
 		String fecha = dameFecha();
 		String hora = dameHora();
 		alquilerSeleccionado.setFechaEntrada(fecha);
 		alquilerSeleccionado.setHoraEntrada(hora);
-		
-		System.out.println("alquilerSeleccionado.estacionEntrada.nombre: "+alquilerSeleccionado.getNombreEstacionEntrada());
-		
+				
 		Estacion estacion_entrada = f.getEstacionDAO().recuperarEstacionNombre(alquilerSeleccionado.getNombreEstacionEntrada());
 		
 		if (estacion_entrada.getCantEstacionamientoLibre() > 0){
-			
-//			alquilerSeleccionado.setEstacionEntrada(est);
-			
+						
 			Bicicleta b = alquilerSeleccionado.getBicicleta();
 			
 			//Analizo la denuncia
@@ -321,21 +266,14 @@ public class PersonaBean {
 			if (!st.isEmpty()){
 				
 				denuncia.setBicicleta(b);
-				denuncia.setUsuarioDenuncia(usr);
-				
-				
-				/*AGREGAR EL ESTADO DE DENUNCIADA POR PARTE DEL USUARIO*/
-				
+				denuncia.setUsuarioDenuncia(usr);		
 
 				f.getDenunciaDAO().guardarDenuncia(denuncia);
+				
 				b.setEstado("Denunciada");
 				b.getHistorialEstado().add(new Estado(b.getEstado(), dameFecha()));
 				
 			}
-			
-			
-			
-			
 			
 			//Si la estacion de entrada != estacion salida
 			if (!estacion_entrada.getNombre().equals(b.getUbicacionActual())){
@@ -360,14 +298,6 @@ public class PersonaBean {
 			}
 			
 			
-//			if  (est.estacionarBicicleta(b,alquilerSeleccionado.getEstacionSalida())){
-//				
-//				alquilerSeleccionado.getEstacionSalida().getListaBici().remove(b);	
-//				
-//				//actualizo estacion de salida
-//				f.getEstacionDAO().modificarEstacion(alquilerSeleccionado.getEstacionSalida());
-//			}
-
 			b.setAlquilada(false);
 			b.setUbicacionActual(estacion_entrada.getNombre());
 			f.getRegAlquilerDAO().modificarRegistroAlquiler(alquilerSeleccionado);
@@ -377,15 +307,19 @@ public class PersonaBean {
 
 			
 			denuncia.setComentario("");
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "La Plata en Bici - Alquiler de bicicleta", "Bicicleta devuelta con exito.");
+			RequestContext.getCurrentInstance().showMessageInDialog(message);
 			return "ExitoDevolucion";
+		}else{
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "La Plata en Bici - Alquiler de bicicleta", "La estacion seleccionada no tiene estacionamientos libres.");
+			RequestContext.getCurrentInstance().showMessageInDialog(message);
+			return "FracasoDevolucion";
 		}
-		return "FracasoDevolucion";
 	}
 	
 	public Usuario getUsr() {
 		return usr;
 	}
-
 
 	public void setUsr(Usuario usr) {
 		this.usr = usr;
@@ -401,7 +335,6 @@ public class PersonaBean {
 	public void setFormatoFecha(String formatoFecha) {
 		this.fechaActual = formatoFecha;
 	}
-	
 	
 	public String getEmail() {
 		return email;
@@ -427,19 +360,13 @@ public class PersonaBean {
 		this.admin = admin;
 	}
 
-	
-
 	public RegistroAlquiler getAlquilerSeleccionado() {
 		return alquilerSeleccionado;
 	}
 
-
-
 	public void setAlquilerSeleccionado(RegistroAlquiler alquilerSeleccionado) {
 		this.alquilerSeleccionado = alquilerSeleccionado;
 	}
-
-
 
 	public List<Usuario> getUsuarios() {
 		if (usuarios == null){
@@ -447,8 +374,6 @@ public class PersonaBean {
 		}
 		return usuarios;
 	}
-
-	
 	
 	public List<Usuario> getUsuariosNoEliminados() {
 		if (usuariosNoEliminados == null){
@@ -457,13 +382,9 @@ public class PersonaBean {
 		return usuariosNoEliminados;
 	}
 
-
-
 	public void setUsuariosNoEliminados(List<Usuario> usuariosNoEliminados) {
 		this.usuariosNoEliminados = usuariosNoEliminados;
 	}
-
-
 
 	public void setUsuarios(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
@@ -484,20 +405,15 @@ public class PersonaBean {
 	public void setUsuarioSeleccionado(Usuario usuarioSeleccionado) {
 		this.usuarioSeleccionado = usuarioSeleccionado;
 	}
-	
-	
-	
-	 public List<RegistroAlquiler> getListaAlquileres() {
+		
+	public List<RegistroAlquiler> getListaAlquileres() {
 		listaAlquileres = f.getRegAlquilerDAO().recuperarAlquilerUsuario(usr);
 		return listaAlquileres;
 	}
 
-
-
 	public void setListaAlquileres(List<RegistroAlquiler> listaAlquileres) {
 		this.listaAlquileres = listaAlquileres;
 	}
-
 	
 	public List<RegistroAlquiler> getListaAlquileresHistoricos() {
 		listaAlquileresHistoricos = f.getRegAlquilerDAO().recuperarAlquilerHistoricoUsuario(usr);
@@ -526,63 +442,44 @@ public class PersonaBean {
 		this.listaAlquileresHistoricosAdmin = listaAlquileresHistoricosAdmin;
 	}
 
-
-
 	public List<RegistroAlquiler> getAlquileresFiltrados() {
 		return alquileresFiltrados;
 	}
-
-
 
 	public void setAlquileresFiltrados(List<RegistroAlquiler> alquileresFiltrados) {
 		this.alquileresFiltrados = alquileresFiltrados;
 	}
 
-	
-
 	public Denuncia getDenuncia() {
 		return denuncia;
 	}
-
-
 
 	public void setDenuncia(Denuncia denuncia) {
 		this.denuncia = denuncia;
 	}
 
-
-
 	public void onRowSelect(SelectEvent event) {
 	        FacesMessage msg = new FacesMessage("Usuario Seleccionado", ((Usuario) event.getObject()).getNombre());
 	        FacesContext.getCurrentInstance().addMessage(null, msg);
-	    }
+	}
 	 
-	    public void onRowUnselect(UnselectEvent event) {
+	public void onRowUnselect(UnselectEvent event) {
 	        FacesMessage msg = new FacesMessage("Usuario no Seleccionado", ((Usuario) event.getObject()).getNombre());
 	        FacesContext.getCurrentInstance().addMessage(null, msg);
-	    }
-		private String dameFecha(){
-			
-			Date fechaActual = new Date();
-			DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy"); 		
-			return formatoFecha.format(fechaActual);
-		}
+	}
 		
-		private String dameHora(){
-			
-			Date fechaActual = new Date();
-			DateFormat formatoFecha = new SimpleDateFormat("HH:mm"); 		
-			return formatoFecha.format(fechaActual);
-		}
+	private String dameFecha(){
 
+		Date fechaActual = new Date();
+		DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy"); 		
+		return formatoFecha.format(fechaActual);
+	}
 
-		public boolean isErrorLogin() {
-			return errorLogin;
-		}
+	private String dameHora(){
 
-		public void setErrorLogin(boolean errorLogin) {
-			this.errorLogin = errorLogin;
-		}	
-		
-		
+		Date fechaActual = new Date();
+		DateFormat formatoFecha = new SimpleDateFormat("HH:mm"); 		
+		return formatoFecha.format(fechaActual);
+	}
+
 }

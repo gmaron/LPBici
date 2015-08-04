@@ -45,7 +45,7 @@
 
 </h:head>
 <h:body>
-<p:panelGrid columns="1"
+	<p:panelGrid columns="1"
 		style="position:relative; height: 400px;margin:auto;">
 		<f:facet name="header">
 			<div class="styleGreen">Registrate</div>
@@ -54,16 +54,13 @@
 		<h:form>
 			<p:messages id="errorReg" autoUpdate="true" />
 			<h:panelGrid columns="2" cellpadding="5">
-				<!-- <h:outputLabel for="nombre" value="Nombre:" />
-					<h:inputText id="nombre" value="#{PersonaBean.usr.nombre}" /> -->
-
 
 				<p:outputLabel for="nombre" value="Nombre:" />
 				<p:inputText id="nombre" value="#{PersonaBean.usr.nombre}"
 					validatorMessage="Nombre: caracteres alfabeticos | Long. minima: 4 | Long. maxima: 20"
 					required="true">
 					<f:validateLength minimum="3" maximum="20" />
-					<f:validateRegex pattern="[a-zA-Z ]*"/>
+					<f:validateRegex pattern="[a-zA-Z ]*" />
 				</p:inputText>
 
 
@@ -72,9 +69,9 @@
 					validatorMessage="Apellido: caracteres alfabeticos | Long. minima: 4 | Long. maxima: 20"
 					required="true">
 					<f:validateLength minimum="3" maximum="20" />
-					<f:validateRegex pattern="[a-zA-Z ]*"/>
+					<f:validateRegex pattern="[a-zA-Z ]*" />
 				</p:inputText>
-				<!-- <p:messages for="apellido"/> -->
+
 
 				<p:outputLabel for="dni" value="DNI:" />
 				<p:inputText id="dni" value="#{PersonaBean.usr.dni}"
@@ -114,59 +111,15 @@
 
 				<f:facet name="footer">
 					<div align="center">
-						<p:commandButton value="Terminado" 
-							ajax="false"
-							action="#{PersonaBean.altaUsuario}" 
-							icon="ui-icon-check"
-							style="width: 300px;margin:auto;" 
-							validateClient="true"
-							update="errorReg"
-							/>
-<!-- 							onclick="PF('esperaAlta').show();"
- -->					</div>
+						<p:commandButton value="Terminado" ajax="false"
+							action="#{PersonaBean.altaUsuario}" icon="ui-icon-check"
+							style="width: 300px;margin:auto;" validateClient="true"
+							update="errorReg" />
+					</div>
 				</f:facet>
-			</h:panelGrid>			
+			</h:panelGrid>
 		</h:form>
 	</p:panelGrid>
-	
-	
-		
-	
 
-	<!-- 
-			
-		<p:confirmDialog
-				message="Aguarde un momento. Se estan registrando sus datos..."
-				widgetVar="esperaAlta" global="true" showEffect="fade"
-				closable="false"
-				hideEffect="explode"
-				rendered="#{PersonaBean.esperarRegistro}">
-	</p:confirmDialog>
-
-
-
-	<p:confirmDialog
-		message="Revise su casilla de correo para la contraseña"
-		widgetVar="exitoAlta" global="true" showEffect="fade"
-		hideEffect="explode"
-		rendered="#{PersonaBean.registroExitoso}">
-		<p:commandButton value="Ok" type="button"
-			styleClass="ui-confirmdialog-yes"
-			icon="ui-icon-check" />
-	</p:confirmDialog>
-			
-			
-	
-			
-			
-			<p:confirmDialog
-				message="Error. No se pudo registrar el usuario."
-				widgetVar="errorAlta" global="true" showEffect="fade"
-				hideEffect="explode">
-				<p:commandButton value="Ok" type="button" onclick="PF('errorAlta').hide();"
-					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-			</p:confirmDialog> -->
-	
-	
 </h:body>
 </html>

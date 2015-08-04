@@ -25,7 +25,6 @@
 	<h:form id="form" styleClass="form">
 		<p:growl id="msgs" showDetail="true" />
 
-		<!-- 		<p:dataTable var="usuario" value="#{PersonaBean.usuarios}" -->
 		<p:dataTable var="estacion"
 			value="#{EstacionBean.estacionesOperativas}"
 			widgetVar="tablaEstacion"
@@ -89,57 +88,6 @@
 		</p:dataTable>		
 
 	</h:form>
-
-
-	
-
-
-
-	<!-- <p:confirmDialog
-						message="El usuario ha sido borrado satisfactoriamente."
-						widgetVar="delUsuarioExito" global="true" showEffect="fade"
-						hideEffect="explode">
-						<p:commandButton value="Ok" type="button"
-						onclick="PF('delUsuarioExito').hide();"
-							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-					</p:confirmDialog> -->
-
-	<p:confirmDialog
-		message="El usuario ha sido borrado satisfactoriamente."
-		widgetVar="delUsuarioExito" global="true" showEffect="fade"
-		hideEffect="explode">
-		<p:commandButton value="Ok" type="button"
-			styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-	</p:confirmDialog>
-
-
-	<p:confirmDialog message="El usuario esta siendo borrado."
-		widgetVar="delUsuarioEspera" global="true" showEffect="fade"
-		closable="false" hideEffect="explode">
-	</p:confirmDialog>
-
-
-	<p:confirmDialog message="El usuario esta siendo modificado."
-		widgetVar="modUsuarioEspera" global="true" showEffect="fade"
-		closable="false" hideEffect="explode">
-	</p:confirmDialog>
-
-	<!-- <p:confirmDialog
-						message="El usuario ha sido modificado satisfactoriamente."
-						widgetVar="modUsuarioExito" global="true" showEffect="fade"
-						closable="false" hideEffect="explode">
-						<p:commandButton value="Ok" type="button"
-							onclick="PF('modUsuarioExito').hide();"
-							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-					</p:confirmDialog> -->
-
-	<p:confirmDialog
-		message="El usuario ha sido modificado satisfactoriamente."
-		widgetVar="modUsuarioExito" global="true" showEffect="fade"
-		closable="false" hideEffect="explode">
-		<p:commandButton value="Ok" type="button"
-			styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-	</p:confirmDialog>
 
 </h:body>
 </html>

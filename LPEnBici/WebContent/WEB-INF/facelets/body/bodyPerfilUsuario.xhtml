@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"  
     xmlns:h="http://java.sun.com/jsf/html"  
@@ -33,13 +33,13 @@
 				.ui-panelgrid tr, .ui-panelgrid td{
 				   border: 0px !important;	
 				   border-radius: 8px;				   
-				   /*-moz-border-radius: 8px; -webkit-border-radius: 8px;*/	
 				   border-color: #5CB85C !important;				   					
 				}	
 										
 </style>
-<!-- color:#5CB85C;-->
 </h:head> 
+
+
 <h:body>
 <p:panelGrid columns="1" style="position:relative; height: 400px;margin:auto;">
 		<f:facet name="header">
@@ -51,9 +51,6 @@
 		<h:form>
 			<p:messages autoUpdate="true" />
 			<h:panelGrid columns="2" cellpadding="5">
-				<!-- <h:outputLabel for="nombre" value="Nombre:" />
-					<h:inputText id="nombre" value="#{PersonaBean.usr.nombre}" /> -->
-
 
 				<p:outputLabel for="nombre" value="Nombre:" />
 				<p:inputText id="nombre" value="#{PersonaBean.usr.nombre}"
@@ -71,7 +68,6 @@
 					<f:validateLength minimum="3" maximum="20" />
 					<f:validateRegex pattern="[a-zA-Z ]*"/>
 				</p:inputText>
-				<!-- <p:messages for="apellido"/> -->
 
 				<p:outputLabel for="dni" value="DNI:" />
 				<p:inputText id="dni" value="#{PersonaBean.usr.dni}"
@@ -81,11 +77,9 @@
 					<f:validateRegex pattern="[0-9]+" />
 				</p:inputText>
 
-
 				<p:outputLabel for="domicilio" value="Domicilio:" />
 				<p:inputText id="domicilio" value="#{PersonaBean.usr.domicilio}"
 					required="true" />
-
 
 				<p:outputLabel for="email" value="Email:" />
 				<p:inputText id="email" value="#{PersonaBean.usr.email}"
@@ -120,26 +114,10 @@
 							action="#{PersonaBean.modificarPerfil}"
 							icon="ui-icon-check" style="width: 300px;margin:auto;"
 							validateClient="true"  />
-							<!-- onclick="PF('modUsuarioEspera').show();" -->
 					</div>
 				</f:facet>
 			</h:panelGrid>
 
-			<!-- <p:confirmDialog
-						message="Sus datos estan siendo modificados."
-						widgetVar="modUsuarioEspera" global="true" showEffect="fade"
-						closable="false"
-						hideEffect="explode">
-					</p:confirmDialog>
-
-					<p:confirmDialog
-						message="Sus datos han sido modificados satisfactoriamente."
-						widgetVar="modUsuarioExito" global="true" showEffect="fade"
-						closable="false" hideEffect="explode">
-						<p:commandButton value="Ok" type="button"
-							onclick="PF('modUsuarioExito').hide();"
-							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-					</p:confirmDialog> -->
 		</h:form>
 	</p:panelGrid>
 

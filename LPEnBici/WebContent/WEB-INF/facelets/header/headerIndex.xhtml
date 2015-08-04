@@ -8,138 +8,56 @@
 <h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 
-<!-- <style type="text/css">
-	body {
-		font-family: Georgia, "Times New Roman", Times, serif;
-		font-size: 90%;
-		background-image: url("img/laplatabici.jpg");
-	}
-
-	/*Style del header de REGISTRO*/
-	.styleGreen {
-		color: white;
-		background-color: #178501;
-		font: 16px sans-serif;
-		padding: 10px;
-		border-radius: 8px;
-		border-color: #178501;
-	}
-	
-	.ui-button-text {
-		color: white !important;
-		font: 16px sans-serif;
-		background-color: #5CB85C !important;
-	}
-	
-	.ui-button {
-		background-color: #5CB85C !important;
-		border-color: #5CB85C !important;
-	}
-	
-	.ui-panelgrid tr, .ui-panelgrid td {
-		border: 0px !important;
-		border-radius: 8px;
-		/*-moz-border-radius: 8px; -webkit-border-radius: 8px;*/
-		border-color: #5CB85C !important;
-	}
-	
-	.ui-menubar, #ui-menu-child, .ui-menu {
-		background: #178501 !important;
-		border: 0px;
-	}
-	
-	.ui-menuitem-text {
-		color: white;
-	}
-	
-	/*style del ¡La plata en bici!*/
-	.labelLP {
-		color: white;
-		font: 21px sans-serif;
-	}
-	
-	.ui-button-text {
-		color: white !important;
-		font: 16px sans-serif;
-		background-color: #5CB85C !important;
-	}
-	
-	.ui-button {
-		background-color: #5CB85C !important;
-		border-color: #5CB85C !important;
-	}
-	
-	/*color del icono del boton entrar*/
-	.ui-icon-extlink {
-		
-	}
-	
-	/*el color que pone cuando lo tocas con el puntero*/
-	.ui-menuitem-link:VISITED {
-		color: #5CB85C !important;
-		background-color: #5CB85C !important;
-	} 
-</style> -->
 
 <style type="text/css">
-  	body{
-         font-family: Georgia,"Times New Roman",Times,serif;
-         font-size: 90%;    
-         background-image: url("img/laplatabici.jpg");                
-    }
-                
-	.head .ui-widget-content 
+body {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 90%;
+	background-image: url("img/laplatabici.jpg");
+}
+
+.head .ui-widget-content 
 	.ui-menu-list 
 	.ui-corner-all 
-	.ui-helper-clearfix 
-	 {
-		background: #178501 !important;
-		border: #178501 !important;
-	}
-		
-	.head .ui-menuitem-link{
-			background: #178501 !important;
-			border: #178501 !important;
-	}
-	
-	.head .ui-menuitem-text {
-		color: white;
-	}	
-										
+	.ui-helper-clearfix {
+	background: #178501 !important;
+	border: #178501 !important;
+}
+
+.head .ui-menuitem-link {
+	background: #178501 !important;
+	border: #178501 !important;
+}
+
+.head .ui-menuitem-text {
+	color: white;
+}
 </style>
 
 
 <title>¡La Plata En Bici!</title>
+
 </h:head>
 <h:body>
 
-<p:menubar id="menubar" style="background:#178501;border:#178501;">
-		<p:menuitem value="label" >
-			<!-- <h:outputLabel for="label" value="La Plata en Bici"
-				styleClass="labelLP" /> -->
-			<p:link  value="La Plata en Bici" style="color:white;font: 21px sans-serif;" outcome="index.xhtml"></p:link>			
-		</p:menuitem>		
+	<p:menubar id="menubar" style="background:#178501;border:#178501;">
+		<p:menuitem value="label">
+			<p:link value="La Plata en Bici"
+				style="color:white;font: 21px sans-serif;" outcome="index.xhtml"></p:link>
+		</p:menuitem>
 		<f:facet name="options">
 			<h:form styleClass="head">
 				<p:inputText style="margin-right:10px;" placeholder="Email"
 					value="#{PersonaBean.email}" />
-				<p:inputText type="password" style="margin-right:10px;" placeholder="Contrasena"
-					value="#{PersonaBean.pass}" />
+				<p:inputText type="password" style="margin-right:10px;"
+					placeholder="Contrasena" value="#{PersonaBean.pass}" />
 				<p:commandButton value="Entrar" ajax="false"
 					action="#{PersonaBean.login}" icon="ui-icon-check"
 					validateClient="true" />
 			</h:form>
 		</f:facet>
-		
-	</p:menubar>
 
-	<p:confirmDialog message="Usuario/Contraseña invalidos" widgetVar="uci"
-		global="true" showEffect="fade" hideEffect="explode">
-		<p:commandButton value="Ok" type="button"
-		onclick="PF('uci').hide();"
-			styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-	</p:confirmDialog>
-	
+	</p:menubar>
 
 </h:body>
 </html>

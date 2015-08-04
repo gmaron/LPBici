@@ -53,9 +53,6 @@
 		<h:form >
 			<p:messages autoUpdate="true" />
 			<h:panelGrid columns="2" cellpadding="5">
-				<!-- <h:outputLabel for="nombre" value="Nombre:" />
-					<h:inputText id="nombre" value="#{PersonaBean.admin.nombre}" /> -->
-
 
 				<p:outputLabel for="nombre" value="Nombre:" />
 				<p:inputText id="nombre" value="#{PersonaBean.admin.nombre}"
@@ -73,7 +70,7 @@
 					<f:validateLength minimum="3" maximum="20" />
 					<f:validateRegex pattern="[a-zA-Z ]*"/>
 				</p:inputText>
-				<!-- <p:messages for="apellido"/> -->
+				
 
 				<p:outputLabel for="dni" value="DNI:" />
 				<p:inputText id="dni" value="#{PersonaBean.admin.dni}"
@@ -122,26 +119,9 @@
 							action="#{PersonaBean.modificarPerfil}"
 							icon="ui-icon-check" style="width: 300px;margin:auto;"
 							validateClient="true"  />
-							<!-- onclick="PF('modUsuarioEspera').show();" -->
 					</div>
 				</f:facet>
 			</h:panelGrid>
-
-			<!-- <p:confirmDialog
-						message="Sus datos estan siendo modificados."
-						widgetVar="modUsuarioEspera" global="true" showEffect="fade"
-						closable="false"
-						hideEffect="explode">
-					</p:confirmDialog>
-
-					<p:confirmDialog
-						message="Sus datos han sido modificados satisfactoriamente."
-						widgetVar="modUsuarioExito" global="true" showEffect="fade"
-						closable="false" hideEffect="explode">
-						<p:commandButton value="Ok" type="button"
-							onclick="PF('modUsuarioExito').hide();"
-							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-					</p:confirmDialog> -->
 		</h:form>
 	</p:panelGrid>
 </h:body>

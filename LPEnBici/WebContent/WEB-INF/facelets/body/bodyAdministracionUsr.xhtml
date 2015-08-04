@@ -29,7 +29,6 @@
 	<h:form id="form" styleClass="form">
 		<p:growl id="msgs" showDetail="true" />
 
-		<!-- 		<p:dataTable var="usuario" value="#{PersonaBean.usuarios}" -->
 		<p:dataTable var="usuario" value="#{PersonaBean.usuariosNoEliminados}"
 			widgetVar="tablaUsuario"
 			emptyMessage="No se encontraron usuarios con ese criterio."
@@ -83,8 +82,6 @@
 				<h:outputText value="#{usuario.fechaNacimiento}" />
 			</p:column>
 
-
-			<!-- ACA IRIA LA PARTE DE HABILITADO/DESHABILITADO  -->
 			<p:column filterBy="#{usuario.habilitado}" headerText="Estado"
 				filterMatchMode="equals">
 				<f:facet name="filter">
@@ -132,8 +129,12 @@
 					<h:outputText value="Email: " />
 					<h:inputText value="#{PersonaBean.usuarioSeleccionado.email}" />
 
-					<h:outputText value="Sexo: " />
-					<h:inputText value="#{PersonaBean.usuarioSeleccionado.sexo}" />
+					<p:outputLabel for="sexo" value="Sexo:" />
+					<p:selectOneRadio id="sexo" value="#{PersonaBean.usuarioSeleccionado.sexo}"
+						required="true">
+						<f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+						<f:selectItem itemLabel="Femenino" itemValue="Femenino" />
+					</p:selectOneRadio>
 
 					<h:outputText value="Domicilio: " />
 					<h:inputText value="#{PersonaBean.usuarioSeleccionado.domicilio}" />
@@ -154,82 +155,17 @@
 						<f:selectItem itemLabel="Deshabilitado" itemValue="false" />
 					</p:selectOneRadio>
 
-
-
-					<!-- <p:commandButton value="Modificar" ajax="false"
-							id="modificar"
-							action="#{PersonaBean.AdminmodUsuario}" icon="ui-icon-check"
-							validateClient="true"
-							onclick="PF('modUsuarioEspera').show();"						
-							/>
- -->
 					<p:commandButton value="Modificar" ajax="false" id="modificar"
 						action="#{PersonaBean.AdminmodUsuario}" icon="ui-icon-check"
 						validateClient="true" />
-
-					<!-- <p:commandButton value="Eliminar" ajax="false" id="eliminar"
-						action="#{PersonaBean.AdminEliminarUsuario}" icon="ui-icon-check"
-						validateClient="true" onclick="PF('delUsuarioEspera').show();" /> -->
 
 					<p:commandButton value="Eliminar" ajax="false" id="eliminar"
 						action="#{PersonaBean.AdminEliminarUsuario}" icon="ui-icon-check"
 						validateClient="true" />
 
-
 				</p:panelGrid>
-
 			</p:outputPanel>
 		</p:dialog>
-
-
 	</h:form>
-
-	<!-- <p:confirmDialog
-						message="El usuario ha sido borrado satisfactoriamente."
-						widgetVar="delUsuarioExito" global="true" showEffect="fade"
-						hideEffect="explode">
-						<p:commandButton value="Ok" type="button"
-						onclick="PF('delUsuarioExito').hide();"
-							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-					</p:confirmDialog> -->
-
-	<p:confirmDialog
-		message="El usuario ha sido borrado satisfactoriamente."
-		widgetVar="delUsuarioExito" global="true" showEffect="fade"
-		hideEffect="explode">
-		<p:commandButton value="Ok" type="button"
-			styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-	</p:confirmDialog>
-
-
-	<p:confirmDialog message="El usuario esta siendo borrado."
-		widgetVar="delUsuarioEspera" global="true" showEffect="fade"
-		closable="false" hideEffect="explode">
-	</p:confirmDialog>
-
-
-	<p:confirmDialog message="El usuario esta siendo modificado."
-		widgetVar="modUsuarioEspera" global="true" showEffect="fade"
-		closable="false" hideEffect="explode">
-	</p:confirmDialog>
-
-	<!-- <p:confirmDialog
-						message="El usuario ha sido modificado satisfactoriamente."
-						widgetVar="modUsuarioExito" global="true" showEffect="fade"
-						closable="false" hideEffect="explode">
-						<p:commandButton value="Ok" type="button"
-							onclick="PF('modUsuarioExito').hide();"
-							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-					</p:confirmDialog> -->
-
-	<p:confirmDialog
-		message="El usuario ha sido modificado satisfactoriamente."
-		widgetVar="modUsuarioExito" global="true" showEffect="fade"
-		closable="false" hideEffect="explode">
-		<p:commandButton value="Ok" type="button"
-			styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-	</p:confirmDialog>
-
-
 </h:body>
 </html>

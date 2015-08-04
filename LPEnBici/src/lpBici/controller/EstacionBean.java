@@ -10,6 +10,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.faces.application.FacesMessage;
+
+import org.primefaces.context.RequestContext;
+
 import mipatronDAO.MyFactoryDAO;
 import misclases.Bicicleta;
 import misclases.Estacion;
@@ -22,39 +26,35 @@ public class EstacionBean {
 	private Estacion estacion = new Estacion();
 	private Estacion estacionSeleccionada;
 	private List<Estacion> estacionesNoEliminadas = null;
-	
 	private Map<String , String> estacionesNoEliminadasMap = null;
 	private Map<String , String> estacionesConEstacionamientoLibre = null;
 	private Map<String , String> estacionesModificar = null;
-
 	private List<Estacion> estacionesFiltradas;
-
 	private List<Bicicleta> bicicletasFiltradas;
 	private List<Bicicleta> bicicletasEstacion = new ArrayList<Bicicleta>();
 	private Bicicleta bicicletaSeleccionada;
-	
 	private List<Bicicleta> bicicletasEstacionDisponibles = new ArrayList<Bicicleta>();
-	
-	
 	private List<Bicicleta> bicicletasOperativas = new ArrayList<Bicicleta>();
-	
 	private List<Estacion> estacionesOperativas = new ArrayList<Estacion>();
-	
 	
 	public EstacionBean(){
 		
 	}
-
 	
 	public String altaEstacion(){
 		Estacion est = new Estacion();
 		est = f.getEstacionDAO().recuperarEstacionNombre(this.estacion.getNombre());
 		if (est == null){
-			f.getEstacionDAO().guardarEstacion(estacion);
+			Estacion estacion_nueva = new Estacion(this.estacion.getNombre(), this.estacion.getLat(), this.estacion.getLon(), this.estacion.getCantEstacionamientoLibre(), this.estacion.getEstado());
+			f.getEstacionDAO().guardarEstacion(estacion_nueva);
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "La Plata en Bici - Administracion Estaciones", "Estacion creada con exito.");
+			RequestContext.getCurrentInstance().showMessageInDialog(message);
 			this.estacion = new Estacion();
 			return "ExitoAltaEstacion";
 		}else{
 			this.estacion = new Estacion();
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "La Plata en Bici - Administracion Estaciones", "Estacion ya existente.");
+			RequestContext.getCurrentInstance().showMessageInDialog(message);
 			return "FracasoAltaEstacion";
 		}
 	}
@@ -68,17 +68,21 @@ public class EstacionBean {
 					estacionSeleccionada.getHistorialEstado().add(new Estado(estacionSeleccionada.getEstado(), dameFecha()));			
 			 }
 		}
-		else
+		else{
 			estaAnt = new Estado();
+		}
 		
 		f.getEstacionDAO().modificarEstacion(estacionSeleccionada);
 		estacionSeleccionada = null;
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "La Plata en Bici - Administracion Estaciones", "Estacion modificada con exito.");
+		RequestContext.getCurrentInstance().showMessageInDialog(message);
 		return "ExitoModEstacion";
 	}
 			
 	public String EliminarEstacion(){		
-		//Si elimino la estacion, elimino todo lo que a ella corresponda.		
 		f.getEstacionDAO().eliminarEstacionLogica(estacionSeleccionada);
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "La Plata en Bici - Administracion Estaciones", "Estacion eliminada con exito.");
+		RequestContext.getCurrentInstance().showMessageInDialog(message);
 		return "ExitoEliminarEstacion";
 	}
 	
@@ -90,21 +94,14 @@ public class EstacionBean {
 		return "ForwardEstacionGenericaUsuario";		
 	}
 	
-	
-	
 	public List<Bicicleta> getBicicletasEstacionDisponibles() {
-		
-		
-		
 		return bicicletasEstacionDisponibles;
 	}
-
 
 	public void setBicicletasEstacionDisponibles(
 			List<Bicicleta> bicicletasEstacionDisponibles) {
 		this.bicicletasEstacionDisponibles = bicicletasEstacionDisponibles;
 	}
-
 
 	public Estacion getEstacion() {
 		return estacion;
@@ -142,43 +139,30 @@ public class EstacionBean {
 	public void setEstacionesNoEliminadas(List<Estacion> estacionesNoEliminadas) {
 		this.estacionesNoEliminadas = estacionesNoEliminadas;
 	}
-
-
 	
 	public List<Estacion> getEstacionesFiltradas() {
 		return estacionesFiltradas;
 	}
-
-
 	
 	public void setEstacionesFiltradas(List<Estacion> estacionesFiltradas) {
 		this.estacionesFiltradas = estacionesFiltradas;
 	}
-
-
 	
 	public Estacion getEstacionSeleccionada() {
 		return estacionSeleccionada;
 	}
 	
-
-
 	public void setEstacionSeleccionada(Estacion estacionSeleccionada) {
 		this.estacionSeleccionada = estacionSeleccionada;
 	}
-
-
 	
 	public List<Bicicleta> getBicicletasFiltradas() {
 		return bicicletasFiltradas;
 	}
 
-
 	public void setBicicletasFiltradas(List<Bicicleta> bicicletasFiltradas) {
 		this.bicicletasFiltradas = bicicletasFiltradas;
 	}
-
-
 
 	public List<Bicicleta> getBicicletasEstacion() {
 		if (this.estacionSeleccionada.getListaBici().size()>0){
@@ -194,17 +178,13 @@ public class EstacionBean {
 		}
 	}
 
-
-
 	public void setBicicletasEstacion(List<Bicicleta> bicicletasEstacion) {
 		this.bicicletasEstacion = bicicletasEstacion;
 	}
 
-
 	public Bicicleta getBicicletaSeleccionada() {
 		return bicicletaSeleccionada;
 	}
-
 
 	public void setBicicletaSeleccionada(Bicicleta bicicletaSeleccionada) {
 		this.bicicletaSeleccionada = bicicletaSeleccionada;
@@ -217,16 +197,13 @@ public class EstacionBean {
 		return formatoFecha.format(fechaActual);
 	}
 
-
 	public List<Bicicleta> getBicicletasOperativas() {
 		return bicicletasOperativas;
 	}
 
-
 	public void setBicicletasOperativas(List<Bicicleta> bicicletasOperativas) {
 		this.bicicletasOperativas = bicicletasOperativas;
 	}
-
 
 	public List<Estacion> getEstacionesOperativas() {
 		if (this.estacionesOperativas == null){
@@ -238,11 +215,9 @@ public class EstacionBean {
 		}
 	}
 
-
 	public void setEstacionesOperativas(List<Estacion> estacionesOperativas) {
 		this.estacionesOperativas = estacionesOperativas;
 	}
-
 
 	public Map<String, String> getEstacionesConEstacionamientoLibre() {
 		estacionesConEstacionamientoLibre = new HashMap<String, String>();
@@ -255,17 +230,14 @@ public class EstacionBean {
 		return estacionesConEstacionamientoLibre;
 	}
 
-
 	public void setEstacionesConEstacionamientoLibre(
 			Map<String, String> estacionesConEstacionamientoLibre) {
 		this.estacionesConEstacionamientoLibre = estacionesConEstacionamientoLibre;
 	}
 
-
 	public Map<String, String> getEstacionesModificar() {
 		return estacionesModificar;
 	}
-
 	
 	public Map<String, String> estacionesModificar (Bicicleta bici){
 		estacionesModificar = new HashMap<String, String>();
@@ -277,15 +249,9 @@ public class EstacionBean {
 		
 		return estacionesModificar;
 	}
-		
-	
+			
 	public void setEstacionesModificar(Map<String, String> estacionesModificar) {
 		this.estacionesModificar = estacionesModificar;
 	}
-	
-	
-	
-	
-	
-	
+		
 }

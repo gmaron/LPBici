@@ -4,6 +4,8 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
     version="2.2">
+    
+    <!-- BEANES QUE VAN A MANEJAR LAS REGLAS DE NAVEGACION  -->
 	<managed-bean>
 		<managed-bean-name>PersonaBean</managed-bean-name>
 		<managed-bean-class>lpBici.controller.PersonaBean</managed-bean-class>
@@ -22,7 +24,7 @@
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	
-	
+	<!-- LOGIN DEL USUARIO  -->
 	<navigation-rule>
 		<display-name>index.xhtml</display-name>
 		<from-view-id>/index.xhtml</from-view-id>
@@ -31,48 +33,8 @@
 			<to-view-id>/LoginUsuario.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-	<!--  DE PRUEBA 
-		<navigation-rule>
-		<display-name>bodyIndex.xhtml</display-name>
-		<from-view-id>/bodyIndex.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>ExitoRegistro</from-outcome>
-			<to-view-id>/index.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>-->
-	
-	<navigation-rule>
-		<display-name>index.xhtml</display-name>
-		<from-view-id>/index.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>FracasoLogin</from-outcome>
-			<to-view-id>/errorlogin.jsp</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>index.xhtml</display-name>
-		<from-view-id>/index.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>ExitoRegistro</from-outcome>
-			<to-view-id>/index.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>index.xhtml</display-name>
-		<from-view-id>/index.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>FracasoRegistro</from-outcome>
-			<to-view-id>/ErrorRegistro.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>AdministracionUsr.xhtml</display-name>
-		<from-view-id>/AdministracionUsr.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>Exito_AdminmodUsuario</from-outcome>
-			<to-view-id>/AdministracionUsr.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
+
+	<!-- LOGIN DEL ADMINISTRADOR  -->
 	<navigation-rule>
 		<display-name>index.xhtml</display-name>
 		<from-view-id>/index.xhtml</from-view-id>
@@ -81,6 +43,48 @@
 			<to-view-id>/LoginAdministrador.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+
+	<!-- FRACASO LOGIN  -->
+	<navigation-rule>
+		<display-name>index.xhtml</display-name>
+		<from-view-id>/index.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>FracasoLogin</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<!-- EXITO DEL REGISTRO  -->
+	<navigation-rule>
+		<display-name>index.xhtml</display-name>
+		<from-view-id>/index.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>ExitoRegistro</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<!-- FRACASO DEL REGISTRO  -->
+	<navigation-rule>
+		<display-name>index.xhtml</display-name>
+		<from-view-id>/index.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>FracasoRegistro</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<!-- EXITO MODIFICACION USUARIO DESDE EL ADMINISTRADOR  -->
+	<navigation-rule>
+		<display-name>AdministracionUsr.xhtml</display-name>
+		<from-view-id>/AdministracionUsr.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>Exito_AdminmodUsuario</from-outcome>
+			<to-view-id>/AdministracionUsr.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<!-- EXITO ELIMINACION USUARIO DESDE EL ADMINISTRADOR -->
 	<navigation-rule>
 		<display-name>AdministracionUsr.xhtml</display-name>
 		<from-view-id>/AdministracionUsr.xhtml</from-view-id>
@@ -90,23 +94,7 @@
 		</navigation-case>
 	</navigation-rule>
 	
-	<!-- <navigation-rule>
-		<display-name>menubar.xhtml</display-name>
-		<from-view-id>/menubar.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>exito</from-outcome>
-			<to-view-id>/resultado.jsp</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>menubar.xhtml</display-name>
-		<from-view-id>/menubar.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>fracaso</from-outcome>
-			<to-view-id>/pepe.jsp</to-view-id>
-		</navigation-case>
-	</navigation-rule> -->
-	
+	<!-- PARA LA MODIFICACION DEL PERFIL DE USUARIO  -->
 	<navigation-rule>
 		<display-name>perfilUsuario.xhtml</display-name>
 		<from-view-id>/perfilUsuario.xhtml</from-view-id>
@@ -115,6 +103,8 @@
 			<to-view-id>/perfilUsuario.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	
+	<!-- PARA LA MODIFICACION DEL PERFIL DE ADMINISTRADOR  -->
 	<navigation-rule>
 		<display-name>PerfilAdministrador.xhtml</display-name>
 		<from-view-id>/PerfilAdministrador.xhtml</from-view-id>
@@ -143,6 +133,8 @@
 		</navigation-case>
 	</navigation-rule>
 	
+	
+	<!-- EXITO EN LA MODIFICACION DE LA BICICLETA  -->
 	<navigation-rule>
 		<display-name>AdministracionBicicletas.xhtml</display-name>
 		<from-view-id>/AdministracionBicicletas.xhtml</from-view-id>
@@ -152,6 +144,7 @@
 		</navigation-case>
 	</navigation-rule>
 	
+	<!-- FRACASO EN LA MOFICIACION DE LA BICICLETA -->
 	<navigation-rule>
 		<display-name>AdministracionBicicletas.xhtml</display-name>
 		<from-view-id>/AdministracionBicicletas.xhtml</from-view-id>
@@ -235,6 +228,8 @@
 		</navigation-case>
 	</navigation-rule>
 	
+	
+	<!-- EXITO PARA EL RETIRO DE UNA BICICLETA  -->
 	<navigation-rule>
 		<display-name>EstacionGenericaUsuario.xhtml</display-name>
 		<from-view-id>/EstacionGenericaUsuario.xhtml</from-view-id>
@@ -244,6 +239,7 @@
 		</navigation-case>
 	</navigation-rule>
 	
+	<!-- FRACASO PARA EL RETIRO DE UNA BICICLETA  -->
 	<navigation-rule>
 		<display-name>EstacionGenericaUsuario.xhtml</display-name>
 		<from-view-id>/EstacionGenericaUsuario.xhtml</from-view-id>
@@ -253,6 +249,24 @@
 		</navigation-case>
 	</navigation-rule>
 	
+	<!-- EXITO PARA LA DEVOLUCION DE UNA BICICLETA  -->
+	<navigation-rule>
+		<display-name>AlquileresUsuario.xhtml</display-name>
+		<from-view-id>/AlquileresUsuario.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>ExitoDevolucion</from-outcome>
+			<to-view-id>AlquileresUsuario.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 	
+	<!-- FRACASO PARA LA DEVOLUCION DE UNA BICICLETA  -->
+	<navigation-rule>
+		<display-name>AlquileresUsuario.xhtml</display-name>
+		<from-view-id>/AlquileresUsuario.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>FracasoRetiroBicicleta</from-outcome>
+			<to-view-id>FracasoDevolucion.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 	
 </faces-config>
