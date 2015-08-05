@@ -78,22 +78,6 @@
 						target="#{PersonaBean.usuarioSeleccionado}" />
 				</p:commandButton>
 			</p:column>
-
-			<!-- <p:column filterBy="#{bicicleta.estado}" headerText="Estado actual"
-				filterMatchMode="contains" sortBy="#{bicicleta.estado}">
-				<h:outputText value="#{bicicleta.estado}" />
-			</p:column> -->
-
-			<!--  FALTA ULTIMA MODIFICACION Y HISTORIAL DE DENUNCIAS -->
-
-
-			<!-- <p:column style="width:32px;text-align: center">
-				<p:commandButton update=":form:detalleAlquiler"
-					oncomplete="PF('alquilerDialog').show()" value= "Devolver">
-					<f:setPropertyActionListener value="#{alquiler}"
-						target="#{PersonaBean.alquilerSeleccionado}" />
-				</p:commandButton>
-			</p:column>  -->
 		</p:dataTable>
 		
 		<p:dialog header="Información Usuario" widgetVar="usuarioDialog"
@@ -105,7 +89,6 @@
 					rendered="#{not empty PersonaBean.usuarioSeleccionado}"
 					columnClasses="label,value">
 					<f:facet name="header">
-						<!--<p:graphicImage name="demo/images/car/#{dtFilterView.selectedCar.brand}-big.gif"/>-->
 					</f:facet>
 					<h:outputText value="Nombre: " />
 					<h:outputText value="#{PersonaBean.usuarioSeleccionado.nombre}" />
@@ -127,159 +110,9 @@
 
 					<h:outputText value="Fecha de Nacimiento: " />
 					<h:outputText value="#{PersonaBean.usuarioSeleccionado.fechaNacimiento}" />
-					
-					<!-- <p:calendar id="fechaNac"
-						value="#{PersonaBean.usuarioSeleccionado.fechaNacimiento}"
-						navigator="true" maxdate="#{PersonaBean.fechaActual}"
-						effect="fold" required="true">
-						<f:convertDateTime pattern="dd/MM/yy" />
-					</p:calendar> -->
-
-				
-					
-					<!-- <p:selectOneRadio
-						value="#{PersonaBean.usuarioSeleccionado.habilitado}"
-						required="true">
-						<f:selectItem itemLabel="Habilitado" itemValue="true" />
-						<f:selectItem itemLabel="Deshabilitado" itemValue="false" />
-					</p:selectOneRadio> -->
-
-
-
-					<!-- <p:commandButton value="Modificar" ajax="false"
-							id="modificar"
-							action="#{PersonaBean.AdminmodUsuario}" icon="ui-icon-check"
-							validateClient="true"
-							onclick="PF('modUsuarioEspera').show();"						
-							/>
- -->
-					<!-- <p:commandButton value="Modificar" ajax="false" id="modificar"
-						action="#{PersonaBean.AdminmodUsuario}" icon="ui-icon-check"
-						validateClient="true" />
- -->
-					<!-- <p:commandButton value="Eliminar" ajax="false" id="eliminar"
-						action="#{PersonaBean.AdminEliminarUsuario}" icon="ui-icon-check"
-						validateClient="true" onclick="PF('delUsuarioEspera').show();" /> -->
-
-					<!-- <p:commandButton value="Eliminar" ajax="false" id="eliminar"
-						action="#{PersonaBean.AdminEliminarUsuario}" icon="ui-icon-check"
-						validateClient="true" /> -->
-
 				</p:panelGrid>
-
 			</p:outputPanel>
 		</p:dialog>
-		
-		
-
-		<p:dialog header="Devolucion de Bicicleta"
-			widgetVar="alquilerDialog" modal="true" showEffect="fade"
-			hideEffect="fade" resizable="false">
-
-			<p:outputPanel id="detalleAlquiler" style="text-align:center;">
-
-				<p:panelGrid columns="2" rendered="#{not empty PersonaBean.alquilerSeleccionado}"
-					columnClasses="label,value">
-					
-					<h:outputText value="Patente: " />
-					<h:outputText value="#{PersonaBean.alquilerSeleccionado.bicicleta.patente}" />
-
-
-					<p:outputLabel for="estacion" value="Estacion: " />
-					<p:selectOneMenu required="true" id="estacion"
-						value="#{PersonaBean.alquilerSeleccionado.nombreEstacionEntrada}"
-						style="width:150px">
-						<f:selectItem itemLabel="Seleccionar" itemValue=""
-							noSelectionOption="true" />
-						<f:selectItems value="#{EstacionBean.estacionesNoEliminadasMap}" />
-					</p:selectOneMenu>
-
-
-
-					
-
-					<h:outputText value="Denuncia: " />
-					<p:inputTextarea value="#{PersonaBean.denuncia.comentario}"/>
-
-					<p:commandButton value="Aceptar" ajax="false" id="aceptar"
-						action="#{PersonaBean.devolverBicicleta}" icon="ui-icon-check"
-						validateClient="true" />
-
-
-					<!-- <p:commandButton value="Modificar" ajax="false"
-							id="modificar"
-							action="#{PersonaBean.AdminmodUsuario}" icon="ui-icon-check"
-							validateClient="true"
-							onclick="PF('modUsuarioEspera').show();"						
-							/>
- -->
-					<!-- <p:commandButton value="Modificar" ajax="false" id="modificar"
-						action="#{BicicletaBean.ModBicicleta}" icon="ui-icon-check"
-						validateClient="true" /> -->
-
-					<!-- <p:commandButton value="Eliminar" ajax="false" id="eliminar"
-						action="#{PersonaBean.AdminEliminarUsuario}" icon="ui-icon-check"
-						validateClient="true" onclick="PF('delUsuarioEspera').show();" /> -->
-
-					<!-- <p:commandButton value="Eliminar" ajax="false" id="eliminar"
-						action="#{BicicletaBean.EliminarBicicleta}" icon="ui-icon-check"
-						validateClient="true" /> -->
-				</p:panelGrid>
-
-			</p:outputPanel>
-		</p:dialog>
-
-
 	</h:form>
-
-	<!-- <p:confirmDialog
-						message="El usuario ha sido borrado satisfactoriamente."
-						widgetVar="delUsuarioExito" global="true" showEffect="fade"
-						hideEffect="explode">
-						<p:commandButton value="Ok" type="button"
-						onclick="PF('delUsuarioExito').hide();"
-							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-					</p:confirmDialog> -->
-
-	<p:confirmDialog
-		message="El usuario ha sido borrado satisfactoriamente."
-		widgetVar="delUsuarioExito" global="true" showEffect="fade"
-		hideEffect="explode">
-		<p:commandButton value="Ok" type="button"
-			styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-	</p:confirmDialog>
-
-
-	<p:confirmDialog message="El usuario esta siendo borrado."
-		widgetVar="delUsuarioEspera" global="true" showEffect="fade"
-		closable="false" hideEffect="explode">
-	</p:confirmDialog>
-
-
-	<p:confirmDialog message="El usuario esta siendo modificado."
-		widgetVar="modUsuarioEspera" global="true" showEffect="fade"
-		closable="false" hideEffect="explode">
-	</p:confirmDialog>
-
-	<!-- <p:confirmDialog
-						message="El usuario ha sido modificado satisfactoriamente."
-						widgetVar="modUsuarioExito" global="true" showEffect="fade"
-						closable="false" hideEffect="explode">
-						<p:commandButton value="Ok" type="button"
-							onclick="PF('modUsuarioExito').hide();"
-							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-					</p:confirmDialog> -->
-
-	<p:confirmDialog
-		message="El usuario ha sido modificado satisfactoriamente."
-		widgetVar="modUsuarioExito" global="true" showEffect="fade"
-		closable="false" hideEffect="explode">
-		<p:commandButton value="Ok" type="button"
-			styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-	</p:confirmDialog>
-
-
-
-
 </h:body>
 </html>

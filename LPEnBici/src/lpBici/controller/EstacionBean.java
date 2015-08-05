@@ -37,6 +37,8 @@ public class EstacionBean {
 	private List<Bicicleta> bicicletasOperativas = new ArrayList<Bicicleta>();
 	private List<Estacion> estacionesOperativas = new ArrayList<Estacion>();
 	
+	private Map<String,String> estaciones_operativas_conEstacionamiento = null;
+	
 	public EstacionBean(){
 		
 	}
@@ -253,5 +255,27 @@ public class EstacionBean {
 	public void setEstacionesModificar(Map<String, String> estacionesModificar) {
 		this.estacionesModificar = estacionesModificar;
 	}
+
+	public Map<String, String> getEstaciones_operativas_conEstacionamiento() {
+		estaciones_operativas_conEstacionamiento = new HashMap<String, String>();
+		estacionesNoEliminadas =  f.getEstacionDAO().recuperarEstacionesNoEliminadas();		
+		for (Estacion est : estacionesNoEliminadas){
+			if ((est.getCantEstacionamientoLibre()>0)&&(est.getEstado().equals("Operativa")))
+				estaciones_operativas_conEstacionamiento.put(est.getNombre(),est.getNombre());		
+		}
+		
+		return estaciones_operativas_conEstacionamiento;
+	}
+
+	public void setEstaciones_operativas_conEstacionamiento(
+			Map<String, String> estaciones_operativas_conEstacionamiento) {
+		this.estaciones_operativas_conEstacionamiento = estaciones_operativas_conEstacionamiento;
+	}
+
+
+	
+	
+	
+	
 		
 }

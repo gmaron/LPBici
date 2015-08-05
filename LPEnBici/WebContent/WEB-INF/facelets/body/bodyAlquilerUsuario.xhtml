@@ -30,7 +30,8 @@
 			value="#{PersonaBean.listaAlquileres}"
 			widgetVar="tablaAlquileres"
 			emptyMessage="No se encontraron alquileres con ese criterio."
-			filteredValue="#{PersonaBean.alquileresFiltrados}">
+			filteredValue="#{PersonaBean.alquileresFiltrados}"
+			>
 
 
 			<f:facet name="header">
@@ -68,7 +69,7 @@
 			</p:column>
 			
 
-			<p:column style="width:32px;text-align: center">
+			<p:column headerText="Devolucion" style="text-align: center">
 				<p:commandButton update=":form:detalleAlquiler"
 					oncomplete="PF('alquilerDialog').show()" value= "Devolver">
 					<f:setPropertyActionListener value="#{alquiler}"
@@ -96,7 +97,7 @@
 						style="width:150px">
 						<f:selectItem itemLabel="Seleccionar" itemValue=""
 							noSelectionOption="true" />
-						<f:selectItems value="#{EstacionBean.estacionesConEstacionamientoLibre}" />
+						<f:selectItems value="#{EstacionBean.estaciones_operativas_conEstacionamiento}" />
 					</p:selectOneMenu>
 
 					<h:outputText value="Denuncia: " />

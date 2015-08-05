@@ -19,13 +19,19 @@
 	<properties>
 	<property name="hibernate.enable_lazy_load_no_trans" value="true"/>
 		<property name="javax.persistence.validation.mode" value="none"/>
-		<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />		
-		<property name="hibernate.connection.url" value="jdbc:mysql://192.168.0.34:3306/LPbici" />		
- 			 <property name="hibernate.connection.username" value="jyaa" /> 
-		<!-- <property name="hibernate.connection.password" value="jyaa" /> -->	
-		<!-- <property name="hibernate.connection.url" value="jdbc:mysql://mysql.java.linti.unlp.edu.ar:3306/jyaa2015_bd18" />
+		<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+		
+		<!-- CONFIGURACIONES PARA SERVIDOR LOCAL -->		
+		 <!-- <property name="hibernate.connection.url" value="jdbc:mysql://192.168.0.34:3306/LPbici" />		
+ 		 <property name="hibernate.connection.username" value="jyaa" /> -->
+		<!-- <property name="hibernate.connection.password" value="jyaa" /> -->
+		
+		
+		<!-- CONFIGURACIONES PARA EL SERVIDOR DE LA CATEDRA -->	
+		<property name="hibernate.connection.url" value="jdbc:mysql://mysql.java.linti.unlp.edu.ar:3306/jyaa2015_bd18" />
 		<property name="hibernate.connection.username" value="grupo18" />		
-		<property name="hibernate.connection.password" value="jyaa!grupo18" /> -->
+		<property name="hibernate.connection.password" value="jyaa!grupo18" />
+
 		<property name="hibernate.hbm2ddl.auto" value="update" />
 		<property name="hibernate.dialect" value=" org.hibernate.dialect.MySQL5InnoDBDialect " />
 	</properties>

@@ -62,6 +62,8 @@ public class PersonaBean {
 		Administrador admin = (Administrador) f.getAdministradorDAO().recuperarAdministrador(usr.getEmail());
 		
 		if ((admin != null)){
+			admin = new Administrador();
+			this.usr = new Usuario();
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "La Plata en Bici - Registro erroneo", "Usuario ya existente o error en el sistema.");
 	        RequestContext.getCurrentInstance().showMessageInDialog(message);	
 			return "FracasoRegistro";

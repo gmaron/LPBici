@@ -116,6 +116,7 @@
 	
 	<!-- BICICLETA  -->
 	
+	<!--  EXITO ALTA BICICLETA-->
 	<navigation-rule>
 		<display-name>AltaBicicleta.xhtml</display-name>
 		<from-view-id>/AltaBicicleta.xhtml</from-view-id>
@@ -124,6 +125,8 @@
 			<to-view-id>AltaBicicleta.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	
+	<!-- FRACASO ALTA BICICLETA -->
 	<navigation-rule>
 		<display-name>AltaBicicleta.xhtml</display-name>
 		<from-view-id>/AltaBicicleta.xhtml</from-view-id>
@@ -154,7 +157,7 @@
 		</navigation-case>
 	</navigation-rule>
 	
-	
+	<!-- EXITO AL ELIMINAR UNA BICICLETA -->
 	<navigation-rule>
 	<display-name>AdministracionBicicletas.xhtml</display-name>
 		<from-view-id>/AdministracionBicicletas.xhtml</from-view-id>
@@ -165,7 +168,8 @@
 	</navigation-rule>
 	
 	<!-- ESTACION -->
-			<!--  ALTA  -->
+	
+	<!-- EXITO DE ALTA DE ESTACION  -->
 	<navigation-rule>
 		<display-name>AltaEstacion.xhtml</display-name>
 		<from-view-id>/AltaEstacion.xhtml</from-view-id>
@@ -175,6 +179,7 @@
 		</navigation-case>
 	</navigation-rule>
 	
+	<!-- FRACASO DE ALTA DE ESTACION -->
 	<navigation-rule>
 		<display-name>AltaEstacion.xhtml</display-name>
 		<from-view-id>/AltaEstacion.xhtml</from-view-id>
@@ -184,8 +189,7 @@
 		</navigation-case>
 	</navigation-rule>
 	
-	<!--  BAJA  -->
-	
+	<!--  EXITO ELIMINACION DE ESTACIONES  -->
 	<navigation-rule>
 		<display-name>AdministracionEstaciones.xhtml</display-name>
 		<from-view-id>/AdministracionEstaciones.xhtml</from-view-id>
@@ -196,8 +200,7 @@
 	</navigation-rule>
 	
 	
-	<!--  MODIFICACION -->
-	
+	<!--  EXITO DE MODIFICACION DE ESTACIONES -->
 	<navigation-rule>
 		<display-name>AdministracionEstaciones.xhtml</display-name>
 		<from-view-id>/AdministracionEstaciones.xhtml</from-view-id>
