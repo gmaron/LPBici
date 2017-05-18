@@ -1,8 +1,0 @@
-Login del administrador -> hay que ver
-	-> que direccione al LoginAdministrador. -> LISTO
-Eliminar usuario desde el administrador
-	-> LISTO
-	-> PROBLEMA: MOSTRAR TODOS LOS USUARIOS (ELIMINADOS/NOELIMINADOS)
-	-> O SOLO LOS NO ELIMINADOS
-	-> POR AHORA SOLO LOS QUE NO ESTAN ELIMINADOS
-

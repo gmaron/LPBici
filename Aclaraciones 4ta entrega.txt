@@ -1,8 +1,0 @@
-agregar la clave para modificar perfil
-
-administrador cargado en la base de datos
----------------------------------
-hacer los menusbar aparte 	|
-los componentes aparte 		|
-los footers aparte		| 
----------------------------------
